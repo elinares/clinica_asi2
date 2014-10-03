@@ -73,6 +73,22 @@ class modelo_admin extends CI_Model {
     function obt_especialidades(){
         return $this->db->get('especialidad')->result_array();
     }
+
+    /*MUNICIPIOS*/
+
+    function obt_municipio($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM municipio
+                                   WHERE cod_municipio=?;', $id)->row_array();
+        return $datos;
+    }
+
+    function obt_municipios(){
+        $datos = $this->db->query('SELECT mu.*, de.nombre AS nombre_departamento
+                                   FROM municipio mu, departamento de
+                                   WHERE mu.cod_departamento=de.cod_departamento;')->result_array();
+        return $datos;
+    }
 }
 
 ?>

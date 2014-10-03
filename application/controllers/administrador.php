@@ -397,4 +397,81 @@ class Administrador extends CI_Controller {
 			redirect('especialidades');
 		}
 	}
+
+	/*MANTENIMIENTO MUNICIPIOS*/
+
+	public function municipios()
+	{
+		$data['municipios'] = $this->modelo_admin->obt_municipios();
+		$data['titulo'] = 'Administrador - Municipios';
+
+		$this->load->view('lista_municipios', $data);
+	}
+
+	public function agregar_municipio()
+	{
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$departamento = $this->input->post('departamento');
+
+			$datos = array(
+				'nombre' => $nombre,
+				'cod_departamento'=> $departamento
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'municipio');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('municipios');
+			}
+		}
+
+		$data['titulo'] = 'Administrador - Agregar Municipio';
+
+		$data['departamentos'] = $this->modelo_admin->obt_departamentos();
+
+		$this->load->view('agregar_municipio', $data);
+	}
+
+	public function editar_municipio($id){
+
+		$datos = $this->modelo_admin->obt_municipio($id);
+
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$departamento = $this->input->post('departamento');
+
+			$datos2 = array(
+				'nombre' => $nombre,
+				'cod_departamento'=> $departamento
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_municipio', 'municipio');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('municipios');
+			}
+		}
+
+		$data['info_mun'] = $datos;
+
+		$data['departamentos'] = $this->modelo_admin->obt_departamentos();
+
+		$data['titulo'] = 'Administrador - Editar Municipio';
+
+		$this->load->view('editar_municipio', $data);
+	}
+
+	public function borrar_municipio($id){
+
+		$this->db->where('cod_municipio', $id);
+		$result = $this->db->delete('municipio'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('municipios');
+		}
+	}
 }
