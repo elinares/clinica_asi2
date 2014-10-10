@@ -119,6 +119,22 @@ class modelo_admin extends CI_Model {
                                    WHERE us.cod_perfil=pe.cod_perfil;')->result_array();
         return $datos;
     }
+    /*TIPO EXAMEN*/
+    function obt_tipoexamen($id){
+        return $this->db->get_where('tipo_examen', array('cod_tipoExm'=>$id))->row_array();
+    }
+
+    function obt_tipoexamenes(){
+        return $this->db->get('tipo_examen')->result_array();
+    }
+    /*ESPECIALIDAD EXAMEN*/
+    function obt_especialidadexamen($id){
+        return $this->db->get_where('especialidad_examen', array('cod_especialidad'=>$id))->row_array();
+    }
+
+    function obt_especialidadexamenes(){
+        return $this->db->get('especialidad_examen')->result_array();
+    }
 }
 
 ?>

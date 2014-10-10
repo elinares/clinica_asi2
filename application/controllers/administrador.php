@@ -644,4 +644,143 @@ class Administrador extends CI_Controller {
 			redirect('usuarios');
 		}
 	}
+	
+	/*MANTENIMIENTO TIPO EXAMEN*/
+		public function tipoexamenes()
+	{
+		$data['tipoexamenes'] = $this->modelo_admin->obt_tipoexamenes();
+		$data['titulo'] = 'Administrador - Tipo Examen';
+
+		$this->load->view('lista_tipo_examenes', $data);
+	}
+
+	/*AGREGANDO TIPO EXAMEN*/
+	public function agregar_tipo_examen()
+	{
+		if($this->input->post()){
+			$nombre = $this->input->post('tipo');
+
+			$datos = array(
+				'tipo' => $nombre
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'tipo_examen');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('tipoexamenes');
+			}
+		}
+
+	
+	$data['titulo'] = 'Administrador - Agregar Tipo Examen';
+
+		$this->load->view('agregar_tipo_examen', $data);
+	}
+	/*BORRAR TIPO EXAMEN*/
+	public function borrar_tipo_examen($id){
+
+		$this->db->where('cod_tipoExm', $id);
+		$result = $this->db->delete('tipo_examen'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('tipoexamenes');
+		}
+	}
+	/*EDITAR TIPO EXAMEN*/
+	public function editar_tipo_examen($id){
+
+		$datos = $this->modelo_admin->obt_tipoexamen($id);
+
+		if($this->input->post()){		
+			$tipo = $this->input->post('tipo');
+
+			$datos2 = array(
+				'tipo' => $tipo
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_tipoExm', 'tipo_examen');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('tipoexamenes');
+			}
+		}
+
+		$data['info_tex'] = $datos;
+		$data['titulo'] = 'Administrador - Editar Tipo Examen';
+
+		$this->load->view('editar_tipo_examen', $data);
+	}
+	/*MANTENIMIENTO ESPECIALIDAD EXAMEN*/
+		public function especialidadexamenes()
+	{
+		$data['especialidadexamenes'] = $this->modelo_admin->obt_especialidadexamenes();
+		$data['titulo'] = 'Administrador - Especialidad Examen';
+
+		$this->load->view('lista_especialidad_examen', $data);
+	}
+
+	/*AGREGANDO ESPECIALIDAD EXAMEN*/
+	public function agregar_especialidad_examen()
+	{
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+
+			$datos = array(
+				'nombre' => $nombre
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'especialidad_examen');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('especialidadexamenes');
+			}
+		}
+
+	
+	$data['titulo'] = 'Administrador - Agregar Tipo Examen';
+
+		$this->load->view('agregar_especialidad_examen', $data);
+	}
+
+	/*BORRAR ESPECIALIDAD EXAMEN*/
+	public function borrar_especialidad_examen($id){
+
+		$this->db->where('cod_especialidad', $id);
+		$result = $this->db->delete('especialidad_examen'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('especialidadexamenes');
+		}
+	}
+
+	/*EDITAR ESPECIALIDAD EXAMEN*/
+	public function editar_especialidad_examen($id){
+
+		$datos = $this->modelo_admin->obt_especialidadexamen($id);
+
+		if($this->input->post()){		
+			$tipo = $this->input->post('nombre');
+
+			$datos2 = array(
+				'nombre' => $tipo
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_especialidad', 'especialidad_examen');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('especialidadexamenes');
+			}
+		}
+
+		$data['info_esp'] = $datos;
+		$data['titulo'] = 'Administrador - Editar Especialidad Examen';
+
+		$this->load->view('editar_especialidad_examen', $data);
+	}
 }
