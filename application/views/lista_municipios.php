@@ -55,8 +55,8 @@ if(empty($municipios)){
           <td><?=$municipio['nombre']?></td>
           <td><?=$municipio['nombre_departamento']?></td>
           <td>
-              <a href="<?=base_url()?>editar_municipio/<?=$municipio['cod_municipio']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_municipio/<?=$municipio['cod_municipio']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_municipio/<?=$municipio['codigo_muni']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_municipio/<?=$municipio['codigo_muni']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php
