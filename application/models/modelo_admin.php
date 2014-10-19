@@ -61,11 +61,11 @@ class modelo_admin extends CI_Model {
     /*DEPARTAMENTOS*/
 
     function obt_departamento($id){
-        return $this->db->get_where('departamento', array('cod_departamento'=>$id))->row_array();
+        return $this->db->get_where('DEPARTAMENTO', array('codigo_dep'=>$id))->row_array();
     }
 
     function obt_departamentos(){
-        return $this->db->get('departamento')->result_array();
+        return $this->db->get('DEPARTAMENTO')->result_array();
     }
 
     /*ESPECIALIDADES*/
@@ -89,8 +89,8 @@ class modelo_admin extends CI_Model {
 
     function obt_municipios(){
         $datos = $this->db->query('SELECT mu.*, de.nombre AS nombre_departamento
-                                   FROM municipio mu, departamento de
-                                   WHERE mu.cod_departamento=de.cod_departamento;')->result_array();
+                                   FROM "MUNICIPIO" mu, "DEPARTAMENTO" de
+                                   WHERE mu.fk_codigo_dep=de.codigo_dep;')->result_array();
         return $datos;
     }
 
@@ -134,6 +134,11 @@ class modelo_admin extends CI_Model {
 
     function obt_especialidadexamenes(){
         return $this->db->get('especialidad_examen')->result_array();
+    }
+    function obt_empleados(){
+        $datos = $this->db->query('SELECT nombre, primer_apellido
+                                    FROM 
+                                    "PERSONA";')->result_array();
     }
 }
 

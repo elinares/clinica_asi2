@@ -52,12 +52,14 @@ class Administrador extends CI_Controller {
 
 	public function cargos()
 	{
+
 		$data['cargos'] = $this->modelo_admin->obt_cargos();
 		$data['titulo'] = 'Administrador - Cargos';
 
 		$this->load->view('lista_cargos', $data);
 	}
 
+	
 	public function agregar_cargo()
 	{
 		if($this->input->post()){
@@ -783,4 +785,14 @@ class Administrador extends CI_Controller {
 
 		$this->load->view('editar_especialidad_examen', $data);
 	}
+	
+	/*MANTENIMIENTO EMPLEADOS*/
+	public function empleados()
+	{
+		$data['empleados']=$this->modelo_admin->obt_empleados();
+		$data['titulo']='Administrador-Empleados';
+		$this->load->view('lista_empleados',$data);
+	
+	}
+
 }
