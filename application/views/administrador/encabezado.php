@@ -139,6 +139,7 @@ if(!$this->session->userdata('user_info')){
         </li>        
         <li>
             <ul class="mantenimientos-menu nav nav-list collapse">
+            	<li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span>Citas</a></li>
                 <li ><a href="<?=base_url()?>cargos"><span class="fa fa-caret-right"></span> Cargos</a></li>
                 <li><a href="<?base_url()?>empleados"><span class="fa fa-caret-right"></span>Empleados</a></li>
                 <li ><a href="<?=base_url()?>clinicas"><span class="fa fa-caret-right"></span> Clínicas</a></li>

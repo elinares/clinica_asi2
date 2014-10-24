@@ -138,8 +138,15 @@ class modelo_admin extends CI_Model {
     function obt_empleados(){
         $datos = $this->db->query('SELECT nombre, primer_apellido
                                     FROM 
-                                    "PERSONA";')->result_array();
+                                    "persona";')->result_array();
     }
+    function obt_citas(){
+        $datos=$this->db->query('select persona.nombre, persona.primer_apellido, persona.segundo_apellido, paciente.codigo_pac, cita.fecha 
+            from persona inner join paciente on paciente.fk_codigo_per =  persona.codigo_per 
+            inner join cita on cita.fk_codigo_pac=paciente.codigo_pac ')->result_array();
+        return $datos;
+    }
+
 }
 
 ?>

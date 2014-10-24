@@ -104,6 +104,12 @@ $route['agregar_especialidad_examen'] = "administrador/agregar_especialidad_exam
 $route['editar_especialidad_examen/(:any)'] = "administrador/editar_especialidad_examen/$1";
 $route['borrar_especialidad_examen/(:any)'] = "administrador/borrar_especialidad_examen/$1";
 
+/*especialidad Empleados*/
+
+$route['empleados'] = "administrador/empleados";
+/*citas*/
+$route['citas']="administrador/citas";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

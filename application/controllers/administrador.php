@@ -794,5 +794,14 @@ class Administrador extends CI_Controller {
 		$this->load->view('lista_empleados',$data);
 	
 	}
+	/*CONFIGURACION CITAS*/
+	public function citas()
+	{
+		$data['citas'] = $this->modelo_admin->obt_citas();
+		$data['titulo'] = 'Administrador - Citas';
+
+		$this->load->view('lista_citas', $data);
+	}
+	
 
 }
