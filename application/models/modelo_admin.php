@@ -8,7 +8,7 @@ class modelo_admin extends CI_Model {
     }
 
     function login($usuario, $password){
-        return $this->db->get_where('USUARIO', array('nombre'=>$usuario, 'password'=>md5($password)))->row_array();
+        return $this->db->get_where('usuario', array('nombre'=>$usuario, 'password'=>md5($password)))->row_array();
     }
 
     /*GENERALES*/
