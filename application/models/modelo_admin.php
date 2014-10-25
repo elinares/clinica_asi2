@@ -61,7 +61,7 @@ class modelo_admin extends CI_Model {
     /*DEPARTAMENTOS*/
 
     function obt_departamento($id){
-        return $this->db->get_where('departamento', array('cod_departamento'=>$id))->row_array();
+        return $this->db->get_where('departamento', array('codigo_dep'=>$id))->row_array();
     }
 
     function obt_departamentos(){

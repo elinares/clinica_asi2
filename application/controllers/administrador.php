@@ -268,7 +268,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_consultorio($id){
 
-		$this->db->where('cod_consultorio', $id);
+		$this->db->where('codigo_con', $id);
 		$result = $this->db->delete('consultorio'); 
 
 		if($result){
@@ -320,7 +320,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_departamento', 'departamento');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_dep', 'departamento');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -336,7 +336,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_departamento($id){
 
-		$this->db->where('cod_departamento', $id);
+		$this->db->where('codigo_dep', $id);
 		$result = $this->db->delete('departamento'); 
 
 		if($result){
