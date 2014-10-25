@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.56.101';
+$db['default']['hostname'] = '192.168.43.153';
 $db['default']['username'] = 'clinicas';
 $db['default']['password'] = 'clinicas';
 $db['default']['database'] = 'clinicas_production';

@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/clinica_municipal/';
+$config['base_url']	= 'http://192.168.43.153/clinica_asi2/';
 
 /*
 |--------------------------------------------------------------------------
