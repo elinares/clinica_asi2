@@ -100,8 +100,13 @@ class modelo_admin extends CI_Model {
         return $this->db->get_where('perfil', array('cod_perfil'=>$id))->row_array();
     }
 
+    
     function obt_perfiles(){
-        return $this->db->get('perfil')->result_array();
+   $datos = $this->db->query('SELECT *
+                                   FROM perfil
+                                   WHERE codigo_perf !=1 ;')->result_array();
+
+        return $datos;
     }
 
     /*USUARIOS*/

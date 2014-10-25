@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'clinica_municipal';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['hostname'] = '192.168.43.153';
+$db['default']['username'] = 'clinicas';
+$db['default']['password'] = 'clinicas';
+$db['default']['database'] = 'clinicas_production';
+$db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
@@ -63,7 +63,7 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-
+$db['default']['port'] = 5432;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
