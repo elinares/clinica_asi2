@@ -109,7 +109,8 @@ $route['borrar_especialidad_examen/(:any)'] = "administrador/borrar_especialidad
 $route['empleados'] = "administrador/empleados";
 /*citas*/
 $route['citas']="administrador/citas";
-
-
+$route['buscar_paciente']="administrador/buscar_paciente";
+$route['asignacion_cita/(:any)']="administrador/asignacion_cita/$1";
+$route['ingresar_cita']="administrador/ingresar_cita";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
