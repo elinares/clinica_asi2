@@ -61,8 +61,8 @@ if(empty($clinicas)){
           <td><?=$clinica['telefono']?></td>
           <td><?=$clinica['email']?></td>
           <td>
-              <a href="<?=base_url()?>editar_clinica/<?=$clinica['cod_clinica']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_clinica/<?=$clinica['cod_clinica']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_clinica/<?=$clinica['codigo_cli']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_clinica/<?=$clinica['codigo_cli']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php

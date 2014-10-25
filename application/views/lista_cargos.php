@@ -53,8 +53,8 @@ if(empty($cargos)){
         <tr>
           <td><?=$cargo['nombre']?></td>
           <td>
-              <a href="<?=base_url()?>editar_cargo/<?=$cargo['cod_cargo']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_cargo/<?=$cargo['cod_cargo']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_cargo/<?=$cargo['codigo_carg']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_cargo/<?=$cargo['codigo_carg']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php
