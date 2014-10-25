@@ -52,10 +52,11 @@ class modelo_admin extends CI_Model {
     }
 
     function obt_consultorios(){
-        $datos = $this->db->query('SELECT co.*, cl.nombre AS nombre_clinica
+         $datos = $this->db->query('SELECT co.*, cl.nombre AS nombre_clinica
                                    FROM consultorio co, clinica cl
-                                   WHERE co.cod_clinica=cl.cod_clinica;')->result_array();
+                                   WHERE co.fk_codigo_cli=cl.codigo_cli;')->result_array();
         return $datos;
+        
     }
 
     /*DEPARTAMENTOS*/
