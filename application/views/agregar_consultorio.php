@@ -33,7 +33,7 @@ $this->load->view('administrador/encabezado', $data);
           <?php
           foreach ($clinicas as $clinica) {
           ?>
-          <option value="<?=$clinica['cod_clinica']?>"><?=$clinica['nombre']?></option>
+          <option value="<?=$clinica['codigo_cli']?>"><?=$clinica['nombre']?></option>
           <?php
           }
           ?>

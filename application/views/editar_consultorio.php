@@ -22,7 +22,7 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_consultorio/<?=$info_con['cod_consultorio']?>" method="post">
+        <form id="tab" action="<?=base_url()?>editar_consultorio/<?=$info_con['codigo_con']?>" method="post">
           <div class="form-group">
           <label>Nombre</label>
           <input type="text" name="nombre" id="nombre" value="<?=$info_con['nombre']?>" class="form-control">
@@ -34,7 +34,7 @@ $this->load->view('administrador/encabezado', $data);
           foreach ($clinicas as $clinica) {
             if($info_con['cod_clinica'] == $clinica['cod_clinica']){
             ?>
-            <option value="<?=$clinica['cod_clinica']?>" selected><?=$clinica['nombre']?></option>
+            <option value="<?=$clinica['codigo_cli']?>" selected><?=$clinica['nombre']?></option>
             <?php
             }else{
             ?>
