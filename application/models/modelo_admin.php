@@ -35,7 +35,7 @@ class modelo_admin extends CI_Model {
     /*CLINICAS*/
 
     function obt_clinica($id){
-        return $this->db->get_where('clinica', array('cod_clinica'=>$id))->row_array();
+        return $this->db->get_where('clinica', array('codigo_cli'=>$id))->row_array();
     }
 
     function obt_clinicas(){
@@ -47,7 +47,7 @@ class modelo_admin extends CI_Model {
     function obt_consultorio($id){
         $datos = $this->db->query('SELECT *
                                    FROM consultorio
-                                   WHERE cod_consultorio=?;', $id)->row_array();
+                                   WHERE codigo_con=?;', $id)->row_array();
         return $datos;
     }
 

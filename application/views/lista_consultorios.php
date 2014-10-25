@@ -55,8 +55,8 @@ if(empty($consultorios)){
           <td><?=$consultorio['nombre']?></td>
           <td><?=$consultorio['nombre_clinica']?></td>
           <td>
-              <a href="<?=base_url()?>editar_consultorio/<?=$consultorio['cod_consultorio']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_consultorio/<?=$consultorio['cod_consultorio']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_consultorio/<?=$consultorio['codigo_con']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_consultorio/<?=$consultorio['codigo_con']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php
