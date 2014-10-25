@@ -794,13 +794,59 @@ class Administrador extends CI_Controller {
 		$this->load->view('lista_empleados',$data);
 	
 	}
-	/*CONFIGURACION CITAS*/
+	/*CITAS*/
 	public function citas()
 	{
 		$data['citas'] = $this->modelo_admin->obt_citas();
 		$data['titulo'] = 'Administrador - Citas';
 
 		$this->load->view('lista_citas', $data);
+	}
+	/*buscar paciente*/
+	public function buscar_paciente()
+	{
+		
+		if ($this->input->post()){
+			$criterio=$this->input->post('criterio');
+			
+			$data['resultados_busqueda']=$this->modelo_admin->busqueda_pacientes($criterio);
+			$data['titulo']='Resultado Busquedas';
+			$this->load->view('resultados_busqueda',$data);
+		}else{
+		$data['titulo'] = 'Administrador - Citas';
+		$this->load->view('buscar_paciente',$data);
+	}
+	}
+	public function asignacion_cita($id){
+		$data['titulo'] = 'Administrador - Citas';
+		$data['paciente']=$this->modelo_admin->obt_paciente($id);
+		$data['configuracion'] = $this->modelo_admin->obt_configuracion();
+		$this->load->view('asignacion_cita', $data);
+	}
+	public function ingresar_cita(){
+		if($this->input->post()){
+			$codigo_pac = $this->input->post('codigo_paciente');
+			$web = 'F';
+			$fecha=$this->input->post('fecha');
+			$estado='activa';
+			$hora=$this->input->post('hora');
+
+			$datos = array(
+				'cita_web' => $web,
+				'fecha'=> $fecha,
+				'estado'=>$estado,
+				'fk_codigo_confi'=>$hora,
+				'fk_codigo_pac'=>$codigo_pac
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'cita');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('citas');
+			}
+		}
+
 	}
 	
 
