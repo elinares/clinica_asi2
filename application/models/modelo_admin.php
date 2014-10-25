@@ -146,6 +146,24 @@ class modelo_admin extends CI_Model {
             inner join cita on cita.fk_codigo_pac=paciente.codigo_pac ')->result_array();
         return $datos;
     }
+    function busqueda_pacientes($criterio){
+        $datos=$this->db->query("SELECT persona.nombre, persona.primer_apellido, persona.segundo_apellido, paciente.codigo_pac
+  FROM persona inner join paciente on paciente.fk_codigo_per=persona.codigo_per and persona.nombre like '%".$criterio."%'")->result_array();
+        return $datos;
+    }
+    function obt_configuracion(){
+        $datos=$this->db->query('SELECT codigo_confi, hora_inicial, hora_final
+  FROM configuracion_cita;')->result_array();
+        return $datos;
+
+
+    }
+    function obt_paciente($id){
+    	$datos=$this->db->query('SELECT persona.nombre, persona.primer_apellido, paciente.codigo_pac from persona inner join paciente
+    	on paciente.fk_codigo_per=persona.codigo_per where codigo_pac=?;', $id)->result_array();
+    	return $datos;
+    }
+
 
 }
 
