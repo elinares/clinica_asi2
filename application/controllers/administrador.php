@@ -644,4 +644,138 @@ class Administrador extends CI_Controller {
 			redirect('usuarios');
 		}
 	}
+
+	public function personas()
+	{
+		$data['personas'] = $this->modelo_admin->obt_personas();
+		$data['titulo'] = 'Administrador - personas';
+
+		$this->load->view('lista_personas', $data);
+	}
+
+
+
+
+public function agregar_persona()
+	{
+
+
+		$municipio = $this->input->post('municipio');
+
+		if($this->input->post()){
+			//$nombre = $this->input->post('empleado');
+			$nombre = $this->input->post('nombre');
+			//$primer_apellido = $this->input->post('empleado');
+			$primer_apellido = $this->input->post('primer_apellido');
+			$segundo_apellido = $this->input->post('segundo_apellido');
+			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
+			$direccion = $this->input->post('direccion');
+			$estado_civil = $this->input->post('estado_civil');
+			$genero = $this->input->post('genero');
+			$dui = $this->input->post('dui');
+			$fk_codigo_muni = $this->input->post('fk_codigo_muni');
+
+
+			$datos = array(
+				'nombre' => $nombre,
+				'primer_apellido' => $primer_apellido,
+				'segundo_apellido'=> $segundo_apellido,
+				'fecha_nacimiento'=> $fecha_nacimiento,
+				'direccion'=> $direccion,
+				'estado_civil' => $estado_civil,
+				'genero' => $genero,
+				'dui' => $dui,
+				'fk_codigo_muni' => $municipio
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'persona');
+			if($result){
+				$this->session->set_userdata('mensaje', 'Persona agregada con éxito.');
+				redirect('personas');
+			}
+		}
+
+
+		$data['municipios'] = $this->modelo_admin->obt_municipios();
+
+		$data['titulo'] = 'Administrador - Agregar personas';
+
+		$this->load->view('agregar_persona', $data);
+	}
+
+/*public function editar_consultorio($id){
+		$datos = $this->modelo_admin->obt_consultorio($id);
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$clinica = $this->input->post('clinica');
+			$datos2 = array(
+				'nombre' => $nombre,
+				'cod_clinica'=> $clinica
+				);
+			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_consultorio', 'consultorio');
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('consultorios');
+			}
+		}
+		$data['info_con'] = $datos;
+		$data['clinicas'] = $this->modelo_admin->obt_clinicas();
+		$data['titulo'] = 'Administrador - Editar Consultorio';
+		$this->load->view('editar_consultorio', $data);*/
+	public function editar_persona($id){
+
+		$datos = $this->modelo_admin->obt_persona($id);
+
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$primer_apellido = $this->input->post('primer_apellido');
+			$segundo_apellido = $this->input->post('segundo_apellido');
+			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
+			$direccion = $this->input->post('direccion');
+			$estado_civil = $this->input->post('estado_civil');
+			$genero = $this->input->post('genero');
+			$dui = $this->input->post('dui');
+			$fk_codigo_muni = $this->input->post('fk_codigo_muni');
+
+
+
+			$datos2 = array(
+				'nombre' => $nombre,
+				'primer_apellido' => $primer_apellido,
+				'segundo_apellido'=> $segundo_apellido,
+				'fecha_nacimiento'=> $fecha_nacimiento,
+				'direccion'=> $direccion,
+				'estado_civil' => $estado_civil,
+				'genero' => $genero,
+				'dui' => $dui,
+				'fk_codigo_muni' => $fk_codigo_muni
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'id_empleado', 'empleado');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Empleado actualizado con éxito.');
+				redirect('personas');
+			}
+		}
+
+		$data['info_perso'] = $datos;
+		$data['personas'] = $this->modelo_admin->obt_personas();
+		$data['titulo'] = 'Administrador - Editar Persona';
+		$this->load->view('editar_persona', $data);
+	}
+
+	public function borrar_persona($id){
+
+		$this->db->where('codigo_per', $id);
+		$result = $this->db->delete('persona'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('personas');
+		}
+	}
+
+
+
 }

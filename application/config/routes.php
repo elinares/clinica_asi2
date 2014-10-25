@@ -92,5 +92,11 @@ $route['agregar_usuario'] = "administrador/agregar_usuario";
 $route['editar_usuario/(:any)'] = "administrador/editar_usuario/$1";
 $route['borrar_usuario/(:any)'] = "administrador/borrar_usuario/$1";
 
+
+$route['personas'] = "administrador/personas";
+$route['agregar_persona'] = "administrador/agregar_persona";
+$route['editar_persona/(:any)'] = "administrador/editar_persona/$1";
+$route['borrar_persona/(:any)'] = "administrador/borrar_persona/$1";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
