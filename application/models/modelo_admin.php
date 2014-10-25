@@ -163,6 +163,16 @@ class modelo_admin extends CI_Model {
     	on paciente.fk_codigo_per=persona.codigo_per where codigo_pac=?;', $id)->result_array();
     	return $datos;
     }
+    /*
+    CONFIGURACION CITA
+    */
+    function obt_configuracion_cita($id){
+        return $this->db->get_where('configuracion_cita', array('codigo_confi'=>$id))->row_array();
+    }
+
+    function obt_configuracion_citas(){
+        return $this->db->get('configuracion_cita')->result_array();
+    }
 
 
 }

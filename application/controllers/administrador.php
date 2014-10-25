@@ -848,6 +848,93 @@ class Administrador extends CI_Controller {
 		}
 
 	}
+	/*
+	MANTENIMIENTO CONFIGURACION CITA
+	*/
+
+	public function configuracion_citas()
+	{
+		$data['configuracion_citas'] = $this->modelo_admin->obt_configuracion_citas();
+		$data['titulo'] = 'Administrador - Configuracion Cita';
+
+		$this->load->view('lista_configuracion_cita', $data);
+	}
+
+	/* AGREGAR UNA CONFIGURACION CITA*/
+
+	public function agregar_configuracion_cita()
+	{
+		if($this->input->post()){
+			$hrinicial = $this->input->post('hora_inicial');
+			$hrfinal = $this->input->post('hora_final');
+			$catidad_maxima = $this->input->post('catidad_maxima');
+			$consultorio = $this->input->post('consultorio');
+			$datos = array(
+				'hora_inicial' => $hrinicial,
+				'hora_final' => $hrfinal,
+				'cantidad_maxima' => $catidad_maxima,
+				 'fk_codigo_con' => $consultorio
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'configuracion_cita');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('configuracion_citas');
+			}
+	}
+
+	$data['consultorios'] = $this->modelo_admin->obt_consultorios();
+	$data['titulo'] = 'Administrador - Agregar Configuracion Cita';
+
+	$this->load->view('agregar_configuracion_cita', $data);
+	}
+
+	/*EDITAR UNA CONFIGURACION CITA*/
+	public function editar_configuracion_cita($id){
+
+		$datos = $this->modelo_admin->obt_configuracion_cita($id);
+
+		if($this->input->post()){		
+			$tipo = $this->input->post('nombre');
+				$hrinicial = $this->input->post('hora_inicial');
+				$hrfinal = $this->input->post('hora_final');
+				$catidad_maxima = $this->input->post('cantidad_maxima');
+				$consultorio = $this->input->post('consultorio');
+			$datos2 = array(
+				'hora_inicial' => $hrinicial,
+				'hora_final' => $hrfinal,
+				'cantidad_maxima' => $catidad_maxima,
+				 'fk_codigo_con' => $consultorio
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_confi', 'configuracion_cita');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('configuracion_citas');
+			}
+		}
+
+		$data['info_configuracion_cita'] = $datos;
+		$data['consultorios'] = $this->modelo_admin->obt_consultorios();
+		$data['titulo'] = 'Administrador - Editar Configuracion Cita';
+
+		$this->load->view('editar_configuracion_cita', $data);
+	}
+
+	/*BORRAR UNA CONFIGURACION CITA*/
+
+	public function borrar_configuracion_cita($id){
+
+		$this->db->where('codigo_confi', $id);
+		$result = $this->db->delete('configuracion_cita'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('configuracion_citas');
+		}
+	}
 	
 
 }

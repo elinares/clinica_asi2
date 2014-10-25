@@ -112,5 +112,11 @@ $route['citas']="administrador/citas";
 $route['buscar_paciente']="administrador/buscar_paciente";
 $route['asignacion_cita/(:any)']="administrador/asignacion_cita/$1";
 $route['ingresar_cita']="administrador/ingresar_cita";
+
+/*Configuracion cita*/
+$route['configuracion_citas'] = "administrador/configuracion_citas";
+$route['agregar_configuracion_cita'] = "administrador/agregar_configuracion_cita";
+$route['editar_configuracion_cita/(:any)'] = "administrador/editar_configuracion_cita/$1";
+$route['borrar_configuracion_cita/(:any)'] = "administrador/borrar_configuracion_cita/$1";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
