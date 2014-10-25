@@ -220,7 +220,7 @@ class Administrador extends CI_Controller {
 
 			$datos = array(
 				'nombre' => $nombre,
-				'cod_clinica'=> $clinica
+				'fk_codigo_cli'=> $clinica
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'consultorio');
