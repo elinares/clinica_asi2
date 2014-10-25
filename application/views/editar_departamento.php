@@ -22,7 +22,7 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_departamento/<?=$info_dep['cod_departamento']?>" method="post">
+        <form id="tab" action="<?=base_url()?>editar_departamento/<?=$info_dep['codigo_dep']?>" method="post">
           <div class="form-group">
           <label>Nombre</label>
           <input type="text" name="nombre" id="nombre" value="<?=$info_dep['nombre']?>" class="form-control">
