@@ -91,7 +91,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_cargo', 'cargo');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_carg', 'cargo');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -107,7 +107,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_cargo($id){
 
-		$this->db->where('cod_cargo', $id);
+		$this->db->where('codigo_carg', $id);
 		$result = $this->db->delete('cargo'); 
 
 		if($result){

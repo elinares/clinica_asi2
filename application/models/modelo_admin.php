@@ -25,7 +25,7 @@ class modelo_admin extends CI_Model {
     /*CARGOS*/
 
     function obt_cargo($id){
-        return $this->db->get_where('cargo', array('cod_cargo'=>$id))->row_array();
+        return $this->db->get_where('cargo', array('codigo_carg'=>$id))->row_array();
     }
 
     function obt_cargos(){
@@ -54,7 +54,7 @@ class modelo_admin extends CI_Model {
     function obt_consultorios(){
         $datos = $this->db->query('SELECT co.*, cl.nombre AS nombre_clinica
                                    FROM consultorio co, clinica cl
-                                   WHERE co.cod_clinica=cl.cod_clinica;')->result_array();
+                                   WHERE co.fk_codigo_cli=cl.codigo_cli;')->result_array();
         return $datos;
     }
 
@@ -90,7 +90,7 @@ class modelo_admin extends CI_Model {
     function obt_municipios(){
         $datos = $this->db->query('SELECT mu.*, de.nombre AS nombre_departamento
                                    FROM municipio mu, departamento de
-                                   WHERE mu.cod_departamento=de.cod_departamento;')->result_array();
+                                   WHERE mu.fk_codigo_dep=de.codigo_dep;')->result_array();
         return $datos;
     }
 

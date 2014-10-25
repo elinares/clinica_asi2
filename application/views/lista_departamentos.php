@@ -53,8 +53,8 @@ if(empty($departamentos)){
         <tr>
           <td><?=$departamento['nombre']?></td>
           <td>
-              <a href="<?=base_url()?>editar_departamento/<?=$departamento['cod_departamento']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_departamento/<?=$departamento['cod_departamento']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_departamento/<?=$departamento['codigo_dep']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_departamento/<?=$departamento['codigo_dep']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php
