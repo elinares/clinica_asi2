@@ -46,8 +46,11 @@ $this->load->view('administrador/encabezado',$data);
 						<?php
 							foreach ($citas as $cita) {
 								?>
+								<tr>
 									<td><?=$cita['nombre']?>&nbsp;<?=$cita['primer_apellido']?>&nbsp;<?=$cita['segundo_apellido']?></td>
 									<td><?=$cita['fecha']?></td>
+
+								</tr>	
 								<?php
 							}
 						?>
