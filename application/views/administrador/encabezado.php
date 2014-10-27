@@ -149,7 +149,7 @@ if(!$this->session->userdata('user_info')){
                 <li ><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>
                 <li ><a href="<?=base_url()?>perfiles"><span class="fa fa-caret-right"></span> Perfiles</a></li>
                 <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
-                <li ><a href="<?=base_url()?>configuracion_citas"><span class="fa fa-caret-right"></span> Configuración Cita</a></li>
+               <li ><a href="<?=base_url()?>persona"><span class="fa fa-caret-right"></span>persona</a></li>
             </ul>
         </li>
 

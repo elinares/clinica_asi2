@@ -176,6 +176,31 @@ class modelo_admin extends CI_Model {
     }
 
 
+
+     function obt_persona($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM persona
+                                   WHERE codigo_per=?;', $id)->row_array();
+        return $datos;
+    }
+
+
+    /*    function obt_empleados(){
+            $datos = $this->db->query('SELECT em.*, cl.nombre AS nombre_clinica
+                                   FROM empleado em, clinica cl
+                                   WHERE em.clinica=cl.cod_clinica;')->result_array();
+        return $datos;
+
+    }*/
+    function obt_personas(){
+            $datos = $this->db->query('SELECT pe.*, muni.nombre AS nombre_municipio
+                                   FROM persona pe, municipio muni
+                                   WHERE pe.fk_codigo_muni=muni.codigo_muni;')->result_array();
+        return $datos;
+
+    }
+
+
 }
 
 ?>
