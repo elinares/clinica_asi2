@@ -390,7 +390,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_especialidad', 'especialidad');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_esp', 'especialidad');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -406,7 +406,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_especialidad($id){
 
-		$this->db->where('cod_especialidad', $id);
+		$this->db->where('codigo_esp', $id);
 		$result = $this->db->delete('especialidad'); 
 
 		if($result){

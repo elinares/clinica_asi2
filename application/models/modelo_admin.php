@@ -72,7 +72,7 @@ class modelo_admin extends CI_Model {
     /*ESPECIALIDADES*/
 
     function obt_especialidad($id){
-        return $this->db->get_where('especialidad', array('cod_especialidad'=>$id))->row_array();
+        return $this->db->get_where('especialidad', array('codigo_esp'=>$id))->row_array();
     }
 
     function obt_especialidades(){
