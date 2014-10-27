@@ -37,7 +37,7 @@ $this->load->view('administrador/encabezado', $data);
           <?php
           foreach ($perfiles as $perfil) {
           ?>
-          <option value="<?=$perfil['cod_perfil']?>"><?=$perfil['nombre']?></option>
+          <option value="<?=$perfil['codigo_perf']?>"><?=$perfil['nombre']?></option>
           <?php
           }
           ?>

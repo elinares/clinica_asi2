@@ -582,7 +582,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre,
 				'password' => $password,
 				'estado' => $estado,
-				'cod_perfil'=> $perfil
+				'fk_codigo_perf'=> $perfil
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'usuario');
@@ -616,10 +616,10 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre,
 				'password' => $password,
 				'estado' => $estado,
-				'cod_perfil'=> $perfil
+				'fk_codigo_perf'=> $perfil
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_usuario', 'usuario');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_user', 'usuario');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -638,7 +638,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_usuario($id){
 
-		$this->db->where('cod_usuario', $id);
+		$this->db->where('codigo_user', $id);
 		$result = $this->db->delete('usuario'); 
 
 		if($result){

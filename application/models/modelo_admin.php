@@ -110,14 +110,14 @@ class modelo_admin extends CI_Model {
     function obt_usuario($id){
         $datos = $this->db->query('SELECT *
                                    FROM usuario
-                                   WHERE cod_usuario=?;', $id)->row_array();
+                                   WHERE codigo_user=?;', $id)->row_array();
         return $datos;
     }
 
     function obt_usuarios(){
         $datos = $this->db->query('SELECT us.*, pe.nombre AS nombre_perfil
                                    FROM usuario us, perfil pe
-                                   WHERE us.cod_perfil=pe.cod_perfil;')->result_array();
+                                   WHERE us.fk_codigo_perf=pe.codigo_perf;')->result_array();
         return $datos;
     }
     /*TIPO EXAMEN*/

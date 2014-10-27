@@ -58,8 +58,8 @@ if(empty($usuarios)){
           <td><?=$usuario['nombre_perfil']?></td>
           <td><?=$estado?></td>
           <td>
-              <a href="<?=base_url()?>editar_usuario/<?=$usuario['cod_usuario']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_usuario/<?=$usuario['cod_usuario']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_usuario/<?=$usuario['codigo_user']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_usuario/<?=$usuario['codigo_user']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php
