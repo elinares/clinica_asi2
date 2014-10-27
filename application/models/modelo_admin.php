@@ -35,7 +35,7 @@ class modelo_admin extends CI_Model {
     /*CLINICAS*/
 
     function obt_clinica($id){
-        return $this->db->get_where('clinica', array('cod_clinica'=>$id))->row_array();
+        return $this->db->get_where('clinica', array('codigo_cli'=>$id))->row_array();
     }
 
     function obt_clinicas(){

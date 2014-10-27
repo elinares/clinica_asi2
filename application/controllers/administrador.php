@@ -177,7 +177,7 @@ class Administrador extends CI_Controller {
 				'email'=> $email
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_clinica', 'clinica');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_cli', 'clinica');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -193,7 +193,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_clinica($id){
 
-		$this->db->where('cod_clinica', $id);
+		$this->db->where('codigo_cli', $id);
 		$result = $this->db->delete('clinica'); 
 
 		if($result){
