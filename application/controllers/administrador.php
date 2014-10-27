@@ -535,7 +535,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_perfil', 'perfil');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_perf', 'perfil');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -551,7 +551,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_perfil($id){
 
-		$this->db->where('cod_perfil', $id);
+		$this->db->where('codigo_perf', $id);
 		$result = $this->db->delete('perfil'); 
 
 		if($result){

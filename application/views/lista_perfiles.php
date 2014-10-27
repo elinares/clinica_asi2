@@ -53,8 +53,8 @@ if(empty($perfiles)){
         <tr>
           <td><?=$perfil['nombre']?></td>
           <td>
-              <a href="<?=base_url()?>editar_perfil/<?=$perfil['cod_perfil']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_perfil/<?=$perfil['cod_perfil']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_perfil/<?=$perfil['codigo_perf']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_perfil/<?=$perfil['codigo_perf']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php

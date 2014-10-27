@@ -98,7 +98,7 @@ class modelo_admin extends CI_Model {
     /*PERFILES*/
 
     function obt_perfil($id){
-        return $this->db->get_where('perfil', array('cod_perfil'=>$id))->row_array();
+        return $this->db->get_where('perfil', array('codigo_perf'=>$id))->row_array();
     }
 
     function obt_perfiles(){
