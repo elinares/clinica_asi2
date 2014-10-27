@@ -33,7 +33,7 @@ $this->load->view('administrador/encabezado', $data);
           <?php
           foreach ($departamentos as $departamento) {
           ?>
-          <option value="<?=$departamento['cod_departamento']?>"><?=$departamento['nombre']?></option>
+          <option value="<?=$departamento['codigo_dep']?>"><?=$departamento['nombre']?></option>
           <?php
           }
           ?>

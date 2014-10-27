@@ -66,7 +66,7 @@ class modelo_admin extends CI_Model {
     }
 
     function obt_departamentos(){
-        return $this->db->get('DEPARTAMENTO')->result_array();
+        return $this->db->get('departamento')->result_array();
     }
 
     /*ESPECIALIDADES*/
@@ -84,13 +84,13 @@ class modelo_admin extends CI_Model {
     function obt_municipio($id){
         $datos = $this->db->query('SELECT *
                                    FROM municipio
-                                   WHERE cod_municipio=?;', $id)->row_array();
+                                   WHERE codigo_muni=?;', $id)->row_array();
         return $datos;
     }
 
     function obt_municipios(){
         $datos = $this->db->query('SELECT mu.*, de.nombre AS nombre_departamento
-                                   FROM "MUNICIPIO" mu, "DEPARTAMENTO" de
+                                   FROM "municipio" mu, "departamento" de
                                    WHERE mu.fk_codigo_dep=de.codigo_dep;')->result_array();
         return $datos;
     }

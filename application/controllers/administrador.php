@@ -433,7 +433,7 @@ class Administrador extends CI_Controller {
 
 			$datos = array(
 				'nombre' => $nombre,
-				'cod_departamento'=> $departamento
+				'fk_codigo_dep'=> $departamento
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'municipio');
@@ -461,10 +461,10 @@ class Administrador extends CI_Controller {
 
 			$datos2 = array(
 				'nombre' => $nombre,
-				'cod_departamento'=> $departamento
+				'fk_codigo_dep'=> $departamento
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_municipio', 'municipio');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_muni', 'municipio');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -483,7 +483,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_municipio($id){
 
-		$this->db->where('cod_municipio', $id);
+		$this->db->where('codigo_muni', $id);
 		$result = $this->db->delete('municipio'); 
 
 		if($result){
