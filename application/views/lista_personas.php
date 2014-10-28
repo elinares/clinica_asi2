@@ -49,7 +49,7 @@ if(empty($personas)){
       <th>Estado Civil</th>
       <th>Genero</th>
       <th>DUI</th>
-      <th>NIT</th>
+
       <th>Municipio</th>
 
       <th style="width: 4.5em;"></th>
@@ -68,6 +68,7 @@ if(empty($personas)){
           <td><?=$persona['estado_civil']?></td>
           <td><?=$persona['genero']?></td>
           <td><?=$persona['dui']?></td>
+
           <td><?=$persona['nombre_municipio']?></td>
 
 

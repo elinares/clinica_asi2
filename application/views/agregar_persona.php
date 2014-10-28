@@ -44,12 +44,25 @@ $this->load->view('administrador/encabezado', $data);
 
           <div class="form-group">
              <label>Estado civil</label>
-          <input type="text" name="estado_civil" id="estado_civil" class="form-control">
+       <!--LLAMAMOS EL PIE DE PAGINA <select type="text" name="estado_civil" id="estado_civil" class="form-control">-->
+       <select type="text" name="estado_civil" id="estado_civil" class="form-control">
+  <option value="">Seleccione</option>
+  <option value="soltero/a">Soltero/a</option>
+  <option value="casado/a">Casado/a</option>
+  <option value="divorciado/a">Divorciado/a</option>
+  <option value="vidudo/a">Vuido/a</option>
+</select>
           </div>
 
           <div class="form-group">
              <label>Genero</label>
-          <input type="text" name="genero" id="genero" class="form-control">
+          
+          <select type="text" name="genero" id="genero" class="form-control">
+  <option value="">Seleccione</option>
+  <option value="masculino">Masculino</option>
+  <option value="femenino">femenino</option>
+  <option value="omar">omar</option>
+</select>
           </div>
 
           <div class="form-group">
