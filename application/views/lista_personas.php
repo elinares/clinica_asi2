@@ -41,9 +41,8 @@ if(empty($personas)){
 <table class="table">
   <thead>
     <tr>
-      <th>Nombre</th>
-      <th>1° Apellido</th>
-      <th>2° Apellido</th>
+      <th>Nombre<s/th>
+      <th>Apellidos</th>
       <th>F. Nacimiento</th>
       <th>Direccion</th>
       <th>Estado Civil</th>
@@ -60,9 +59,8 @@ if(empty($personas)){
       foreach ($personas as $persona) {
         ?>
         <tr>
-          <td><?=$persona['nombre']?></td>
-          <td><?=$persona['primer_apellido']?></td>
-          <td><?=$persona['segundo_apellido']?></td>
+          <td><?=$persona['nombres']?></td>
+          <td><?=$persona['apellidos']?></td>
           <td><?=$persona['fecha_nacimiento']?></td>
           <td><?=$persona['direccion']?></td>
           <td><?=$persona['estado_civil']?></td>

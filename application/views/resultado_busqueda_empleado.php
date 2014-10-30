@@ -4,10 +4,10 @@
 ?>
 <div class="content">
 	<div class="header">
-		<h1 class="page-title">Citas</h1>
+		<h1 class="page-title">Empleados</h1>
 			<ul class="breadcrumb">
 				<li><a href="<?=base_url()?>Inicio">Inicio</a></li>
-				<li class="active">Citas</li>
+				<li class="active">Empleados</li>
 			</ul>
 	</div>
 	<div class="maint-content">
@@ -27,7 +27,7 @@
 		?>
 		
 		<?php
-			if (empty($resultados_busqueda))
+			if (empty($resultado_busqueda_empleado))
 			{
 				echo "No se encontraron registros";
 			}else{
@@ -35,15 +35,15 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<td>Nombre de Paciente</td>
+								<td>Nombre de Empleado</td>
 							
 							</tr>		
 						</thead>
 						<?php
-							foreach ($resultados_busqueda as $resultados_busqueda) {
+							foreach ($resultado_busqueda_empleado as $resultado_busqueda_empleado) {
 								?>
-									<td><?=$resultados_busqueda['nombres']?>&nbsp;<?=$resultados_busqueda['apellidos']?></td>
-									<td><a href="<?=base_url()?>asignacion_cita/<?=$resultados_busqueda['codigo_pac']?>">Asignar Cita</a>
+									<td><?=$resultado_busqueda_empleado['nombres']?>&nbsp;<?=$resultado_busqueda_empleado['apellidos']?></td>
+									<td><a href="<?=base_url()?>asignacion_empleado/<?=$resultado_busqueda_empleado['codigo_per']?>">Agregar Empleado</a></td>
 									    
 								<?php
 							}

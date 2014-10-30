@@ -26,7 +26,7 @@ $this->load->view('administrador/encabezado', $data);
            <?php foreach ($paciente as $paciente) {
           ?>
           <input type="hidden" value="<?=$paciente['codigo_pac']?>" name="codigo_paciente">
-           <label>Nombre Paciente: </label>&nbsp;<label><b><?php echo $paciente['nombre']; ?>&nbsp; <?php echo $paciente ['primer_apellido'];?></b></label> 
+           <label>Nombre Paciente: </label>&nbsp;<label><b><?php echo $paciente['nombres']; ?>&nbsp; <?php echo $paciente ['apellidos'];?></b></label> 
           <?php
          }
           ?>

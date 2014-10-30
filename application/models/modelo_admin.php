@@ -136,20 +136,16 @@ class modelo_admin extends CI_Model {
     function obt_especialidadexamenes(){
         return $this->db->get('especialidad_examen')->result_array();
     }
-    function obt_empleados(){
-        $datos = $this->db->query('SELECT nombre, primer_apellido
-                                    FROM 
-                                    "persona";')->result_array();
-    }
+
     function obt_citas(){
-        $datos=$this->db->query('select persona.nombre, persona.primer_apellido, persona.segundo_apellido, paciente.codigo_pac, cita.fecha 
+        $datos=$this->db->query('select persona.nombres, persona.apellidos, paciente.codigo_pac, cita.fecha 
             from persona inner join paciente on paciente.fk_codigo_per =  persona.codigo_per 
             inner join cita on cita.fk_codigo_pac=paciente.codigo_pac ')->result_array();
         return $datos;
     }
     function busqueda_pacientes($criterio){
-        $datos=$this->db->query("SELECT persona.nombre, persona.primer_apellido, persona.segundo_apellido, paciente.codigo_pac
-  FROM persona inner join paciente on paciente.fk_codigo_per=persona.codigo_per and persona.nombre like '%".$criterio."%'")->result_array();
+        $datos=$this->db->query("SELECT persona.nombres, persona.apellidos, paciente.codigo_pac
+  FROM persona inner join paciente on paciente.fk_codigo_per=persona.codigo_per and persona.nombres like '%".$criterio."%'")->result_array();
         return $datos;
     }
     function obt_configuracion(){
@@ -160,7 +156,7 @@ class modelo_admin extends CI_Model {
 
     }
     function obt_paciente($id){
-    	$datos=$this->db->query('SELECT persona.nombre, persona.primer_apellido, paciente.codigo_pac from persona inner join paciente
+    	$datos=$this->db->query('SELECT persona.nombres, persona.apellidos, paciente.codigo_pac from persona inner join paciente
     	on paciente.fk_codigo_per=persona.codigo_per where codigo_pac=?;', $id)->result_array();
     	return $datos;
     }
@@ -198,6 +194,31 @@ class modelo_admin extends CI_Model {
                                    WHERE pe.fk_codigo_muni=muni.codigo_muni;')->result_array();
         return $datos;
 
+    }
+
+      function obt_empleado($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM empleado
+                                   WHERE codigo_emp=?;', $id)->row_array();
+        return $datos;
+    }
+
+        function obt_empleados(){
+            $datos = $this->db->query('SELECT em.*, per.nombres as nombre_persona from empleado em, persona per
+    where em.fk_codigo_per = per.codigo_per;')->result_array();
+        return $datos;
+
+    }
+
+        function buscar_empleados($criterio){
+        $datos=$this->db->query("SELECT nombres,apellidos,codigo_per
+  FROM persona where nombres   like '%".$criterio."%'")->result_array();
+        return $datos;
+    }
+
+        function obt_empleado1($id){
+        $datos=$this->db->query('SELECT * from persona  where codigo_per=?;', $id)->result_array();
+        return $datos;
     }
 
 

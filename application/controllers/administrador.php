@@ -786,14 +786,7 @@ class Administrador extends CI_Controller {
 		$this->load->view('editar_especialidad_examen', $data);
 	}
 	
-	/*MANTENIMIENTO EMPLEADOS*/
-	public function empleados()
-	{
-		$data['empleados']=$this->modelo_admin->obt_empleados();
-		$data['titulo']='Administrador-Empleados';
-		$this->load->view('lista_empleados',$data);
 	
-	}
 	/*CITAS*/
 	public function citas()
 	{
@@ -949,10 +942,9 @@ class Administrador extends CI_Controller {
 	{
 		if($this->input->post()){
 			//$nombre = $this->input->post('empleado');
-			$nombre = $this->input->post('nombre');
-			//$primer_apellido = $this->input->post('empleado');
-			$primer_apellido = $this->input->post('primer_apellido');
-			$segundo_apellido = $this->input->post('segundo_apellido');
+			$nombres = $this->input->post('nombres');
+			//$primer_apellido = $this->input->post('empleado')
+			$apellidos = $this->input->post('apellidos');
 			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
 			$direccion = $this->input->post('direccion');
 			$estado_civil = $this->input->post('estado_civil');
@@ -962,9 +954,8 @@ class Administrador extends CI_Controller {
 
 
 			$datos = array(
-				'nombre' => $nombre,
-				'primer_apellido' => $primer_apellido,
-				'segundo_apellido'=> $segundo_apellido,
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
 				'fecha_nacimiento'=> $fecha_nacimiento,
 				'direccion'=> $direccion,
 				'estado_civil' => $estado_civil,
@@ -1014,8 +1005,8 @@ class Administrador extends CI_Controller {
 		$datos = $this->modelo_admin->obt_persona($id);
 
 		if($this->input->post()){		
-			$nombre = $this->input->post('nombre');
-			$primer_apellido = $this->input->post('primer_apellido');
+			$nombres = $this->input->post('nombres');
+			$apellidos = $this->input->post('apellidos');
 			$segundo_apellido = $this->input->post('segundo_apellido');
 			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
 			$direccion = $this->input->post('direccion');
@@ -1027,9 +1018,8 @@ class Administrador extends CI_Controller {
 
 
 			$datos2 = array(
-				'nombre' => $nombre,
-				'primer_apellido' => $primer_apellido,
-				'segundo_apellido'=> $segundo_apellido,
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
 				'fecha_nacimiento'=> $fecha_nacimiento,
 				'direccion'=> $direccion,
 				'estado_civil' => $estado_civil,
@@ -1065,6 +1055,159 @@ class Administrador extends CI_Controller {
 		}
 	}
 
+//mantenimiento Empleado
+	public function empleados()
+	{
+		$data['empleado'] = $this->modelo_admin->obt_empleados();
+		$data['titulo'] = 'Administrador - empleados';
+
+		$this->load->view('lista_empleados', $data);
+	}
+
+		public function buscar_empleado()
+	{
+		
+		if ($this->input->post()){
+			$criterio=$this->input->post('criterio');
+			
+			$data['resultado_busqueda_empleado']=$this->modelo_admin->buscar_empleados($criterio);
+			$data['titulo']='Resultado Busquedas';
+			$this->load->view('resultado_busqueda_empleado',$data);
+		}else{
+		$data['titulo'] = 'Administrador - Empleado';
+		$this->load->view('buscar_empleado',$data);
+	}
+	}
+
+		public function asignacion_empleado($id){
+		$data['titulo'] = 'Administrador - empleados';
+		$data['empleados']=$this->modelo_admin->obt_empleado1($id);
+
+		$data['personas'] = $this->modelo_admin->obt_personas();
+		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
+		$data['cargos'] = $this->modelo_admin->obt_cargos();
+		$data['especialidades'] = $this->modelo_admin->obt_especialidades();
+		$this->load->view('agregar_empleado', $data);
+	}
+
+	public function agregar_empleado()
+	{
+		if($this->input->post()){
+
+		
+
+			$fk_codigo_per = $this->input->post('fk_codigo_per');
+			$fk_codigo_user = $this->input->post('fk_codigo_user');
+			$nit = $this->input->post('nit');
+			$isss = $this->input->post('isss');
+			$nup = $this->input->post('nup');
+			$jvpm = $this->input->post('jvpm');
+			$fk_codigo_cargo = $this->input->post('fk_codigo_cargo');
+			$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+			//$clinica = $this->input->post('clinica');
+
+			$datos = array(
+				'fk_codigo_per' => $fk_codigo_per,
+				//pk de clinica que se inserta en la fk 
+				'codigo_user'=> $usuario,
+				'nit'=> $nit,
+				'isss' => $isss,
+				'nup' => $nup,
+				'jvpm' => $jvpm,
+				'codigo_carg' => $cargo,
+				'fk_codigo_espe' => $especialidad
+				);
+
+
+			$result = $this->modelo_admin->guardar_item($datos, 'empleado');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('empleados');
+			}
+		}
+
+//		$data['titulo'] = 'Administrador - Agregar Consultorio';
+
+		 //mandamos a llamar a la foranea
+//		$this->load->view('agregar_empleado', $data);
+	}
+
+/*public function editar_consultorio($id){
+		$datos = $this->modelo_admin->obt_consultorio($id);
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$clinica = $this->input->post('clinica');
+			$datos2 = array(
+				'nombre' => $nombre,
+				'cod_clinica'=> $clinica
+				);
+			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_consultorio', 'consultorio');
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('consultorios');
+			}
+		}
+		$data['info_con'] = $datos;
+		$data['clinicas'] = $this->modelo_admin->obt_clinicas();
+		$data['titulo'] = 'Administrador - Editar Consultorio';
+		$this->load->view('editar_consultorio', $data);*/
+	public function editar_empleado($id)
+	{
+
+		$datos = $this->modelo_admin->obt_empleado($id);
+
+		if($this->input->post()){
+			$fk_codigo_per = $this->input->post('fk_codigo_per');
+			$fk_codigo_user = $this->input->post('fk_codigo_user');
+			$nit = $this->input->post('nit');
+			$isss = $this->input->post('isss');
+			$nup = $this->input->post('nup');
+			$jvpm = $this->input->post('jvpm');
+			$fk_codigo_cargo = $this->input->post('fk_codigo_cargo');
+			//$clinica = $this->input->post('clinica');
+
+			$datos = array(
+				'codigo_per' => $persona,
+				//pk de clinica que se inserta en la fk 
+				'codigo_user'=> $usuario,
+				'nit'=> $nit,
+				'isss' => $isss,
+				'nup' => $nup,
+				'jvpm' => $jvpm,
+				'codigo_carg' => $cargo
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_emp', 'empleado');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Empleado actualizado con éxito.');
+				redirect('personas');
+			}
+		}
+
+		$data['info_emple'] = $datos;
+		$data['empleados'] = $this->modelo_admin->obt_empleados();
+
+		$data['personas'] = $this->modelo_admin->obt_personas();
+		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
+		$data['cargos'] = $this->modelo_admin->obt_cargos();
+
+		$data['titulo'] = 'Administrador - Editar empleado';
+		$this->load->view('editar_empleado', $data);
+	
+
+}
+	public function borrar_empleado($id){
+
+		$this->db->where('codigo_emp', $id);
+		$result = $this->db->delete('empleado'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('empleados');
+		}
+	}
 
 	
 

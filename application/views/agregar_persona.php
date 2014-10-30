@@ -23,18 +23,13 @@ $this->load->view('administrador/encabezado', $data);
       <div class="tab-pane active in" id="home">
         <form id="tab" action="<?=base_url()?>agregar_persona" method="post">
           <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" name="nombre" id="nombre" class="form-control">
-          </div>
-
-            <div class="form-group">
-               <label>Primer Apellido</label>
-          <input type="text" name="primer_apellido" id="primer_apellido" class="form-control">
+          <label>Nombres</label>
+          <input type="text" name="nombres" id="nombres" class="form-control">
           </div>
 
           <div class="form-group">
-               <label>Segundo Apellido</label>
-          <input type="text" name="segundo_apellido" id="segundo_apellido" class="form-control">
+               <label>Apellidos</label>
+          <input type="text" name="apellidos" id="apellidos" class="form-control">
           </div>
          
           <div class="form-group">

@@ -124,5 +124,16 @@ $route['personas'] = "administrador/personas";
 $route['agregar_persona'] = "administrador/agregar_persona";
 $route['editar_persona/(:any)'] = "administrador/editar_persona/$1";
 $route['borrar_persona/(:any)'] = "administrador/borrar_persona/$1";
+
+$route['empleados'] = "administrador/empleados";
+$route['agregar_empleado'] = "administrador/agregar_empleado";
+$route['editar_empleado/(:any)'] = "administrador/editar_empleado/$1";
+$route['borrar_empleado/(:any)'] = "administrador/borrar_empleado/$1";
+
+
+$route['buscar_empleado'] = "administrador/buscar_empleado";
+$route['asignacion_empleado/(:any)'] = "administrador/asignacion_empleado/$1";
+//$route['asignacion_cita/(:any)']="administrador/asignacion_cita/$1";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -23,18 +23,14 @@ $this->load->view('administrador/encabezado', $data);
         <form id="tab" action="<?=base_url()?>editar_persona/<?=$info_perso['codigo_per']?>" method="post">
       
            <div class="form-group">
-         <label>Nombre</label>
-          <input type="text" name="nombre" id="nombre" value="<?=$info_perso['nombre']?>" class="form-control">
+         <label>Nombres</label>
+          <input type="text" name="nombres" id="nombres" value="<?=$info_perso['nombres']?>" class="form-control">
           </div>
 
-            <div class="form-group">
-               <label>Primer Apellido</label>
-          <input type="text" name="primer_apellido" id="primer_apellido" value="<?=$info_perso['primer_apellido']?>" class="form-control">
-          </div>
-
+        
           <div class="form-group">
-               <label>Segundo Apellido</label>
-          <input type="text" name="segundo_apellido" id="segundo_apellido" value="<?=$info_perso['segundo_apellido']?>" class="form-control">
+               <label>Apellidos</label>
+          <input type="text" name="apellidos" id="apellidos" value="<?=$info_perso['apellidos']?>" class="form-control">
           </div>
          
           <div class="form-group">
