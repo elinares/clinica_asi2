@@ -1094,28 +1094,26 @@ class Administrador extends CI_Controller {
 	{
 		if($this->input->post()){
 
-		
-
 			$fk_codigo_per = $this->input->post('fk_codigo_per');
 			$fk_codigo_user = $this->input->post('fk_codigo_user');
 			$nit = $this->input->post('nit');
 			$isss = $this->input->post('isss');
 			$nup = $this->input->post('nup');
 			$jvpm = $this->input->post('jvpm');
-			$fk_codigo_cargo = $this->input->post('fk_codigo_cargo');
-			$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+			$fk_codigo_carg = $this->input->post('fk_codigo_carg');
+			$fk_codigo_esp = $this->input->post('fk_codigo_esp');
 			//$clinica = $this->input->post('clinica');
 
 			$datos = array(
 				'fk_codigo_per' => $fk_codigo_per,
 				//pk de clinica que se inserta en la fk 
-				'codigo_user'=> $usuario,
+				'fk_codigo_user'=> $fk_codigo_user,
 				'nit'=> $nit,
 				'isss' => $isss,
 				'nup' => $nup,
 				'jvpm' => $jvpm,
-				'codigo_carg' => $cargo,
-				'fk_codigo_espe' => $especialidad
+				'fk_codigo_carg' => $fk_codigo_carg,
+				'fk_codigo_esp' => $fk_codigo_esp
 				);
 
 
