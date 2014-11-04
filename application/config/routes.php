@@ -135,5 +135,10 @@ $route['buscar_empleado'] = "administrador/buscar_empleado";
 $route['asignacion_empleado/(:any)'] = "administrador/asignacion_empleado/$1";
 //$route['asignacion_cita/(:any)']="administrador/asignacion_cita/$1";
 
+
+/* pacientes*/
+$route['pacientes'] = "administrador/pacientes";
+
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

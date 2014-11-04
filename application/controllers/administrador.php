@@ -1208,5 +1208,20 @@ class Administrador extends CI_Controller {
 	}
 
 	
+	public function pacientes()
+	{
+		$data['pacientes'] = $this->modelo_admin->obt_pacientes();
+		$data['titulo'] = 'Administrador - pacientes';
+
+		$this->load->view('lista_pacientes', $data);
+	}
+
+
+
+
+
+
+
+
 
 }

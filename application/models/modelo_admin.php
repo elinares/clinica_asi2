@@ -225,6 +225,15 @@ inner join especialidad on empleado.fk_codigo_esp=especialidad.codigo_esp
     }
 
 
+
+
+ function obt_pacientes(){
+        $datos=$this->db->query("SELECT persona.nombres, persona.apellidos, paciente.codigo_pac
+  FROM persona inner join paciente on paciente.fk_codigo_per=persona.codigo_per ")->result_array();
+        return $datos;
+    }
+
+
 }
 
 ?>
