@@ -142,7 +142,7 @@ if(!$this->session->userdata('user_info')){
             	<li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span>Citas</a></li>
                 <li ><a href="<?=base_url()?>configuracion_citas"><span class="fa fa-caret-right"></span>Configuración Cita</a></li>
                 <li ><a href="<?=base_url()?>cargos"><span class="fa fa-caret-right"></span> Cargos</a></li>
-                <li><a href="<?base_url()?>empleados"><span class="fa fa-caret-right"></span>Empleados</a></li>
+                
                 <li ><a href="<?=base_url()?>clinicas"><span class="fa fa-caret-right"></span> Clínicas</a></li>
                 <li ><a href="<?=base_url()?>consultorios"><span class="fa fa-caret-right"></span> Consultorios</a></li>
                 <li ><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>

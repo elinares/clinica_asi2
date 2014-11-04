@@ -30,7 +30,7 @@ $this->load->view('administrador/encabezado', $data);
           <?php
           foreach ($empleados as $empleado) {
           ?>
-          <input type="hidden" value="<?=$empleado['codigo_per']?>" name="codigo_per">
+          <input type="hidden" value="<?=$empleado['codigo_per']?>" name="fk_codigo_per">
            <label>Nuevo Empleado: </label>&nbsp;<label><b><?php echo $empleado['nombres']; ?>&nbsp; <?php echo $empleado ['apellidos'];?></b></label> 
           <?php
          }

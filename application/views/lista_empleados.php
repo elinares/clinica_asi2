@@ -41,16 +41,13 @@ if(empty($empleados)){
 <table class="table">
   <thead>
     <tr>
-      <th>fk_codigo_per</th>
-      <th>fk_codigo_user</th>
-      <th>codigo_emp</th>
-      <th>NIT</th>
-      <th>ISSS</th>
-      <th>NUP</th>
-      <th>JVPM</th>
-      <th>fk_codigo_carg</th>
-      <th>fk_codigo_esp</th>
-
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Nit</th>
+      <th>Especialidad</th>
+      <th>Cargo</th>
+      
+    
 
       <th style="width: 4.5em;"></th>
     </tr>
@@ -60,16 +57,11 @@ if(empty($empleados)){
       foreach ($empleados as $empleado) {
         ?>
         <tr>
-          <td><?=$empleado['fk_codigo_per']?></td>
-          <td><?=$empleado['fk_codigo_user']?></td>
-          <td><?=$empleado['codigo_emp']?></td>
+          <td><?=$empleado['nombres']?></td>
+          <td><?=$empleado['apellidos']?></td>
+          <td><?=$empleado['especialidad']?></td>
           <td><?=$empleado['nit']?></td>
-          <td><?=$empleado['isss']?></td>
-          <td><?=$empleado['nup']?></td>
-          <td><?=$empleado['jvpm']?></td>
-          <td><?=$empleado['fk_codigo_carg']?></td>
-
-          <td><?=$empleado['fk_codigo_esp']?></td>
+          <td><?=$empleado['cargo']?></td>
 
 
           <td>

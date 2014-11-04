@@ -204,8 +204,11 @@ class modelo_admin extends CI_Model {
     }
 
         function obt_empleados(){
-            $datos = $this->db->query('SELECT em.*, per.nombres as nombre_persona from empleado em, persona per
-    where em.fk_codigo_per = per.codigo_per;')->result_array();
+            $datos = $this->db->query('SELECT empleado.*,persona.nombres,persona.apellidos,especialidad.nombre as especialidad,cargo.nombre as cargo from empleado 
+inner join persona on empleado.fk_codigo_per=persona.codigo_per
+inner join cargo on empleado.fk_codigo_carg=cargo.codigo_carg
+inner join especialidad on empleado.fk_codigo_esp=especialidad.codigo_esp
+;')->result_array();
         return $datos;
 
     }

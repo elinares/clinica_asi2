@@ -1058,7 +1058,7 @@ class Administrador extends CI_Controller {
 //mantenimiento Empleado
 	public function empleados()
 	{
-		$data['empleado'] = $this->modelo_admin->obt_empleados();
+		$data['empleados'] = $this->modelo_admin->obt_empleados();
 		$data['titulo'] = 'Administrador - empleados';
 
 		$this->load->view('lista_empleados', $data);

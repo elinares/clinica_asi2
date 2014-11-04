@@ -56,7 +56,7 @@ $this->load->view('administrador/encabezado', $data);
   <option value="">Seleccione</option>
   <option value="masculino">Masculino</option>
   <option value="femenino">femenino</option>
-  <option value="omar">omar</option>
+  
 </select>
           </div>
 
