@@ -11,6 +11,31 @@ class modelo_admin extends CI_Model {
         return $this->db->get_where('usuario', array('nombre'=>$usuario, 'password'=>md5($password)))->row_array();
     }
 
+    function obt_user_data($id){
+        $data = $this->db->query('SELECT *,
+                                  us.nombre AS nombre_usuario,
+                                  pe.nombre AS nombre_persona,
+                                  per.nombre AS nombre_perfil
+                                  FROM usuario us
+                                  INNER JOIN empleado em
+                                  ON us.codigo_user=em.fk_codigo_user
+                                  INNER JOIN persona pe
+                                  ON pe.codigo_per=em.fk_codigo_per
+                                  INNER JOIN perfil per
+                                  ON us.fk_codigo_perf=per.codigo_perf
+                                  AND us.codigo_user=?', $id)->row_array();
+        return $data;
+    }
+
+    function obt_user_access($perfil){
+        $data = $this->db->query('SELECT *
+                                      FROM perfil_permiso pp
+                                      INNER JOIN permiso per
+                                      ON per.codigo_permi=pp.fk_codigo_permi
+                                      AND pp.fk_codigo_perf=?', $perfil)->result_array();
+        return $data;
+    }
+
     /*GENERALES*/
 
     function guardar_item($datos, $tabla){

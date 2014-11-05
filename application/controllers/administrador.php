@@ -21,7 +21,16 @@ class Administrador extends CI_Controller {
 					$this->session->set_userdata('mensaje', 'Usuario inactivo.');
 					redirect('/');
 				}else{
-					$this->session->set_userdata( 'user_info', $result );
+					$user_id = $result['codigo_user'];
+
+					//Se obtiene la información general del usuario
+					$user_data = $this->modelo_admin->obt_user_data($user_id);
+					//Se obtienen los permisos que posee el usuario basados en su perfil
+					$user_access = $this->modelo_admin->obt_user_access($user_data['codigo_perf']);
+					//Se agregan los permisos a la información general del usuario
+					$user_data['permisos'] = $user_access;
+
+					$this->session->set_userdata( 'user_info', $user_data );
 					redirect('inicio');
 				}				
 			}else{
@@ -32,7 +41,7 @@ class Administrador extends CI_Controller {
 
 		$data['titulo'] = 'Administrador - Agregar Cargo';
 
-		$this->load->view('agregar_cargo', $data);
+		$this->load->view('login', $data);
 	}
 
 	public function logout()
