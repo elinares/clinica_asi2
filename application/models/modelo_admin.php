@@ -253,10 +253,23 @@ inner join especialidad on empleado.fk_codigo_esp=especialidad.codigo_esp
 
 
  function obt_pacientes(){
-        $datos=$this->db->query("SELECT persona.nombres, persona.apellidos, paciente.codigo_pac
-  FROM persona inner join paciente on paciente.fk_codigo_per=persona.codigo_per ")->result_array();
+        $datos=$this->db->query("SELECT *
+  FROM persona inner join paciente on paciente.fk_codigo_per=persona.codigo_per
+                inner join municipio on persona.fk_codigo_muni=municipio.codigo_muni ")->result_array();
         return $datos;
     }
+
+
+
+function busqueda_persona_pacientes($criterio,$criterio2){
+        $datos=$this->db->query("SELECT *
+  FROM persona where nombres   like '%".$criterio."%' and apellidos  like '%".$criterio2."%' ")->result_array();
+        return $datos;
+    }
+
+
+
+
 
   function obt_donante($id){
         $datos = $this->db->query('SELECT *
@@ -305,6 +318,14 @@ where emp.fk_codigo_per = per.codigo_per;')->result_array();
         return $datos;
 
     }
+
+
+
+
+
+
+
+
 
 
 

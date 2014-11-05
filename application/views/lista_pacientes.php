@@ -29,7 +29,7 @@ $this->load->view('administrador/encabezado', $data);
         ?>
             
 <div class="btn-toolbar list-toolbar">
-    <a href="<?=base_url()?>agregar_persona" class="btn btn-primary"><i class="fa fa-plus"></i> Nueva Persona</a>
+    <a href="<?=base_url()?>buscar_persona_paciente" class="btn btn-primary"><i class="fa fa-plus"></i> Buscar Persona</a>
   <div class="btn-group">
   </div>
 </div>
@@ -48,7 +48,7 @@ if(empty($pacientes)){
       <th>Estado Civil</th>
       <th>Genero</th>
       <th>DUI</th>
-
+      <th>Ocupacion</th>
       <th>Municipio</th>
 
       <th style="width: 4.5em;"></th>
@@ -61,10 +61,13 @@ if(empty($pacientes)){
         <tr>
           <td><?=$paciente['nombres']?></td>
           <td><?=$paciente['apellidos']?></td>
-      
-
-        
-
+          <td><?=$paciente['fecha_nacimiento']?></td>
+          <td><?=$paciente['direccion']?></td>
+          <td><?=$paciente['estado_civil']?></td>
+          <td><?=$paciente['genero']?></td>
+          <td><?=$paciente['dui']?></td>
+          <td><?=$paciente['ocupacion']?></td>
+          <td><?=$paciente['nombre']?></td>
 
           <td>
               <a href="<?=base_url()?>editar_persona/<?=$paciente['codigo_pac']?>"><i class="fa fa-pencil"></i></a>

@@ -818,7 +818,32 @@ class Administrador extends CI_Controller {
 		$data['titulo'] = 'Administrador - Citas';
 		$this->load->view('buscar_paciente',$data);
 	}
+
 	}
+
+
+public function buscar_persona_paciente()
+	{
+		
+		if ($this->input->post()){
+			$criterio=$this->input->post('criterio');
+			$criterio2=$this->input->post('criterio2');
+			
+			$data['resultados_busqueda_paciente']=$this->modelo_admin->busqueda_persona_pacientes($criterio,$criterio2);
+			$data['titulo']='Resultado Busquedas';
+			$this->load->view('resultados_busqueda_paciente',$data);
+		}else{
+		$data['titulo'] = 'Administrador -pacientes';
+		$this->load->view('buscar_persona_paciente',$data);
+	}
+
+}
+
+
+
+
+
+
 	public function asignacion_cita($id){
 		$data['titulo'] = 'Administrador - Citas';
 		$data['paciente']=$this->modelo_admin->obt_paciente($id);
