@@ -153,6 +153,8 @@ if(!$this->session->userdata('user_info')){
                <li ><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span>persona</a></li>
                <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span>Empleados</a></li>
                <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span>Paciente</a></li>
+               <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span>Paciente</a></li>
+               <li ><a href="<?=base_url()?>new_empleados"><span class="fa fa-caret-right"></span>new empleado</a></li>
             </ul>
         </li>
 

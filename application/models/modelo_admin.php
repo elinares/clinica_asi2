@@ -233,6 +233,55 @@ inner join especialidad on empleado.fk_codigo_esp=especialidad.codigo_esp
         return $datos;
     }
 
+  function obt_donante($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM donante
+                                   WHERE codigo_dont=?;', $id)->row_array();
+        return $datos;
+    }
+
+
+    /*    function obt_empleados(){
+            $datos = $this->db->query('SELECT em.*, cl.nombre AS nombre_clinica
+                                   FROM empleado em, clinica cl
+                                   WHERE em.clinica=cl.cod_clinica;')->result_array();
+        return $datos;
+
+    }*/
+    function obt_donantes(){
+            $datos = $this->db->query('SELECT don.*, per.nombres as nombres_donante
+from donante don,  persona per
+where don.fk_codigo_per = per.codigo_per;')->result_array();
+        return $datos;
+
+    }
+
+     function obt_new_empleado($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM empleado
+                                   WHERE codigo_emp=?;', $id)->row_array();
+        return $datos;
+    }
+
+
+    /*    function obt_empleados(){
+            $datos = $this->db->query('SELECT em.*, cl.nombre AS nombre_clinica
+                                   FROM empleado em, clinica cl
+                                   WHERE em.clinica=cl.cod_clinica;')->result_array();
+        return $datos;
+
+    }*/
+    function obt_new_empleados(){
+            //$this->db->join('comments', 'comments.id = blogs.id');
+
+            $datos = $this->db->query('select emp.*, per.nombres as nombres_empleado,per.apellidos as apellidos_empleado, per.fecha_nacimiento as cumpleaños, per.direccion, per.estado_civil as estado_civil, per.genero, per.dui
+from empleado emp,  persona per
+where emp.fk_codigo_per = per.codigo_per;')->result_array();
+        return $datos;
+
+    }
+
+
 
 }
 

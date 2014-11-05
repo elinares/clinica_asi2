@@ -1217,6 +1217,88 @@ class Administrador extends CI_Controller {
 	}
 
 
+	public function new_empleados()
+	{
+		$data['new_empleados'] = $this->modelo_admin->obt_new_empleados();
+		$data['titulo'] = 'Administrador - empleados';
+
+		$this->load->view('lista_new_empleados', $data);
+	}
+public function agregar_new_empleado()
+	{
+		if($this->input->post()){
+			//agregamos los datos de persona	
+			$nombres = $this->input->post('nombres');
+			$apellidos = $this->input->post('apellidos');
+			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
+			$direccion = $this->input->post('direccion');
+			$estado_civil = $this->input->post('estado_civil');
+			$genero = $this->input->post('genero');
+			$dui = $this->input->post('dui');
+			$fk_codigo_muni = $this->input->post('fk_codigo_muni');
+
+			$datos = array(
+				//formamos el arreglo para personas
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
+				'fecha_nacimiento'=> $fecha_nacimiento,
+				'direccion'=> $direccion,
+				'estado_civil' => $estado_civil,
+				'genero' => $genero,
+				'dui' => $dui,
+				'fk_codigo_muni' => $fk_codigo_muni
+				);
+
+
+			//INSERTAS EL REGISTRO DE PERSONA
+			$result = $this->modelo_admin->guardar_item($datos, 'persona');
+
+			if($result){//SI EL REGISTRO SE EFECTUO
+				$fk_codigo_per = $this->db->insert_id();
+				//CAPTURAS LOS VALORES DE EMPLEADO
+				$fk_codigo_user = $this->input->post('fk_codigo_user');	
+				$nit = $this->input->post('nit');
+				$isss = $this->input->post('isss');
+				$nup = $this->input->post('nup');
+				$jvpm = $this->input->post('jvpm');
+				$fk_codigo_carg = $this->input->post('fk_codigo_carg');
+				//$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+
+
+
+				//ARMAS ARREGLO PARA INSERTAR EMPLEADO
+				$datos2 = array(
+					'fk_codigo_per' => $fk_codigo_per,
+
+					'fk_codigo_user'=> $fk_codigo_user,
+					'nit' => $nit,
+					'isss' => $isss,
+					'nup' => $nup,
+					'jvpm' => $jvpm,
+					'fk_codigo_carg' => $fk_codigo_carg
+					//'fk_codigo_esp' => $fk_codigo_esp
+				);
+
+				//INSERTAS EL REGISTRO DE EMPLEADO
+				$result2 = $this->modelo_admin->guardar_item($datos2, 'empleado');
+				
+				if($result2){
+					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+					redirect('empleados');
+				}				
+			}
+		}
+
+		$data['titulo'] = 'Administrador';
+
+		$data['municipios'] = $this->modelo_admin->obt_municipios();
+		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
+		$data['cargos'] = $this->modelo_admin->obt_cargos();
+		$data['especialidades'] = $this->modelo_admin->obt_especialidades();
+		$this->load->view('agregar_new_empleado', $data);
+
+	}
+
 
 
 
@@ -1225,3 +1307,4 @@ class Administrador extends CI_Controller {
 
 
 }
+
