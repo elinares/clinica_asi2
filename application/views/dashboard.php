@@ -7,7 +7,7 @@ $this->load->view('administrador/encabezado', $data);
         <div class="header">
             
 
-            <h1 class="page-title">Bienvenido <b><?=$user_info['nombre_persona'].' '.$user_info['primer_apellido']?></b></h1>
+            <h1 class="page-title">Bienvenido <b><?=$user_info['nombre_persona'].' '.$user_info['apellidos']?></b></h1>
             <ul class="breadcrumb">            
               <li class="active">Inicio</li>
             </ul>
