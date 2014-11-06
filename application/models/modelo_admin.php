@@ -14,7 +14,8 @@ class modelo_admin extends CI_Model {
     function obt_user_data($id){
         $data = $this->db->query('SELECT *,
                                   us.nombre AS nombre_usuario,
-                                  pe.nombre AS nombre_persona,
+                                  pe.nombres AS nombre_persona,
+                                  pe.apellidos,
                                   per.nombre AS nombre_perfil
                                   FROM usuario us
                                   INNER JOIN empleado em
