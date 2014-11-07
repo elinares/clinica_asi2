@@ -41,7 +41,13 @@
 $route['default_controller'] = "administrador";
 $route['404_override'] = '';
 
+//SuperAdmin
+$route['superadmin'] = "superadministrador/inicio";
+
+//Admin
 $route['inicio'] = "administrador/inicio";
+
+//General
 $route['logout'] = "administrador/logout";
 
 /*Cargos*/
