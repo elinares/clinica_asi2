@@ -14,16 +14,12 @@ class modelo_admin extends CI_Model {
     function obt_user_data($id){
         $data = $this->db->query('SELECT *,
                                   us.nombre AS nombre_usuario,
-                                  pe.nombres AS nombre_persona,
-                                  pe.apellidos,
-                                  per.nombre AS nombre_perfil
+                                  pe.nombres AS nombre_persona
                                   FROM usuario us
                                   INNER JOIN empleado em
                                   ON us.codigo_user=em.fk_codigo_user
                                   INNER JOIN persona pe
-                                  ON pe.codigo_per=em.fk_codigo_per
-                                  INNER JOIN perfil per
-                                  ON us.fk_codigo_perf=per.codigo_perf
+                                  ON pe.codigo_per=em.fk_codigo_per 
                                   AND us.codigo_user=?', $id)->row_array();
         return $data;
     }
