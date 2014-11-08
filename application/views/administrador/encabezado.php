@@ -130,33 +130,71 @@ if(!$this->session->userdata('user_info')){
 
         <li>
             <a href="<?=base_url()?>inicio" class="nav-header"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
-        </li>    
+        </li>   
+
+        <li>
+            <a href="<?=base_url()?>empleados" class="nav-header"><span class="fa fa-users"></span> Empleados</a>
+        </li>
+
+        <li>
+            <a href="<?=base_url()?>" class="nav-header"><span class="fa fa-shopping-cart"></span> Compras</a>
+        </li>
+
+        <li>
+            <a href="<?=base_url()?>" class="nav-header"><span class="fa fa-plus"></span> Donaciones</a>
+        </li> 
 
     <!--MANTENIMIENTOS-->
 
         <li>
-            <a href="#" data-target=".mantenimientos-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal"></i> Mantenimientos<i class="fa fa-collapse"></i></a>
-        </li>        
+            <a href="#" data-target=".mantenimientos-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-bars"></i> Mantenimientos<i class="fa fa-collapse"></i></a>
+        </li>
+
         <li>
             <ul class="mantenimientos-menu nav nav-list collapse">
-            	<li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span>Citas</a></li>
-                <li ><a href="<?=base_url()?>configuracion_citas"><span class="fa fa-caret-right"></span>Configuración Cita</a></li>
-                <li ><a href="<?=base_url()?>cargos"><span class="fa fa-caret-right"></span> Cargos</a></li>
-                
-                <li ><a href="<?=base_url()?>clinicas"><span class="fa fa-caret-right"></span> Clínicas</a></li>
-                <li ><a href="<?=base_url()?>consultorios"><span class="fa fa-caret-right"></span> Consultorios</a></li>
-                <li ><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>
-                <li ><a href="<?=base_url()?>especialidades"><span class="fa fa-caret-right"></span> Especialidades</a></li>
-                <li ><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>
-                <li ><a href="<?=base_url()?>perfiles"><span class="fa fa-caret-right"></span> Perfiles</a></li>
-                <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
-               <li ><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span>persona</a></li>
-               <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span>Empleados</a></li>
+                                
+                <li><a href="<?=base_url()?>cargos"><span class="fa fa-caret-right"></span> Cargos</a></li>
+                <li><a href="<?=base_url()?>configuracion_citas"><span class="fa fa-caret-right"></span> Configuración Cita</a></li>
+                <li><a href="<?=base_url()?>perfiles"><span class="fa fa-caret-right"></span> Perfiles</a></li>
+                <li><a href="<?=base_url()?>consultorios"><span class="fa fa-caret-right"></span> Consultorios</a></li>
+                <li><a href="<?=base_url()?>especialidades"><span class="fa fa-caret-right"></span> Especialidades</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Laboratorios</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Tipos de exámenes</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Especialidades de exámenes</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Proveedores</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Productos</a></li>
+
+                <!--<li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span>Citas</a></li>
+                <li><a href="<?=base_url()?>clinicas"><span class="fa fa-caret-right"></span> Clínicas</a></li>
+                <li><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>                
+                <li><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>
+                <li><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
+                <li><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span>persona</a></li>
                <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span>Paciente</a></li>
                <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span>Paciente</a></li>
-               <li ><a href="<?=base_url()?>new_empleados"><span class="fa fa-caret-right"></span>new empleado</a></li>
+               <li ><a href="<?=base_url()?>new_empleados"><span class="fa fa-caret-right"></span>new empleado</a></li>-->
             </ul>
         </li>
+
+    <!--REPORTES-->
+
+         <li>
+            <a href="#" data-target=".reportes-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-file"></i> Reportes<i class="fa fa-collapse"></i></a>
+        </li>
+
+        <li>
+            <ul class="reportes-menu nav nav-list collapse">
+                
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Compras</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Donaciones</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Consultas</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Exámenes</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Citas</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Productos (Kardex)</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Expedientes</a></li>
+
+            </ul>
+        </li>        
 
     </ul>
     </div>    
