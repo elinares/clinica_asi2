@@ -14,24 +14,35 @@ class Administrador extends CI_Controller {
 			$usuario = $this->input->post('usuario');
 			$contrasena = $this->input->post('contrasena');
 
-			$result = $this->modelo_admin->login($usuario, $contrasena);
+			$result = $this->modelo_admin->login($usuario, $contrasena);			
 
 			if($result){
 				if($result['estado'] == 0){
 					$this->session->set_userdata('mensaje', 'Usuario inactivo.');
 					redirect('/');
 				}else{
-					$user_id = $result['codigo_user'];
 
-					//Se obtiene la información general del usuario
-					$user_data = $this->modelo_admin->obt_user_data($user_id);
-					//Se obtienen los permisos que posee el usuario basados en su perfil
-					$user_access = $this->modelo_admin->obt_user_access($user_data['codigo_perf']);
-					//Se agregan los permisos a la información general del usuario
-					$user_data['permisos'] = $user_access;
+					//Verificación para perfil super administrador
+					if($result['fk_codigo_perf'] != 1){
+						
+						$user_id = $result['codigo_user'];
+						//Se obtiene la información general del usuario
+						$user_data = $this->modelo_admin->obt_user_data($user_id);
+						//Se obtienen los permisos que posee el usuario basados en su perfil
+						$user_access = $this->modelo_admin->obt_user_access($result['fk_codigo_perf']);
+						//Se agregan los permisos a la información general del usuario
+						$user_data['permisos'] = $user_access;
 
-					$this->session->set_userdata( 'user_info', $user_data );
-					redirect('inicio');
+						$this->session->set_userdata( 'user_info', $user_data );
+						redirect('inicio');
+
+					}else{
+
+						$this->session->set_userdata( 'user_info', $result );
+						redirect('superadmin');
+
+					}					
+
 				}				
 			}else{
 				$this->session->set_userdata('mensaje', 'Usuario y/o contraseña incorrectos.');
