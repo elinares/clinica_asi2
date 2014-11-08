@@ -8,7 +8,7 @@ $this->load->view('administrador/encabezado', $data);
             
 
             <h1 class="page-title">Bienvenido <b><?=$user_info['nombre_persona'].' '.$user_info['apellidos_persona'] ?></b></h1>
-            <h3>Has iniciado como empelado de la clinica : <?=$user_info['nombre_clinica']?></h3>
+            <h3>Has iniciado como Empelado de la clinica : <?=$user_info['nombre_clinica']?></h3>
             <ul class="breadcrumb">            
               <li class="active">Inicio</li>
             </ul>
