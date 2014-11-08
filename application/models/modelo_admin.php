@@ -15,7 +15,7 @@ class modelo_admin extends CI_Model {
         $data = $this->db->query('SELECT *,
                                   us.nombre AS nombre_usuario,
                                   pe.nombres AS nombre_persona,
-                                  pe.apellidos,
+
                                   per.nombre AS nombre_perfil
                                   FROM usuario us
                                   INNER JOIN empleado em
@@ -321,12 +321,51 @@ where emp.fk_codigo_per = per.codigo_per;')->result_array();
     }
 
 
+ /*Tipo Examen*/
+
+    function obt_tipo_examen($id){
+        return $this->db->get_where('tipo_examen', array('codigo_tipex'=>$id))->row_array();
+    }
+
+    function obt_tipo_examenes(){
+        return $this->db->get('tipo_examen')->result_array();
+    }
 
 
+/* Especialidad Examen*/
 
+function obt_especialidad_examen($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM especialidad_examen
+                                   WHERE codigo_espe=?;', $id)->row_array();
+        return $datos;
+    }
 
+    function obt_especialidad_examenes(){
+        $datos = $this->db->query('SELECT espe.*, tip.tipo as tipo_examen
+                                  from especialidad_examen espe, tipo_examen tip 
+                                  where espe.fk_codigo_tipex = tip.codigo_tipex;')->result_array();
+        return $datos;
+    }
+    function obt_especialidad_examenes1(){
+       return $this->db->get('especialidad_examen')->result_array();
+    }
 
+/* Especialidad Examen*/
 
+function obt_laboratorio($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM laboratorio
+                                   WHERE codigo_lab=?;', $id)->row_array();
+        return $datos;
+    }
+
+    function obt_laboratorios(){
+        $datos = $this->db->query('SELECT lab.*, espe.nombre as especialidad_examen
+from laboratorio lab, especialidad_examen espe 
+where lab.fk_codigo_espe=espe.codigo_espe;')->result_array();
+        return $datos;
+    }
 
 
 

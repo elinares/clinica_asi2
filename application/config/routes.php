@@ -93,13 +93,13 @@ $route['editar_usuario/(:any)'] = "administrador/editar_usuario/$1";
 $route['borrar_usuario/(:any)'] = "administrador/borrar_usuario/$1";
 
 /*Tipo Examen*/
-$route['tipoexamenes'] = "administrador/tipoexamenes";
+$route['tipo_examenes'] = "administrador/tipo_examenes";
 $route['agregar_tipo_examen'] = "administrador/agregar_tipo_examen";
 $route['editar_tipo_examen/(:any)'] = "administrador/editar_tipo_examen/$1";
 $route['borrar_tipo_examen/(:any)'] = "administrador/borrar_tipo_examen/$1";
 
 /*Especialidad Examen*/
-$route['especialidadexamenes'] = "administrador/especialidadexamenes";
+$route['especialidad_examenes'] = "administrador/especialidad_examenes";
 $route['agregar_especialidad_examen'] = "administrador/agregar_especialidad_examen";
 $route['editar_especialidad_examen/(:any)'] = "administrador/editar_especialidad_examen/$1";
 $route['borrar_especialidad_examen/(:any)'] = "administrador/borrar_especialidad_examen/$1";
@@ -149,5 +149,10 @@ $route['new_empleados'] = "administrador/new_empleados";
 $route['agregar_new_empleado'] = "administrador/agregar_new_empleado";
 
 
+//Laboratorios
+$route['laboratorios'] = "administrador/laboratorios";
+$route['agregar_laboratorio'] = "administrador/agregar_laboratorio";
+$route['editar_laboratorio/(:any)'] = "administrador/editar_laboratorio/$1";
+$route['borrar_laboratorio/(:any)'] = "administrador/borrar_laboratorio/$1";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

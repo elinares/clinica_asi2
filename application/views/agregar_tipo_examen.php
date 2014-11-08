@@ -6,10 +6,10 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Agregar Departamento</h1>
+            <h1 class="page-title">Agregar Tipo Examenes</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>tipoexamenes">Tipo Examen</a> </li>
+            <li><a href="<?=base_url()?>tipo_examenes">Tipo Examen</a> </li>
             <li class="active">Agregar Tipo Examen</li>
         </ul>
 
@@ -45,7 +45,7 @@ $this->load->view('administrador/pie');
 
     //VALIDACION
     var tipo = new LiveValidation('tipo', { validMessage: "Gracias." });
-    tipo.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del Tipo Examen." } );
+    tipo.add( Validate.Presence, { failureMessage: "Por favor, ingrese el tipo del examen." } );
 
   });
 </script>

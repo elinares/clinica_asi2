@@ -9,8 +9,8 @@ $this->load->view('administrador/encabezado', $data);
             <h1 class="page-title">Editar Tipo Examen</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>tipoexamenes">Tipo Examenes</a> </li>
-            <li class="active">Editar Tipo Examen</li>
+            <li><a href="<?=base_url()?>tipo_examenes">Tipo Examenes</a> </li>
+            <li class="active">Editar Tipo Examenes</li>
         </ul>
 
         </div>
@@ -22,10 +22,10 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_tipo_examen/<?=$info_tex['cod_tipoExm']?>" method="post">
+        <form id="tab" action="<?=base_url()?>editar_tipo_examen/<?=$info_tipoex['codigo_tipex']?>" method="post">
           <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" name="tipo" id="tipo" value="<?=$info_tex['tipo']?>" class="form-control">
+          <label>Tipo Examen</label>
+          <input type="text" name="tipo" id="tipo" value="<?=$info_tipoex['tipo']?>" class="form-control">
           </div>
           <div class="btn-toolbar list-toolbar">
             <button class="btn btn-primary"><i class="fa fa-save"></i> Actualizar</button>
@@ -46,7 +46,7 @@ $this->load->view('administrador/pie');
 
     //VALIDACION
     var tipo = new LiveValidation('tipo', { validMessage: "Gracias." });
-    tipo.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del Tipo Examen." } );
+    tipo.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Tipo de Examen." } );
 
   });
 </script>

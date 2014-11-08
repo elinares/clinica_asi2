@@ -140,13 +140,13 @@ if(!$this->session->userdata('user_info')){
         <li>
             <ul class="mantenimientos-menu nav nav-list collapse">
             	<li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span>Citas</a></li>
-                <li ><a href="<?=base_url()?>configuracion_citas"><span class="fa fa-caret-right"></span>Configuración Cita</a></li>
-                <li ><a href="<?=base_url()?>cargos"><span class="fa fa-caret-right"></span> Cargos</a></li>
+                
+                
                 
                 <li ><a href="<?=base_url()?>clinicas"><span class="fa fa-caret-right"></span> Clínicas</a></li>
-                <li ><a href="<?=base_url()?>consultorios"><span class="fa fa-caret-right"></span> Consultorios</a></li>
+                
                 <li ><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>
-                <li ><a href="<?=base_url()?>especialidades"><span class="fa fa-caret-right"></span> Especialidades</a></li>
+                
                 <li ><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>
                 <li ><a href="<?=base_url()?>perfiles"><span class="fa fa-caret-right"></span> Perfiles</a></li>
                 <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
@@ -154,7 +154,28 @@ if(!$this->session->userdata('user_info')){
                <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span>Empleados</a></li>
                <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span>Paciente</a></li>
                <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span>Paciente</a></li>
-               <li ><a href="<?=base_url()?>new_empleados"><span class="fa fa-caret-right"></span>new empleado</a></li>
+               
+            </ul>
+        </li>
+
+
+ <!--Administracion Clinica-->
+
+        <li>
+            <a href="#" data-target=".admin_clinica-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal"></i> Administracion Clincia<i class="fa fa-collapse"></i></a>
+        </li>        
+        <li>
+            <ul class="admin_clinica-menu nav nav-list collapse">
+                    <li ><a href="<?=base_url()?>consultorios"><span class="fa fa-caret-right"></span>Consultorios</a></li>
+                    <li ><a href="<?=base_url()?>especialidades"><span class="fa fa-caret-right"></span>Especialidades</a></li>
+                    <li ><a href="<?=base_url()?>cargos"><span class="fa fa-caret-right"></span>Cargos</a></li>
+                    <li ><a href="<?=base_url()?>new_empleados"><span class="fa fa-caret-right"></span>Nuevo Empleado</a></li>
+                    <li ><a href="<?=base_url()?>configuracion_citas"><span class="fa fa-caret-right"></span>Configuración Cita</a></li>
+                    <li ><a href="<?=base_url()?>laboratorios"><span class="fa fa-caret-right"></span>Laboratorios</a></li>
+                    <li ><a href="<?=base_url()?>#"><span class="fa fa-caret-right"></span>Configuracion Examenes</a></li>
+                    <li ><a href="<?=base_url()?>tipo_examenes"><span class="fa fa-caret-right"></span>Tipo Examenes</a></li>
+                    <li ><a href="<?=base_url()?>especialidad_examenes"><span class="fa fa-caret-right"></span>Especialidad Examen</a></li>
+                    <li ><a href="<?=base_url()?>#"><span class="fa fa-caret-right"></span>Usuarios</a></li>
             </ul>
         </li>
 

@@ -6,11 +6,11 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Agregar Especialidad Examen</h1>
+            <h1 class="page-title">Agregar Laboratorios</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>especialidad_examenes">Especialidad Examen</a> </li>
-            <li class="active">Agregar Especialidad Examen</li>
+            <li><a href="<?=base_url()?>laboratorios">Laboratorios</a> </li>
+            <li class="active">Agregar Laboratorios</li>
         </ul>
 
         </div>
@@ -22,18 +22,18 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>agregar_especialidad_examen" method="post">
+        <form id="tab" action="<?=base_url()?>agregar_laboratorio" method="post">
           <div class="form-group">
           <label>Nombre</label>
           <input type="text" name="nombre" id="nombre" class="form-control">
           </div>
           <div class="form-group">
-          <label>Tipo Examen</label>
-          <select name="tipo" id="tipo" class="form-control">
+          <label>Especialidad Examen</label>
+          <select name="especialidad" id="especialidad" class="form-control">
           <?php
-          foreach ($tipo_examenes as $tipo_examen) {
+          foreach ($especialidad_examenes as $especialidad_examen) {
           ?>
-          <option value="<?=$tipo_examen['codigo_tipex']?>"><?=$tipo_examen['tipo']?></option>
+          <option value="<?=$especialidad_examen['codigo_espe']?>"><?=$especialidad_examen['nombre']?></option>
           <?php
           }
           ?>
@@ -58,7 +58,7 @@ $this->load->view('administrador/pie');
 
     //VALIDACION
     var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
-    nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre de especialidad." } );
+    nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del municipio." } );
 
   });
 </script>
