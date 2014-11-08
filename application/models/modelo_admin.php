@@ -12,7 +12,6 @@ class modelo_admin extends CI_Model {
     }
 
     function obt_user_data($id){
-<<<<<<< HEAD
         $data = $this->db->query('SELECT 
                                       us.nombre AS nombre_usuario,
                                       us.estado,
@@ -28,7 +27,7 @@ INNER JOIN empleado_clinica empcli ON empcli.fk_codigo_emp=em.codigo_emp
 INNER JOIN clinica cli ON empcli.fk_codigo_cli=cli.codigo_cli
 INNER JOIN perfil perf ON us.fk_codigo_perf=perf.codigo_perf
 AND us.codigo_user=?', $id)->row_array();
-=======
+
         $data = $this->db->query('SELECT *,
                                   us.nombre AS nombre_usuario,
                                   pe.nombres AS nombre_persona
@@ -38,7 +37,7 @@ AND us.codigo_user=?', $id)->row_array();
                                   INNER JOIN persona pe
                                   ON pe.codigo_per=em.fk_codigo_per 
                                   AND us.codigo_user=?', $id)->row_array();
->>>>>>> origin/desarrollo
+
         return $data;
     }
 
