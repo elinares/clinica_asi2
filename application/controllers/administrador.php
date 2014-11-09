@@ -1525,6 +1525,78 @@ public function agregar_tipo_producto()
 	}
 
 
+	/*MANTENIMIENTO CTipo Presentacion*/
+
+	public function tipo_presentaciones()
+	{
+
+		$data['tipo_presentaciones'] = $this->modelo_admin->obt_tipo_presentaciones();
+		$data['titulo'] = 'Administrador - Tipo Presentación';
+
+		$this->load->view('lista_tipo_presentacion', $data);
+	}
+
+	
+	public function agregar_tipo_presentacion()
+	{
+		if($this->input->post()){
+			$tipo = $this->input->post('tipo');
+
+			$datos = array(
+				'tipo' => $tipo
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'tipo_presentacion');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('tipo_presentaciones');
+			}
+		}
+
+		$data['titulo'] = 'Administrador - Agregar Tipo Presentación';
+
+		$this->load->view('agregar_tipo_presentacion', $data);
+	}
+
+	public function editar_tipo_presentacion($id){
+
+		$datos = $this->modelo_admin->obt_tipo_presentacion($id);
+
+		if($this->input->post()){		
+			$tipo = $this->input->post('tipo');
+
+			$datos2 = array(
+				'tipo' => $tipo
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_tipre', 'tipo_presentacion');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('tipo_presentaciones');
+			}
+		}
+
+		$data['info_tipre'] = $datos;
+		$data['titulo'] = 'Administrador - Editar Tipo Presentacion';
+
+		$this->load->view('editar_tipo_presentacion', $data);
+	}
+
+	public function borrar_tipo_presentacion($id){
+
+		$this->db->where('codigo_tipre', $id);
+		$result = $this->db->delete('tipo_presentacion'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('tipo_presentaciones');
+		}
+	}
+
+
+
 
 
 

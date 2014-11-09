@@ -380,6 +380,17 @@ where lab.fk_codigo_espe=espe.codigo_espe;')->result_array();
         return $this->db->get('tipo_producto')->result_array();
     }
 
+       /*Tipo Presentacion*/
+
+    function obt_tipo_presentacion($id){
+        return $this->db->get_where('tipo_presentacion', array('codigo_tipre'=>$id))->row_array();
+    }
+
+    function obt_tipo_presentaciones(){
+        return $this->db->get('tipo_presentacion')->result_array();
+    }
+
+
 }
 
 ?>
