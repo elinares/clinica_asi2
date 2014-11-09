@@ -21,6 +21,7 @@ if(!$this->session->userdata('user_info')){
 
     <script src="<?=base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?=base_url()?>js/livevalidation_standalone.compressed.js" type="text/javascript"></script>
+    <script src="<?=base_url()?>js/jquery.maskedinput.min.js" type="text/javascript"></script>
 
         <script src="<?=base_url()?>js/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
     <script type="text/javascript">

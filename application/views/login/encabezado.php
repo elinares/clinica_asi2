@@ -13,6 +13,7 @@
 
     <script src="<?=base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?=base_url()?>js/livevalidation_standalone.compressed.js" type="text/javascript"></script>
+    <script src="<?=base_url()?>js/jquery.maskedinput.min.js" type="text/javascript"></script>
 
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/theme.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/premium.css">

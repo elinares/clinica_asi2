@@ -21,6 +21,7 @@ if(!$this->session->userdata('user_info')){
 
     <script src="<?=base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?=base_url()?>js/livevalidation_standalone.compressed.js" type="text/javascript"></script>
+    <script src="<?=base_url()?>js/jquery.maskedinput.min.js" type="text/javascript"></script>
 
         <script src="<?=base_url()?>js/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -108,7 +109,7 @@ if(!$this->session->userdata('user_info')){
           <ul id="main-menu" class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> <?=$user_info['nombre_persona'].' '.$user_info['apellidos_persona']?>
+                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> <?=$user_info['nombre_persona'].' '.$user_info['apellidos']?>
                     <i class="fa fa-caret-down"></i>
                 </a>
 
@@ -210,4 +211,4 @@ if(!$this->session->userdata('user_info')){
         </li>        
 
     </ul>
-    </div>     
+    </div>    
