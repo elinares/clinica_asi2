@@ -109,7 +109,7 @@ if(!$this->session->userdata('user_info')){
           <ul id="main-menu" class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> <?=$user_info['nombre_persona'].' '.$user_info['apellidos']?>
+                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> <?=$user_info['nombre_persona'].' '.$user_info['apellidos_persona']?>
                     <i class="fa fa-caret-down"></i>
                 </a>
 

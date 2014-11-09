@@ -15,28 +15,19 @@ class modelo_admin extends CI_Model {
         $data = $this->db->query('SELECT 
                                       us.nombre AS nombre_usuario,
                                       us.estado,
+                                      us.fk_codigo_perf,
                                       pe.nombres AS nombre_persona,
                                       pe.apellidos AS apellidos_persona,
                                       cli.nombre as nombre_clinica,
                                       perf.nombre AS nombre_perfil,
                                       cli.codigo_cli                               
-FROM usuario us
-INNER JOIN empleado em ON us.codigo_user=em.fk_codigo_user
-INNER JOIN persona pe ON pe.codigo_per=em.fk_codigo_per
-INNER JOIN empleado_clinica empcli ON empcli.fk_codigo_emp=em.codigo_emp
-INNER JOIN clinica cli ON empcli.fk_codigo_cli=cli.codigo_cli
-INNER JOIN perfil perf ON us.fk_codigo_perf=perf.codigo_perf
-AND us.codigo_user=?', $id)->row_array();
-
-        $data = $this->db->query('SELECT *,
-                                  us.nombre AS nombre_usuario,
-                                  pe.nombres AS nombre_persona
-                                  FROM usuario us
-                                  INNER JOIN empleado em
-                                  ON us.codigo_user=em.fk_codigo_user
-                                  INNER JOIN persona pe
-                                  ON pe.codigo_per=em.fk_codigo_per 
-                                  AND us.codigo_user=?', $id)->row_array();
+                                      FROM usuario us
+                                      INNER JOIN empleado em ON us.codigo_user=em.fk_codigo_user
+                                      INNER JOIN persona pe ON pe.codigo_per=em.fk_codigo_per
+                                      INNER JOIN empleado_clinica empcli ON empcli.fk_codigo_emp=em.codigo_emp
+                                      INNER JOIN clinica cli ON empcli.fk_codigo_cli=cli.codigo_cli
+                                      INNER JOIN perfil perf ON us.fk_codigo_perf=perf.codigo_perf
+                                      AND us.codigo_user=?', $id)->row_array();
 
         return $data;
     }
