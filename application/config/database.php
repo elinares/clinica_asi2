@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.43.153';
-$db['default']['username'] = 'clinicas';
-$db['default']['password'] = 'clinicas';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'postgres';
+$db['default']['password'] = 'thebigboss';
 $db['default']['database'] = 'clinicas_production';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';

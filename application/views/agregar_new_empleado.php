@@ -6,11 +6,11 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Agregar Persona</h1>
+            <h1 class="page-title">Agregar Empleados</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>personas">Persona</a> </li>
-            <li class="active">Agregar Persona</li>
+            <li><a href="<?=base_url()?>new_empleados">Empleados</a> </li>
+            <li class="active">Agregar Empleados</li>
         </ul>
 
         </div>
@@ -21,7 +21,7 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>agregar_persona" method="post">
+        <form id="tab" action="<?=base_url()?>agregar_new_empleado" method="post">
           <div class="form-group">
           <label>Nombres</label>
           <input type="text" name="nombres" id="nombres" class="form-control">
@@ -79,6 +79,67 @@ $this->load->view('administrador/encabezado', $data);
           ?>
           </select>
           </div>
+
+             <div class="form-group">
+          <label>Usuario</label>
+          <select name="fk_codigo_user" id="fk_codigo_user" class="form-control">
+          <?php
+          foreach ($usuarios as $usuario) {
+          ?>
+          <option value="<?=$usuario['codigo_user']?>"><?=$usuario['nombre']?></option>
+          <?php
+          }
+          ?>
+          </select>
+          </div>
+
+             <div class="form-group">
+          <label>NIT</label>
+          <input type="text" name="nit" id="nit" class="form-control">
+          </div>
+
+          <div class="form-group">
+          <label>ISSS</label>
+          <input type="text" name="isss" id="isss" class="form-control">
+          </div>
+
+          <div class="form-group">
+          <label>NUP</label>
+          <input type="text" name="nup" id="nup" class="form-control">
+          </div>
+
+          <div class="form-group">
+          <label>JVPM</label>
+          <input type="text" name="jvpm" id="jvpm" class="form-control">
+          </div>
+
+           <div class="form-group">
+          <label>Cargo</label>
+          <select name="fk_codigo_carg" id="fk_codigo_carg" class="form-control">
+          <?php
+          foreach ($cargos as $cargo) {
+          ?>
+          <option value="<?=$cargo['codigo_carg']?>"><?=$cargo['nombre']?></option>
+          <?php
+          }
+          ?>
+          </select>
+          </div>
+
+          <div class="form-group">
+          <label>Especialidad</label>
+          <select name="fk_codigo_esp" id="fk_codigo_esp" class="form-control">
+          <?php
+          foreach ($especialidades as $especialidad) {
+          ?>
+          <option value="<?=$especialidad['codigo_esp']?>"><?=$especialidad['nombre']?></option>
+          <?php
+          }
+          ?>
+          </select>
+          </div>
+
+
             <div class="btn-toolbar list-toolbar">
             <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
           </div>   

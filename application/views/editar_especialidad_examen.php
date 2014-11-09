@@ -1,4 +1,5 @@
 <!--LLAMAMOS EL ENCABEZADO-->
+<!--LLAMAMOS EL ENCABEZADO-->
 <?php
 $data['titulo'] = $titulo;
 $this->load->view('administrador/encabezado', $data);
@@ -6,11 +7,11 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Editar Municipio</h1>
+            <h1 class="page-title">Agregar Especialidad Examen</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>municipios">Municipios</a> </li>
-            <li class="active">Editar Municipio</li>
+            <li><a href="<?=base_url()?>especialidad_examenes">Especialidad Examen</a> </li>
+            <li class="active">Agregar Especialidad Examen</li>
         </ul>
 
         </div>
@@ -22,23 +23,23 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_municipio/<?=$info_mun['codigo_muni']?>" method="post">
+        <form id="tab" action="<?=base_url()?>editar_especialidad_examen/<?=$info_espe['codigo_espe']?>" method="post">
           <div class="form-group">
           <label>Nombre</label>
-          <input type="text" name="nombre" id="nombre" value="<?=$info_mun['nombre']?>" class="form-control">
+          <input type="text" name="nombre" id="nombre" value="<?=$info_espe['nombre']?>" class="form-control">
           </div>
           <div class="form-group">
-          <label>Departamento</label>
-          <select name="departamento" id="departamento" class="form-control">
+          <label>Tipo Examen</label>
+          <select name="tipo" id="tipo" class="form-control">
           <?php
-          foreach ($departamentos as $departamento) {
-            if($info_mun['codigo_dep'] == $departamento['codigo_dep']){
+          foreach ($tipo_examenes as $tipo_examen) {
+            if($info_tipoex['codigo_tipex'] == $tipo_examen['codigo_tipex']){
             ?>
-            <option value="<?=$departamento['codigo_dep']?>" selected><?=$departamento['nombre']?></option>
+            <option value="<?=$tipo_examen['codigo_tipex']?>" selected><?=$tipo['tipo']?></option>
             <?php
             }else{
             ?>
-            <option value="<?=$departamento['codigo_dep']?>"><?=$departamento['nombre']?></option>
+            <option value="<?=$tipo_examen['codigo_tipex']?>"><?=$tipo_examen['tipo']?></option>
             <?php
             }          
           }

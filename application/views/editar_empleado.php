@@ -5,7 +5,7 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Editar Persona</h1>
+            <h1 class="page-title">Editar empleado</h1>
             <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
             <li><a href="<?=base_url()?>empleados">Persona</a> </li>
@@ -20,7 +20,7 @@ $this->load->view('administrador/encabezado', $data);
     <br>
       <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_persona/<?=$info_perso['codigo_per']?>" method="post">
+        <form id="tab" action="<?=base_url()?>editar_empleado/<?=$empleado['codigo_emp']?>" method="post">
       
            <div class="form-group">
          <label>Nombres</label>

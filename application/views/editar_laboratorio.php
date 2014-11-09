@@ -6,15 +6,16 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Editar Municipio</h1>
+            <h1 class="page-title">Agregar Laboratorios</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>municipios">Municipios</a> </li>
-            <li class="active">Editar Municipio</li>
+            <li><a href="<?=base_url()?>laboratorios">Laboratorios</a> </li>
+            <li class="active">Agregar Laboratorios</li>
         </ul>
 
         </div>
         <div class="main-content">
+
 
 
 <div class="row">
@@ -22,23 +23,23 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_municipio/<?=$info_mun['codigo_muni']?>" method="post">
+        <form id="tab" action="<?=base_url()?>editar_laboratorio/<?=$info_lab['codigo_lab']?>" method="post">
           <div class="form-group">
           <label>Nombre</label>
-          <input type="text" name="nombre" id="nombre" value="<?=$info_mun['nombre']?>" class="form-control">
+          <input type="text" name="nombre" id="nombre" value="<?=$info_lab['nombre']?>" class="form-control">
           </div>
           <div class="form-group">
-          <label>Departamento</label>
-          <select name="departamento" id="departamento" class="form-control">
+          <label>Especialidad Examen</label>
+          <select name="especialidad" id="especialidad" class="form-control">
           <?php
-          foreach ($departamentos as $departamento) {
-            if($info_mun['codigo_dep'] == $departamento['codigo_dep']){
+          foreach ($especialidad_examenes as $especialidad_examen) {
+            if($info_espe['codigo_espe'] == $especialidad['codigo_espe']){
             ?>
-            <option value="<?=$departamento['codigo_dep']?>" selected><?=$departamento['nombre']?></option>
+            <option value="<?=$especialidad_examen['codigo_espe']?>" selected><?=$especialidad_examen['nombre']?></option>
             <?php
             }else{
             ?>
-            <option value="<?=$departamento['codigo_dep']?>"><?=$departamento['nombre']?></option>
+            <option value="<?=$especialidad_examen['codigo_espe']?>"><?=$especialidad_examen['nombre']?></option>
             <?php
             }          
           }

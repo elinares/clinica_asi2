@@ -1,13 +1,13 @@
 <!--LLAMAMOS EL ENCABEZADO-->
 <?php
 $data['titulo'] = $titulo;
-$this->load->view('administrador/encabezado', $data);
+$this->load->view('superadministrador/encabezado', $data);
 ?>
 <div class="content">
         <div class="header">
             
 
-            <h1 class="page-title">Bienvenido <b><?=$user_info['nombre_persona'].' '.$user_info['apellidos']?></b></h1>
+            <h1 class="page-title">Bienvenido <b><?=$user_info['nombre']?></b></h1>
             <ul class="breadcrumb">            
               <li class="active">Inicio</li>
             </ul>
@@ -24,5 +24,5 @@ $this->load->view('administrador/encabezado', $data);
 
 <!--LLAMAMOS EL PIE DE PAGINA-->
 <?php
-$this->load->view('administrador/pie');
+$this->load->view('superadministrador/pie');
 ?>

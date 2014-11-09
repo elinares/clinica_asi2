@@ -6,10 +6,10 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Usuarios</h1>
+            <h1 class="page-title">Laboratorios</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li class="active">Usuarios</li>
+            <li class="active">Laboratorios</li>
         </ul>
 
         </div>
@@ -30,12 +30,12 @@ $this->load->view('administrador/encabezado', $data);
         ?>
             
 <div class="btn-toolbar list-toolbar">
-    <a href="<?=base_url()?>agregar_usuario" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Usuario</a>
+    <a href="<?=base_url()?>agregar_laboratorio" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Laboratorio</a>
   <div class="btn-group">
   </div>
 </div>
 <?php
-if(empty($usuarios)){
+if(empty($laboratorios)){
   echo "No se encontraron registros.";
 }else{  
 ?>
@@ -43,23 +43,20 @@ if(empty($usuarios)){
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Cargo</th>
-      <th>Estado</th>
+      <th>Especialidad Examen</th>
       <th style="width: 4.5em;"></th>
     </tr>
   </thead>
   <tbody>
     <?php
-      foreach ($usuarios as $usuario) {
-        ($usuario['estado'] == 0) ? $estado = 'Inactivo' : $estado = 'Activo';
+      foreach ($laboratorios as $laboratorio) {
         ?>
         <tr>
-          <td><?=$usuario['nombre']?></td>
-          <td><?=$usuario['nombre_perfil']?></td>
-          <td><?=$estado?></td>
+          <td><?=$laboratorio['nombre']?></td>
+          <td><?=$laboratorio['especialidad_examen']?></td>
           <td>
-              <a href="<?=base_url()?>editar_usuario/<?=$usuario['codigo_user']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_usuario/<?=$usuario['codigo_user']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_laboratorio/<?=$laboratorio['codigo_lab']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_laboratorio/<?=$laboratorio['codigo_lab']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php

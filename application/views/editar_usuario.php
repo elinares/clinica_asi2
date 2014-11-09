@@ -22,7 +22,7 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_usuario/<?=$info_usu['cod_usuario']?>" method="post">
+        <form id="tab" action="<?=base_url()?>editar_usuario/<?=$info_usu['codigo_user']?>" method="post">
           <div class="form-group">
           <label>Nombre</label>
           <input type="text" name="nombre" id="nombre" value="<?=$info_usu['nombre']?>" class="form-control">
@@ -36,13 +36,13 @@ $this->load->view('administrador/encabezado', $data);
           <select name="perfil" id="perfil" class="form-control">
           <?php
           foreach ($perfiles as $perfil) {
-            if($info_usu['cod_perfil'] == $perfil['cod_perfil']){
+            if($info_usu['codigo_perf'] == $perfil['codigo_perf']){
             ?>
-            <option value="<?=$perfil['cod_perfil']?>" selected><?=$perfil['nombre']?></option>
+            <option value="<?=$perfil['codigo_perf']?>" selected><?=$perfil['nombre']?></option>
             <?php
             }else{
             ?>
-            <option value="<?=$perfil['cod_perfil']?>"><?=$perfil['nombre']?></option>
+            <option value="<?=$perfil['codigo_perf']?>"><?=$perfil['nombre']?></option>
             <?php
             }          
           }

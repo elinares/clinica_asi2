@@ -6,10 +6,10 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Usuarios</h1>
+            <h1 class="page-title">Tipo Examen</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li class="active">Usuarios</li>
+            <li class="active">Tipo Examenes</li>
         </ul>
 
         </div>
@@ -30,36 +30,31 @@ $this->load->view('administrador/encabezado', $data);
         ?>
             
 <div class="btn-toolbar list-toolbar">
-    <a href="<?=base_url()?>agregar_usuario" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Usuario</a>
+    <a href="<?=base_url()?>agregar_tipo_examen" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Tipo Examen</a>
   <div class="btn-group">
   </div>
 </div>
 <?php
-if(empty($usuarios)){
+if(empty($tipo_examenes)){
   echo "No se encontraron registros.";
 }else{  
 ?>
 <table class="table">
   <thead>
     <tr>
-      <th>Nombre</th>
-      <th>Cargo</th>
-      <th>Estado</th>
+      <th>Tipo</th>
       <th style="width: 4.5em;"></th>
     </tr>
   </thead>
   <tbody>
     <?php
-      foreach ($usuarios as $usuario) {
-        ($usuario['estado'] == 0) ? $estado = 'Inactivo' : $estado = 'Activo';
+      foreach ($tipo_examenes as $tipo_examen) {
         ?>
         <tr>
-          <td><?=$usuario['nombre']?></td>
-          <td><?=$usuario['nombre_perfil']?></td>
-          <td><?=$estado?></td>
+          <td><?=$tipo_examenes['tipo']?></td>
           <td>
-              <a href="<?=base_url()?>editar_usuario/<?=$usuario['codigo_user']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_usuario/<?=$usuario['codigo_user']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>editar_perfil/<?=$perfil['cod_tipo_examen']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>borrar_perfil/<?=$perfil['cod_tipo_examen']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php

@@ -14,15 +14,35 @@ class Administrador extends CI_Controller {
 			$usuario = $this->input->post('usuario');
 			$contrasena = $this->input->post('contrasena');
 
-			$result = $this->modelo_admin->login($usuario, $contrasena);
+			$result = $this->modelo_admin->login($usuario, $contrasena);			
 
 			if($result){
 				if($result['estado'] == 0){
 					$this->session->set_userdata('mensaje', 'Usuario inactivo.');
 					redirect('/');
 				}else{
-					$this->session->set_userdata( 'user_info', $result );
-					redirect('inicio');
+
+					//Verificación para perfil super administrador
+					if($result['fk_codigo_perf'] != 1){
+						
+						$user_id = $result['codigo_user'];
+						//Se obtiene la información general del usuario
+						$user_data = $this->modelo_admin->obt_user_data($user_id);
+						//Se obtienen los permisos que posee el usuario basados en su perfil
+						$user_access = $this->modelo_admin->obt_user_access($result['fk_codigo_perf']);
+						//Se agregan los permisos a la información general del usuario
+						$user_data['permisos'] = $user_access;
+
+						$this->session->set_userdata( 'user_info', $user_data );
+						redirect('inicio');
+
+					}else{
+
+						$this->session->set_userdata( 'user_info', $result );
+						redirect('superadmin');
+
+					}					
+
 				}				
 			}else{
 				$this->session->set_userdata('mensaje', 'Usuario y/o contraseña incorrectos.');
@@ -32,7 +52,7 @@ class Administrador extends CI_Controller {
 
 		$data['titulo'] = 'Administrador - Agregar Cargo';
 
-		$this->load->view('agregar_cargo', $data);
+		$this->load->view('login', $data);
 	}
 
 	public function logout()
@@ -52,12 +72,14 @@ class Administrador extends CI_Controller {
 
 	public function cargos()
 	{
+
 		$data['cargos'] = $this->modelo_admin->obt_cargos();
 		$data['titulo'] = 'Administrador - Cargos';
 
 		$this->load->view('lista_cargos', $data);
 	}
 
+	
 	public function agregar_cargo()
 	{
 		if($this->input->post()){
@@ -388,7 +410,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_especialidad', 'especialidad');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_esp', 'especialidad');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -404,7 +426,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_especialidad($id){
 
-		$this->db->where('cod_especialidad', $id);
+		$this->db->where('codigo_esp', $id);
 		$result = $this->db->delete('especialidad'); 
 
 		if($result){
@@ -431,7 +453,7 @@ class Administrador extends CI_Controller {
 
 			$datos = array(
 				'nombre' => $nombre,
-				'cod_departamento'=> $departamento
+				'fk_codigo_dep'=> $departamento
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'municipio');
@@ -459,10 +481,10 @@ class Administrador extends CI_Controller {
 
 			$datos2 = array(
 				'nombre' => $nombre,
-				'cod_departamento'=> $departamento
+				'fk_codigo_dep'=> $departamento
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_municipio', 'municipio');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_muni', 'municipio');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -481,7 +503,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_municipio($id){
 
-		$this->db->where('cod_municipio', $id);
+		$this->db->where('codigo_muni', $id);
 		$result = $this->db->delete('municipio'); 
 
 		if($result){
@@ -533,7 +555,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_perfil', 'perfil');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_perf', 'perfil');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -549,7 +571,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_perfil($id){
 
-		$this->db->where('cod_perfil', $id);
+		$this->db->where('codigo_perf', $id);
 		$result = $this->db->delete('perfil'); 
 
 		if($result){
@@ -580,7 +602,7 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre,
 				'password' => $password,
 				'estado' => $estado,
-				'cod_perfil'=> $perfil
+				'fk_codigo_perf'=> $perfil
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'usuario');
@@ -614,10 +636,10 @@ class Administrador extends CI_Controller {
 				'nombre' => $nombre,
 				'password' => $password,
 				'estado' => $estado,
-				'cod_perfil'=> $perfil
+				'fk_codigo_perf'=> $perfil
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_usuario', 'usuario');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_user', 'usuario');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
@@ -636,7 +658,7 @@ class Administrador extends CI_Controller {
 
 	public function borrar_usuario($id){
 
-		$this->db->where('cod_usuario', $id);
+		$this->db->where('codigo_user', $id);
 		$result = $this->db->delete('usuario'); 
 
 		if($result){
@@ -644,7 +666,179 @@ class Administrador extends CI_Controller {
 			redirect('usuarios');
 		}
 	}
+	
 
+	
+	
+	
+	/*CITAS*/
+	public function citas()
+	{
+		$data['citas'] = $this->modelo_admin->obt_citas();
+		$data['titulo'] = 'Administrador - Citas';
+
+		$this->load->view('lista_citas', $data);
+	}
+	/*buscar paciente*/
+	public function buscar_paciente()
+	{
+		
+		if ($this->input->post()){
+			$criterio=$this->input->post('criterio');
+			
+			$data['resultados_busqueda']=$this->modelo_admin->busqueda_pacientes($criterio);
+			$data['titulo']='Resultado Busquedas';
+			$this->load->view('resultados_busqueda',$data);
+		}else{
+		$data['titulo'] = 'Administrador - Citas';
+		$this->load->view('buscar_paciente',$data);
+	}
+
+	}
+
+
+public function buscar_persona_paciente()
+	{
+		
+		if ($this->input->post()){
+			$criterio=$this->input->post('criterio');
+			$criterio2=$this->input->post('criterio2');
+			
+			$data['resultados_busqueda_paciente']=$this->modelo_admin->busqueda_persona_pacientes($criterio,$criterio2);
+			$data['titulo']='Resultado Busquedas';
+			$this->load->view('resultados_busqueda_paciente',$data);
+		}else{
+		$data['titulo'] = 'Administrador -pacientes';
+		$this->load->view('buscar_persona_paciente',$data);
+	}
+
+}
+
+
+
+
+
+
+	public function asignacion_cita($id){
+		$data['titulo'] = 'Administrador - Citas';
+		$data['paciente']=$this->modelo_admin->obt_paciente($id);
+		$data['configuracion'] = $this->modelo_admin->obt_configuracion();
+		$this->load->view('asignacion_cita', $data);
+	}
+	public function ingresar_cita(){
+		if($this->input->post()){
+			$codigo_pac = $this->input->post('codigo_paciente');
+			$web = 'F';
+			$fecha=$this->input->post('fecha');
+			$estado='activa';
+			$hora=$this->input->post('hora');
+
+			$datos = array(
+				'cita_web' => $web,
+				'fecha'=> $fecha,
+				'estado'=>$estado,
+				'fk_codigo_confi'=>$hora,
+				'fk_codigo_pac'=>$codigo_pac
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'cita');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('citas');
+			}
+		}
+
+	}
+	/*
+	MANTENIMIENTO CONFIGURACION CITA
+	*/
+
+	public function configuracion_citas()
+	{
+		$data['configuracion_citas'] = $this->modelo_admin->obt_configuracion_citas();
+		$data['titulo'] = 'Administrador - Configuracion Cita';
+
+		$this->load->view('lista_configuracion_cita', $data);
+	}
+
+	/* AGREGAR UNA CONFIGURACION CITA*/
+
+	public function agregar_configuracion_cita()
+	{
+		if($this->input->post()){
+			$hrinicial = $this->input->post('hora_inicial');
+			$hrfinal = $this->input->post('hora_final');
+			$catidad_maxima = $this->input->post('catidad_maxima');
+			$consultorio = $this->input->post('consultorio');
+			$datos = array(
+				'hora_inicial' => $hrinicial,
+				'hora_final' => $hrfinal,
+				'cantidad_maxima' => $catidad_maxima,
+				 'fk_codigo_con' => $consultorio
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'configuracion_cita');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('configuracion_citas');
+			}
+	}
+
+	$data['consultorios'] = $this->modelo_admin->obt_consultorios();
+	$data['titulo'] = 'Administrador - Agregar Configuracion Cita';
+
+	$this->load->view('agregar_configuracion_cita', $data);
+	}
+
+	/*EDITAR UNA CONFIGURACION CITA*/
+	public function editar_configuracion_cita($id){
+
+		$datos = $this->modelo_admin->obt_configuracion_cita($id);
+
+		if($this->input->post()){		
+			$tipo = $this->input->post('nombre');
+				$hrinicial = $this->input->post('hora_inicial');
+				$hrfinal = $this->input->post('hora_final');
+				$catidad_maxima = $this->input->post('cantidad_maxima');
+				$consultorio = $this->input->post('consultorio');
+			$datos2 = array(
+				'hora_inicial' => $hrinicial,
+				'hora_final' => $hrfinal,
+				'cantidad_maxima' => $catidad_maxima,
+				 'fk_codigo_con' => $consultorio
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_confi', 'configuracion_cita');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('configuracion_citas');
+			}
+		}
+
+		$data['info_configuracion_cita'] = $datos;
+		$data['consultorios'] = $this->modelo_admin->obt_consultorios();
+		$data['titulo'] = 'Administrador - Editar Configuracion Cita';
+
+		$this->load->view('editar_configuracion_cita', $data);
+	}
+
+	/*BORRAR UNA CONFIGURACION CITA*/
+
+	public function borrar_configuracion_cita($id){
+
+		$this->db->where('codigo_confi', $id);
+		$result = $this->db->delete('configuracion_cita'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('configuracion_citas');
+		}
+	}
+
+	//mantenimiento personas
 	public function personas()
 	{
 		$data['personas'] = $this->modelo_admin->obt_personas();
@@ -653,21 +847,13 @@ class Administrador extends CI_Controller {
 		$this->load->view('lista_personas', $data);
 	}
 
-
-
-
-public function agregar_persona()
+	public function agregar_persona()
 	{
-
-
-		$municipio = $this->input->post('municipio');
-
 		if($this->input->post()){
 			//$nombre = $this->input->post('empleado');
-			$nombre = $this->input->post('nombre');
-			//$primer_apellido = $this->input->post('empleado');
-			$primer_apellido = $this->input->post('primer_apellido');
-			$segundo_apellido = $this->input->post('segundo_apellido');
+			$nombres = $this->input->post('nombres');
+			//$primer_apellido = $this->input->post('empleado')
+			$apellidos = $this->input->post('apellidos');
 			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
 			$direccion = $this->input->post('direccion');
 			$estado_civil = $this->input->post('estado_civil');
@@ -677,15 +863,14 @@ public function agregar_persona()
 
 
 			$datos = array(
-				'nombre' => $nombre,
-				'primer_apellido' => $primer_apellido,
-				'segundo_apellido'=> $segundo_apellido,
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
 				'fecha_nacimiento'=> $fecha_nacimiento,
 				'direccion'=> $direccion,
 				'estado_civil' => $estado_civil,
 				'genero' => $genero,
 				'dui' => $dui,
-				'fk_codigo_muni' => $municipio
+				'fk_codigo_muni' => $fk_codigo_muni
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'persona');
@@ -695,6 +880,8 @@ public function agregar_persona()
 			}
 		}
 
+
+		$data['personas'] = $this->modelo_admin->obt_personas();
 
 		$data['municipios'] = $this->modelo_admin->obt_municipios();
 
@@ -727,8 +914,8 @@ public function agregar_persona()
 		$datos = $this->modelo_admin->obt_persona($id);
 
 		if($this->input->post()){		
-			$nombre = $this->input->post('nombre');
-			$primer_apellido = $this->input->post('primer_apellido');
+			$nombres = $this->input->post('nombres');
+			$apellidos = $this->input->post('apellidos');
 			$segundo_apellido = $this->input->post('segundo_apellido');
 			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
 			$direccion = $this->input->post('direccion');
@@ -740,9 +927,8 @@ public function agregar_persona()
 
 
 			$datos2 = array(
-				'nombre' => $nombre,
-				'primer_apellido' => $primer_apellido,
-				'segundo_apellido'=> $segundo_apellido,
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
 				'fecha_nacimiento'=> $fecha_nacimiento,
 				'direccion'=> $direccion,
 				'estado_civil' => $estado_civil,
@@ -751,7 +937,7 @@ public function agregar_persona()
 				'fk_codigo_muni' => $fk_codigo_muni
 				);
 
-			$result = $this->modelo_admin->act_item($datos2, $id, 'id_empleado', 'empleado');
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_per', 'persona');
 
 			if($result){				
 				$this->session->set_userdata('mensaje', 'Empleado actualizado con éxito.');
@@ -761,10 +947,12 @@ public function agregar_persona()
 
 		$data['info_perso'] = $datos;
 		$data['personas'] = $this->modelo_admin->obt_personas();
+	  $data['municipios'] = $this->modelo_admin->obt_municipios();
 		$data['titulo'] = 'Administrador - Editar Persona';
 		$this->load->view('editar_persona', $data);
-	}
+	
 
+}
 	public function borrar_persona($id){
 
 		$this->db->where('codigo_per', $id);
@@ -776,6 +964,487 @@ public function agregar_persona()
 		}
 	}
 
+//mantenimiento Empleado
+	public function empleados()
+	{
+		$data['empleados'] = $this->modelo_admin->obt_empleados();
+		$data['titulo'] = 'Administrador - empleados';
+
+		$this->load->view('lista_empleados', $data);
+	}
+
+		public function buscar_empleado()
+	{
+		
+		if ($this->input->post()){
+			$criterio=$this->input->post('criterio');
+			
+			$data['resultado_busqueda_empleado']=$this->modelo_admin->buscar_empleados($criterio);
+			$data['titulo']='Resultado Busquedas';
+			$this->load->view('resultado_busqueda_empleado',$data);
+		}else{
+		$data['titulo'] = 'Administrador - Empleado';
+		$this->load->view('buscar_empleado',$data);
+	}
+	}
+
+		public function asignacion_empleado($id){
+		$data['titulo'] = 'Administrador - empleados';
+		$data['empleados']=$this->modelo_admin->obt_empleado1($id);
+
+		$data['personas'] = $this->modelo_admin->obt_personas();
+		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
+		$data['cargos'] = $this->modelo_admin->obt_cargos();
+		$data['especialidades'] = $this->modelo_admin->obt_especialidades();
+		$this->load->view('agregar_empleado', $data);
+	}
+
+	public function agregar_empleado()
+	{
+		if($this->input->post()){
+
+			$fk_codigo_per = $this->input->post('fk_codigo_per');
+			$fk_codigo_user = $this->input->post('fk_codigo_user');
+			$nit = $this->input->post('nit');
+			$isss = $this->input->post('isss');
+			$nup = $this->input->post('nup');
+			$jvpm = $this->input->post('jvpm');
+			$fk_codigo_carg = $this->input->post('fk_codigo_carg');
+			$fk_codigo_esp = $this->input->post('fk_codigo_esp');
+			//$clinica = $this->input->post('clinica');
+
+			$datos = array(
+				'fk_codigo_per' => $fk_codigo_per,
+				//pk de clinica que se inserta en la fk 
+				'fk_codigo_user'=> $fk_codigo_user,
+				'nit'=> $nit,
+				'isss' => $isss,
+				'nup' => $nup,
+				'jvpm' => $jvpm,
+				'fk_codigo_carg' => $fk_codigo_carg,
+				'fk_codigo_esp' => $fk_codigo_esp
+				);
+
+
+			$result = $this->modelo_admin->guardar_item($datos, 'empleado');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('empleados');
+			}
+		}
+
+//		$data['titulo'] = 'Administrador - Agregar Consultorio';
+
+		 //mandamos a llamar a la foranea
+//		$this->load->view('agregar_empleado', $data);
+	}
+
+/*public function editar_consultorio($id){
+		$datos = $this->modelo_admin->obt_consultorio($id);
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$clinica = $this->input->post('clinica');
+			$datos2 = array(
+				'nombre' => $nombre,
+				'cod_clinica'=> $clinica
+				);
+			$result = $this->modelo_admin->act_item($datos2, $id, 'cod_consultorio', 'consultorio');
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('consultorios');
+			}
+		}
+		$data['info_con'] = $datos;
+		$data['clinicas'] = $this->modelo_admin->obt_clinicas();
+		$data['titulo'] = 'Administrador - Editar Consultorio';
+		$this->load->view('editar_consultorio', $data);*/
+	public function editar_empleado($id)
+	{
+
+		$datos = $this->modelo_admin->obt_empleado($id);
+
+		if($this->input->post()){
+			$fk_codigo_per = $this->input->post('fk_codigo_per');
+			$fk_codigo_user = $this->input->post('fk_codigo_user');
+			$nit = $this->input->post('nit');
+			$isss = $this->input->post('isss');
+			$nup = $this->input->post('nup');
+			$jvpm = $this->input->post('jvpm');
+			$fk_codigo_cargo = $this->input->post('fk_codigo_cargo');
+			//$clinica = $this->input->post('clinica');
+
+			$datos = array(
+				'codigo_per' => $persona,
+				//pk de clinica que se inserta en la fk 
+				'codigo_user'=> $usuario,
+				'nit'=> $nit,
+				'isss' => $isss,
+				'nup' => $nup,
+				'jvpm' => $jvpm,
+				'codigo_carg' => $cargo
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_emp', 'empleado');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Empleado actualizado con éxito.');
+				redirect('personas');
+			}
+		}
+
+		$data['info_emple'] = $datos;
+		$data['empleados'] = $this->modelo_admin->obt_empleados();
+
+		$data['personas'] = $this->modelo_admin->obt_personas();
+		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
+		$data['cargos'] = $this->modelo_admin->obt_cargos();
+
+		$data['titulo'] = 'Administrador - Editar empleado';
+		$this->load->view('editar_empleado', $data);
+	
+
+}
+	public function borrar_empleado($id){
+
+		$this->db->where('codigo_emp', $id);
+		$result = $this->db->delete('empleado'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('empleados');
+		}
+	}
+
+	
+	public function pacientes()
+	{
+		$data['pacientes'] = $this->modelo_admin->obt_pacientes();
+		$data['titulo'] = 'Administrador - pacientes';
+
+		$this->load->view('lista_pacientes', $data);
+	}
+
+
+	public function new_empleados()
+	{
+		$data['new_empleados'] = $this->modelo_admin->obt_new_empleados();
+		$data['titulo'] = 'Administrador - empleados';
+
+		$this->load->view('lista_new_empleados', $data);
+	}
+public function agregar_new_empleado()
+	{
+		if($this->input->post()){
+			//agregamos los datos de persona	
+			$nombres = $this->input->post('nombres');
+			$apellidos = $this->input->post('apellidos');
+			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
+			$direccion = $this->input->post('direccion');
+			$estado_civil = $this->input->post('estado_civil');
+			$genero = $this->input->post('genero');
+			$dui = $this->input->post('dui');
+			$fk_codigo_muni = $this->input->post('fk_codigo_muni');
+
+			$datos = array(
+				//formamos el arreglo para personas
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
+				'fecha_nacimiento'=> $fecha_nacimiento,
+				'direccion'=> $direccion,
+				'estado_civil' => $estado_civil,
+				'genero' => $genero,
+				'dui' => $dui,
+				'fk_codigo_muni' => $fk_codigo_muni
+				);
+
+
+			//INSERTAS EL REGISTRO DE PERSONA
+			$result = $this->modelo_admin->guardar_item($datos, 'persona');
+
+			if($result){//SI EL REGISTRO SE EFECTUO
+				$fk_codigo_per = $this->db->insert_id();
+				//CAPTURAS LOS VALORES DE EMPLEADO
+				$fk_codigo_user = $this->input->post('fk_codigo_user');	
+				$nit = $this->input->post('nit');
+				$isss = $this->input->post('isss');
+				$nup = $this->input->post('nup');
+				$jvpm = $this->input->post('jvpm');
+				$fk_codigo_carg = $this->input->post('fk_codigo_carg');
+				//$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+
+
+
+				//ARMAS ARREGLO PARA INSERTAR EMPLEADO
+				$datos2 = array(
+					'fk_codigo_per' => $fk_codigo_per,
+
+					'fk_codigo_user'=> $fk_codigo_user,
+					'nit' => $nit,
+					'isss' => $isss,
+					'nup' => $nup,
+					'jvpm' => $jvpm,
+					'fk_codigo_carg' => $fk_codigo_carg
+					//'fk_codigo_esp' => $fk_codigo_esp
+				);
+
+				//INSERTAS EL REGISTRO DE EMPLEADO
+				$result2 = $this->modelo_admin->guardar_item($datos2, 'empleado');
+				
+				if($result2){
+					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+					redirect('empleados');
+				}				
+			}
+		}
+
+		$data['titulo'] = 'Administrador';
+
+		$data['municipios'] = $this->modelo_admin->obt_municipios();
+		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
+		$data['cargos'] = $this->modelo_admin->obt_cargos();
+		$data['especialidades'] = $this->modelo_admin->obt_especialidades();
+		$this->load->view('agregar_new_empleado', $data);
+
+	}
+
+/*MANTENIMIENTO Tipo_Examen*/
+
+public function tipo_examenes()
+	{
+
+		$data['tipo_examenes'] = $this->modelo_admin->obt_tipo_examenes();
+		$data['titulo'] = 'Administrador - Tipo Examenes';
+
+		$this->load->view('lista_tipo_examenes', $data);
+	}
+
+	
+	public function agregar_tipo_examen()
+	{
+		if($this->input->post()){
+			$tipo = $this->input->post('tipo');
+
+			$datos = array(
+				'tipo' => $tipo
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'tipo_examen');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('tipo_examenes');
+			}
+		}
+
+		$data['titulo'] = 'Administrador - Agregar Cargo';
+
+		$this->load->view('agregar_tipo_examen', $data);
+	}
+
+	public function editar_tipo_examen($id){
+
+		$datos = $this->modelo_admin->obt_tipo_examen($id);
+
+		if($this->input->post()){		
+			$tipo = $this->input->post('tipo');
+
+			$datos2 = array(
+				'tipo' => $tipo
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_tipex', 'tipo_examen');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('tipo_examenes');
+			}
+		}
+
+		$data['info_tipoex'] = $datos;
+		$data['titulo'] = 'Administrador - Editar Tipo Examen';
+
+		$this->load->view('editar_tipo_examen', $data);
+	}
+
+	public function borrar_tipo_examen($id){
+
+		$this->db->where('codigo_tipex', $id);
+		$result = $this->db->delete('tipo_examen'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('tipo_examenes');
+		}
+	}
+
+/*MANTENIMIENTO Tipo Especialidad*/
+public function especialidad_examenes()
+	{
+		$data['especialidad_examenes'] = $this->modelo_admin->obt_especialidad_examenes();
+
+		$data['titulo'] = 'Administrador - especialidad examenes';
+
+		$this->load->view('lista_especialidad_examen', $data);
+	}
+	public function especialidad_examenes1(){
+		$data['especialidad_examenes1'] = $this->modelo_admin->obt_especialidad_examenes1();
+		$this->load->view('lista_especialidad_examen', $data);
+	}
+
+	public function agregar_especialidad_examen()
+	{
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$tipo = $this->input->post('tipo');
+
+			$datos = array(
+				'nombre' => $nombre,
+				'fk_codigo_tipex'=> $tipo
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'especialidad_examen');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('especialidad_examenes');
+			}
+		}
+
+		$data['titulo'] = 'Administrador - Agregar Municipio';
+
+		$data['tipo_examenes'] = $this->modelo_admin->obt_tipo_examenes();
+
+		$this->load->view('agregar_especialidad_examen', $data);
+	}
+
+	public function editar_especialidad_examen($id){
+
+		$datos = $this->modelo_admin->obt_especialidad_examen($id);
+
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$tipo = $this->input->post('tipo');
+
+			$datos2 = array(
+				'nombre' => $nombre,
+				'fk_codigo_tipex'=> $tipo
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_espe', 'especialidad_examen');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('especialidad_examenes');
+			}
+		}
+
+		$data['info_espe'] = $datos;
+
+		$data['tipo_examenes'] = $this->modelo_admin->obt_tipo_examenes();
+
+		$data['titulo'] = 'Administrador - Editar especialidad examen';
+
+		$this->load->view('editar_especialidad_examen', $data);
+	}
+
+	public function borrar_especialidad_examen($id){
+
+		$this->db->where('codigo_espe', $id);
+		$result = $this->db->delete('especialidad_examen'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('especialidad_examenes');
+		}
+	}
+
+
+/*MANTENIMIENTO LABORATORIOS*/
+
+	public function laboratorios()
+	{
+		$data['laboratorios'] = $this->modelo_admin->obt_laboratorios();
+		$data['titulo'] = 'Administrador - Lab';
+
+		$this->load->view('lista_laboratorio', $data);
+	}
+
+	public function agregar_laboratorio()
+	{
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$direccion = $this->input->post('direccion');
+			$especialidad = $this->input->post('especialidad');
+
+			$datos = array(
+				'nombre' => $nombre,
+				'direccion'=>$direccion,
+				'fk_codigo_espe'=> $especialidad
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'laboratorio');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('laboratorios');
+			}
+		}
+
+		$data['titulo'] = 'Administrador - Agregar Laboratorio';
+
+		$data['especialidad_examenes'] = $this->modelo_admin->obt_especialidad_examenes();
+
+		$this->load->view('agregar_laboratorio', $data);
+	}
+
+	public function editar_laboratorio($id){
+
+		$datos = $this->modelo_admin->obt_laboratorio($id);
+
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$direccion = $this->input->post('direccion');
+			$especialidad = $this->input->post('especialidad');
+
+
+			$datos2 = array(
+				'nombre' => $nombre,
+				'direccion'=>$direccion,
+				'fk_codigo_espe'=> $especialidad
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_lab', 'laboratorio');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('laboratorios');
+			}
+		}
+
+		$data['info_lab'] = $datos;
+
+		$data['especialidad_examenes'] = $this->modelo_admin->obt_especialidad_examenes();
+
+		$data['titulo'] = 'Administrador - Editar Laboratorio';
+
+		$this->load->view('editar_laboratorio', $data);
+	}
+
+	public function borrar_laboratorio($id){
+
+		$this->db->where('codigo_lab', $id);
+		$result = $this->db->delete('laboratorio'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('laboratorios');
+		}
+	}
+
+
+
 
 
 }
+
