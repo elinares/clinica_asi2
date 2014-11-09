@@ -163,7 +163,7 @@ if(!$this->session->userdata('user_info')){
                 <li><a href="<?=base_url()?>tipo_examenes"><span class="fa fa-caret-right"></span> Tipos de exámenes</a></li>
                 <li><a href="<?=base_url()?>especialidad_examenes"><span class="fa fa-caret-right"></span> Especialidades de exámenes</a></li>
                 <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Proveedores</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Productos</a></li>
+               <li><a href="<?=base_url()?>tipo_productos"><span class="fa fa-caret-right"></span>Tipo Productos</a></li>
                
             </ul>
         </li>

@@ -371,7 +371,14 @@ where lab.fk_codigo_espe=espe.codigo_espe;')->result_array();
         return $datos;
     }
 
+  /* Tipo Producto*/
+     function obt_tipo_producto($id){
+        return $this->db->get_where('tipo_producto', array('codigo_tipoprod'=>$id))->row_array();
+    }
 
+    function obt_tipo_productos(){
+        return $this->db->get('tipo_producto')->result_array();
+    }
 
 }
 

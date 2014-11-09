@@ -1442,6 +1442,89 @@ public function especialidad_examenes()
 		}
 	}
 
+	public function tipo_productos()
+	{
+		$data['tipo_productos'] = $this->modelo_admin->obt_tipo_productos();
+		$data['titulo'] = 'Administrador - tipo productos';
+
+		$this->load->view('lista_tipo_productos', $data);
+	}
+
+public function agregar_tipo_producto()
+	{
+		if($this->input->post()){
+			$nombre = $this->input->post('nombre');
+			$precio = $this->input->post('precio');
+			$cantidad_minima = $this->input->post('cantidad_minima');
+            $cantidad_maxima = $this->input->post('cantidad_maxima');
+            $existencia = $this->input->post('existencia');
+			$datos = array(
+				'nombre' => $nombre,
+				'precio' => $precio,
+				'cantidad_minima' => $cantidad_minima,
+				'cantidad_maxima' => $cantidad_maxima,
+				'existencia' => $existencia
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'tipo_producto');
+
+			if($result){
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('tipo_productos');
+			}
+		}
+
+		$data['titulo'] = 'Administrador - Agregar tipo_producto';
+		$data['tipo_productos']= $this->modelo_admin-> obt_tipo_productos();
+
+		$this->load->view('agregar_tipo_producto', $data);
+	}
+
+	public function editar_tipo_producto($id){
+
+		$datos = $this->modelo_admin->obt_tipo_producto($id);
+
+		if($this->input->post()){		
+			$nombre = $this->input->post('nombre');
+			$precio = $this->input->post('precio');
+			$cantidad_minima = $this->input->post('cantidad_minima');
+			$cantidad_maxima = $this->input->post('cantidad_maxima');
+			$existencia = $this->input->post('existencia');
+
+			$datos2 = array(
+				'nombre' => $nombre,
+				'precio' => $precio,
+				'cantidad_minima' => $cantidad_minima,
+				'cantidad_maxima' => $cantidad_maxima,
+				'existencia' => $existencia
+				);
+
+			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_tipoprod', 'tipo_producto');
+
+			if($result){				
+				$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+				redirect('tipo_productos');
+			}
+		}
+
+		$data['info_tip_prod'] = $datos;
+		$data['titulo'] = 'Administrador - Editar tipo_producto';
+
+		$this->load->view('editar_tipo_producto', $data);
+	}
+
+	public function borrar_tipo_producto($id){
+
+		$this->db->where('codigo_tipoprod', $id);
+		$result = $this->db->delete('tipo_producto'); 
+
+		if($result){
+			$this->session->set_userdata('mensaje', 'Registro eliminado con éxito.');
+			redirect('tipo_productos');
+		}
+	}
+
+
 
 
 

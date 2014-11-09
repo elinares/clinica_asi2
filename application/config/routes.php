@@ -160,5 +160,12 @@ $route['laboratorios'] = "administrador/laboratorios";
 $route['agregar_laboratorio'] = "administrador/agregar_laboratorio";
 $route['editar_laboratorio/(:any)'] = "administrador/editar_laboratorio/$1";
 $route['borrar_laboratorio/(:any)'] = "administrador/borrar_laboratorio/$1";
+
+
+//Tipo Productos
+$route['tipo_productos'] = "administrador/tipo_productos";
+$route['agregar_tipo_producto'] = "administrador/agregar_tipo_producto";
+$route['editar_tipo_producto/(:any)'] = "administrador/editar_tipo_producto/$1";
+$route['borrar_tipo_producto/(:any)'] = "administrador/borrar_tipo_producto/$1";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
