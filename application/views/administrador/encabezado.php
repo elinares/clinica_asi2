@@ -23,6 +23,10 @@ if(!$this->session->userdata('user_info')){
     <script src="<?=base_url()?>js/livevalidation_standalone.compressed.js" type="text/javascript"></script>
     <script src="<?=base_url()?>js/jquery.maskedinput.min.js" type="text/javascript"></script>
 
+    <!--DATE PICKER-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> 
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
         <script src="<?=base_url()?>js/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
@@ -138,7 +142,7 @@ if(!$this->session->userdata('user_info')){
         </li>
 
         <li>
-            <a href="<?=base_url()?>" class="nav-header"><span class="fa fa-shopping-cart"></span> Compras</a>
+            <a href="<?=base_url()?>compras" class="nav-header"><span class="fa fa-shopping-cart"></span> Compras</a>
         </li>
 
         <li>

@@ -1596,9 +1596,101 @@ public function agregar_tipo_producto()
 	}
 
 
+	/*COMPRAS*/
 
+	public function compras()
+	{
 
+		$data['compras'] = $this->modelo_admin->obt_compras();
+		$data['titulo'] = 'Administrador - Compras';
 
+		$this->load->view('lista_compras', $data);
+	}
+
+	
+	public function agregar_compra()
+	{
+		if($this->input->post()){
+
+			$num=count($this->input->post('cantidad_producto'));
+
+			$user_info = $this->session->userdata('user_info');
+
+			//Ecabezado
+			$factura = $this->input->post('factura');
+			$fecha = $this->input->post('fecha');			
+
+			//Detalle
+			$codigo_producto = $this->input->post('codigo_producto');
+			$presentacion_producto = $this->input->post('presentacion_producto');
+			$costo_producto = $this->input->post('costo_producto');
+			$cantidad_producto = $this->input->post('cantidad_producto');
+			$fvenc_producto = $this->input->post('fvenc_producto');	
+
+			$datos = array(
+				'factura' => $factura,
+				'fecha' => $fecha,
+				'fk_codigo_cli' => $user_info['codigo_cli']
+				);
+
+			//Se inserta encabezado de compra
+			$result = $this->modelo_admin->guardar_item($datos, 'compra');
+
+			if($result){
+				$id_compra = $this->db->insert_id();
+
+				$num=count($this->input->post('cantidad_producto'));
+				
+				//Se recorren los detalles ingresados
+				for ($i=0; $i < $num; $i++) { 
+
+					$datos[$i] = array(
+					'cantidad' => $cantidad_producto[$i],
+					'fecha_vencimiento' => $fvenc_producto[$i],
+					'fk_codigo_tipoprod' => $codigo_producto[$i],
+					'fk_codigo_cli' => $user_info['codigo_cli'],
+					'fk_codigo_tipre' => $presentacion_producto[$i]				
+					);
+
+					//Se inserta detalle en producto
+					$result2 = $this->modelo_admin->guardar_item($datos[$i], 'producto');
+
+					if($result2){
+						$id_producto = $this->db->insert_id();
+
+						$datos2[$i] = array(
+						'costo' => $costo_producto[$i],
+						'cantidad' => $cantidad_producto[$i],
+						'fk_codigo_produ' => $id_producto,
+						'fk_codigo' => $id_compra
+						);
+
+						//Se inserta detalle compra
+						$result3 = $this->modelo_admin->guardar_item($datos2[$i], 'detalle_compra');
+
+						if($result3){
+
+							$existencia[$i] = $this->db->query("SELECT existencia FROM tipo_producto WHERE codigo_tipoprod = ".$codigo_producto[$i]."")->row_array();
+							$datos3[$i] = array('existencia' => $cantidad_producto[$i] + $existencia[$i]["existencia"]);
+							$this->db->where( "codigo_tipoprod", $codigo_producto[$i]);
+							$result4 = $this->db->update('tipo_producto', $datos3[$i]);
+
+						}	
+					}					
+				}	
+
+				$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+				redirect('compras');
+
+			}
+		}
+
+		$data['tipos_presentaciones'] = $this->modelo_admin->obt_tipo_presentaciones();
+		$data['tipos_productos'] = $this->modelo_admin->obt_tipo_productos();
+		$data['titulo'] = 'Administrador - Agregar Compra';
+
+		$this->load->view('agregar_compra', $data);
+	}
 
 
 }

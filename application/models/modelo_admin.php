@@ -52,6 +52,17 @@ class modelo_admin extends CI_Model {
         return $this->db->update($tabla, $datos);
     }
 
+    /*COMPRAS*/
+
+    function obt_compras(){
+        return $this->db->query('SELECT c.codigo_comp, c.factura, c.fecha, t.total
+                                 FROM compra c,
+                                 (SELECT sum(costo * cantidad) AS total, fk_codigo 
+                                  FROM detalle_compra 
+                                  GROUP BY fk_codigo) t
+                                  WHERE c.codigo_comp=t.fk_codigo;')->result_array();
+    }
+
     /*CARGOS*/
 
     function obt_cargo($id){

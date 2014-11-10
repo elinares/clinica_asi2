@@ -50,6 +50,10 @@ $route['inicio'] = "administrador/inicio";
 //General
 $route['logout'] = "administrador/logout";
 
+/*Compras*/
+$route['compras'] = "administrador/compras";
+$route['agregar_compra'] = "administrador/agregar_compra";
+
 /*Cargos*/
 $route['cargos'] = "administrador/cargos";
 $route['agregar_cargo'] = "administrador/agregar_cargo";
