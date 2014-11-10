@@ -1281,13 +1281,7 @@ public function llena_municipio()
 	}
 
 	
-	public function pacientes()
-	{
-		$data['pacientes'] = $this->modelo_admin->obt_pacientes();
-		$data['titulo'] = 'Administrador - pacientes';
 
-		$this->load->view('lista_pacientes', $data);
-	}
 
 
 	public function new_empleados()
