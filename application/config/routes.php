@@ -148,6 +148,7 @@ $route['asignacion_empleado/(:any)'] = "administrador/asignacion_empleado/$1";
 
 /* pacientes*/
 $route['pacientes'] = "administrador/pacientes";
+$route['llena_municipio'] = "administrador/llena_municipio";
 $route['buscar_persona_paciente'] = "administrador/buscar_persona_paciente";
 $route['resultado_busqueda_paciente'] = "administrador/resultado_busqueda_paciente";
 $route['agregar_paciente_op1'] = "administrador/agregar_paciente_op1";

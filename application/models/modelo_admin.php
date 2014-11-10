@@ -402,6 +402,38 @@ where lab.fk_codigo_espe=espe.codigo_espe;')->result_array();
     }
 
 
+
+
+//  LLENA LOS SELECT CON LOS MUNICIPIOS DE UN DEPARTAMENTO---------------------------------
+
+
+public function departamentos()
+    {
+        $this->db->order_by('nombre','asc');
+        $departamento = $this->db->get('departamento');
+        if($departamento->num_rows()>0)
+        {
+            return $departamento->result();
+        }
+    }
+    
+    public function municipios($departamento)
+    {
+        $this->db->where('fk_codigo_dep',$departamento);
+        $this->db->order_by('nombre','asc');
+        $municipi = $this->db->get('municipio');
+
+        if($municipi->num_rows()>0)
+        {
+            return $municipi->result();
+        }
+    }
+//----------------------------------------------------------------------------------
+
+
+
+
+
 }
 
 ?>

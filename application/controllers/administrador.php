@@ -669,16 +669,23 @@ class Administrador extends CI_Controller {
 	
 
 	
-	
-	
-	/*CITAS*/
-	public function citas()
-	{
-		$data['citas'] = $this->modelo_admin->obt_citas();
-		$data['titulo'] = 'Administrador - Citas';
 
-		$this->load->view('lista_citas', $data);
+
+
+/*-------------------- paciente-----------------------------------------------------------------------------------------------------*/
+	
+	public function pacientes()
+	{
+		$data['pacientes'] = $this->modelo_admin->obt_pacientes();
+		$data['titulo'] = 'Administrador - pacientes';
+
+		$this->load->view('lista_pacientes', $data);
 	}
+
+
+
+
+
 	/*buscar paciente*/
 	public function buscar_paciente()
 	{
@@ -704,7 +711,7 @@ public function buscar_persona_paciente()
 			$criterio=$this->input->post('criterio');
 			$criterio2=$this->input->post('criterio2');
 			
-			$data['resultados_busqueda_paciente']=$this->modelo_admin->busqueda_persona_pacientes($criterio,$criterio2);
+			$data['resultados_busqueda_paciente']=$this->modelo_admin->busqueda_persona_pacientes(strtoupper($criterio),strtoupper($criterio2));
 			$data['titulo']='Resultado Busquedas';
 			$this->load->view('resultados_busqueda_paciente',$data);
 		}else{
@@ -715,6 +722,163 @@ public function buscar_persona_paciente()
 }
 
 
+
+
+public function agregar_paciente_op1()
+	{
+		if($this->input->post()){
+			//agregamos los datos de persona	
+			$nombres = $this->input->post('nombres');
+			$apellidos = $this->input->post('apellidos');
+			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
+			$direccion = $this->input->post('direccion');
+			$estado_civil = $this->input->post('estado_civil');
+			$genero = $this->input->post('genero');
+			$dui = $this->input->post('dui');
+			$fk_codigo_muni = $this->input->post('fk_codigo_muni');
+
+			$datos = array(
+				//formamos el arreglo para personas
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
+				'fecha_nacimiento'=> $fecha_nacimiento,
+				'direccion'=> $direccion,
+				'estado_civil' => $estado_civil,
+				'genero' => $genero,
+				'dui' => $dui,
+				'fk_codigo_muni' => $fk_codigo_muni
+				);
+
+
+			//INSERTAS EL REGISTRO DE PERSONA
+			$result = $this->modelo_admin->guardar_item($datos, 'persona');
+
+			if($result){//SI EL REGISTRO SE EFECTUO
+				$fk_codigo_per = $this->db->insert_id();
+				//CAPTURAS LOS VALORES DE EMPLEADO
+				$ocupacion = $this->input->post('ocupacion');
+
+				$fecha=date("Y-m-d");
+			
+				//$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+
+
+
+				//ARMAS ARREGLO PARA INSERTAR EMPLEADO
+				$datos2 = array(
+					'fk_codigo_per' => $fk_codigo_per,
+					'ocupacion' => $ocupacion,
+					'fecha_registro' => $fecha,
+
+
+				
+					//'fk_codigo_esp' => $fk_codigo_esp
+				);
+
+				//INSERTAS EL REGISTRO DE EMPLEADO
+				$result2 = $this->modelo_admin->guardar_item($datos2, 'paciente');
+				
+				if($result2){
+					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+					redirect('pacientes');
+				}				
+			}
+		}
+
+ 		$data['departamento'] = $this->modelo_admin->departamentos();
+		$data['titulo'] = 'Administrador';
+
+		$data['municipios'] = $this->modelo_admin->obt_municipios();
+		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
+		$data['cargos'] = $this->modelo_admin->obt_cargos();
+		$data['especialidades'] = $this->modelo_admin->obt_especialidades();
+		$this->load->view('agregar_paciente_op1', $data);
+
+	}
+
+
+
+public function agregar_paciente_op2($id){
+
+if($this->input->post() ){
+			//agregamos los datos de persona	
+
+				$fk_codigo_per = $this->input->post('ocupacion');
+				$ocupacion = $this->input->post('ocupacion');
+				$fecha=date("Y-m-d");
+			
+				//$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+
+
+
+				//ARMAS ARREGLO PARA INSERTAR EMPLEADO
+				$datos = array(
+					'fk_codigo_per' => $fk_codigo_per,
+					'ocupacion' => $ocupacion,
+					'fecha_registro' => $fecha,
+
+
+				
+					//'fk_codigo_esp' => $fk_codigo_esp
+				);
+
+				//INSERTAS EL REGISTRO DE EMPLEADO
+				$result = $this->modelo_admin->guardar_item($datos, 'paciente');
+				
+				if($result){
+					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+					redirect('pacientes');
+				}				
+			}
+		
+		$data['persona']=$this->modelo_admin->obt_persona($id);
+		$data['titulo'] = 'Administrador';
+		$this->load->view('agregar_paciente_op2', $data);
+
+
+}
+
+
+
+
+public function llena_municipio()
+    {
+
+    	
+        $options = "";
+       if($this->input->post('departamento'))
+        {
+            $departamento = $this->input->post('departamento');
+            $municipi = $this->modelo_admin->municipios($departamento);
+            foreach($municipi as $fila)
+            {
+            ?>
+                <option value="<?echo $fila -> codigo_muni ?>" ><?echo $fila -> nombre ?></option>
+            <?php
+            }
+
+        }
+    }
+
+
+
+
+
+/*-------------------- paciente---------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+	
+	/*CITAS*/
+	public function citas()
+	{
+		$data['citas'] = $this->modelo_admin->obt_citas();
+		$data['titulo'] = 'Administrador - Citas';
+
+		$this->load->view('lista_citas', $data);
+	}
+	
 
 
 

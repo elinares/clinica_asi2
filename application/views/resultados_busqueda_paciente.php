@@ -4,10 +4,10 @@
 ?>
 <div class="content">
 	<div class="header">
-		<h1 class="page-title">Citas</h1>
+		<h1 class="page-title">Resultado de Busqueda</h1>
 			<ul class="breadcrumb">
 				<li><a href="<?=base_url()?>Inicio">Inicio</a></li>
-				<li class="active">Citas</li>
+				<li class="active">Personas </li>
 			</ul>
 	</div>
 	<div class="maint-content">
@@ -30,6 +30,14 @@
 			if (empty($resultados_busqueda_paciente))
 			{
 				echo "No se encontraron registros";
+
+				?>
+						<p>Si la persona no esta registrada puede  agregarla a qui</p>
+						<a href="<?=base_url()?>agregar_paciente_op1" class="btn btn-primary"><i class="fa fa-plus"></i>Nuevo registro Persona paciente</a>
+
+
+			<?php
+
 			}else{
 				?>
 					<table class="table">
@@ -44,17 +52,23 @@
 							</td>	
 							
 							</tr>		
-						</thead>
+						
+							<thead>
+
+
 						<?php
+
 							foreach ($resultados_busqueda_paciente as $resultados_busqueda_paciente) {
 								?>
+								<tr>
 									<td><?=$resultados_busqueda_paciente['nombres']?>&nbsp;<?=$resultados_busqueda_paciente['apellidos']?></td>
 									<td><a href="<?=base_url()?>agregar_paciente_op2/<?=$resultados_busqueda_paciente['codigo_per']?>">agaregar a pacientes</a>
-									    
+									   
+								</tr> 
 								<?php
 							}
 						?>
-							
+						
 					</table>
 				<?php
 			}

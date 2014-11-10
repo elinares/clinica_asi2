@@ -8,7 +8,7 @@ $this->load->view('administrador/encabezado', $data);
             <h1 class="page-title">Pacientes</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li class="active">Personas</li>
+            <li class="active">Pacientes</li>
         </ul>
 
         </div>

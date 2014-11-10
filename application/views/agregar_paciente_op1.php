@@ -3,14 +3,19 @@
 $data['titulo'] = $titulo;
 $this->load->view('administrador/encabezado', $data);
 ?>
+
+
+
+
+
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Agregar Persona</h1>
+            <h1 class="page-title">Agregar Pacientes</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>personas">Persona</a> </li>
-            <li class="active">Agregar Persona</li>
+             <li><a href="<?=base_url()?>buscar_persona_paciente">Busqueda Paciente</a> </li>
+            <li class="active">Agregar Persona a Pacientes</li>
         </ul>
 
         </div>
@@ -21,7 +26,7 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>agregar_persona" method="post">
+        <form id="tab" action="<?=base_url()?>agregar_paciente_op1" method="post">
           <div class="form-group">
           <label>Nombres</label>
           <input type="text" name="nombres" id="nombres" class="form-control">
@@ -60,24 +65,48 @@ $this->load->view('administrador/encabezado', $data);
 </select>
           </div>
 
+           <div class="form-group">
+          <label>Direcion</label>
+          <input type="text" name="direccion" id="direccion" class="form-control">
+          </div>
+
+
           <div class="form-group">
           <label>DUI</label>
           <input type="text" name="dui" id="dui" class="form-control">
           </div>
 
+          <div class="form-group">
+          <label>Ocupacion</label>
+          <input type="text" name="ocupacion" id="ocupacion" class="form-control">
+          </div>
+
         
 
           <div class="form-group">
-            <label>Municipio</label>
-          <select name="fk_codigo_muni" id="fk_codigo_muni" class="form-control">
-          <?php
-          foreach ($municipios as $municipio) {
-          ?>
-          <option value="<?=$municipio['codigo_muni']?>"><?=$municipio['nombre']?></option>
-          <?php
-          }
-          ?>
-          </select>
+            <label>Departamento</label>
+
+<select name="departamento" id="departamento" class="form-control">
+
+  <option value="">Selecciona tu departamento</option>
+        <?php 
+        foreach($departamento as $fila)
+        {
+        ?>
+            <option value="<?=$fila -> codigo_dep ?>"><?=$fila -> nombre ?></option>
+        <?php
+        }
+        ?>        
+    </select>
+  </div>
+
+     <div class="form-group">
+      <label>Municipio</label>
+    
+    <select name="fk_codigo_muni" id="fk_codigo_muni" class="form-control">
+            <option value="">Selecciona tu municipio</option>
+    </select>
+
           </div>
             <div class="btn-toolbar list-toolbar">
             <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>

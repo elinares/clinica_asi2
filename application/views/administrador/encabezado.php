@@ -38,6 +38,23 @@ if(!$this->session->userdata('user_info')){
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/theme.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/premium.css">
 
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#departamento").change(function() {
+                $("#departamento option:selected").each(function() {
+                    departamento = $('#departamento').val();
+                    $.post("<?=base_url()?>llena_municipio", {
+                        departamento : departamento
+                    }, function(data) {
+                        $("#fk_codigo_muni").html(data);
+                    });
+                });
+            })
+        });
+    </script>
+
+
 </head>
 <body class=" theme-blue">
 

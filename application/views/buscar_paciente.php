@@ -7,7 +7,7 @@
 		<h1 class="page-title">Buscar Paciente</h1>
 			<ul class="breadcrumb">
 				<li><a href="<?=base_url()?>Inicio">Mantenimientos</a></li>
-				<li><a href="<?=base_url()?>Citas">Citas</a></li>
+				<li><a href="<?=base_url()?>paciesntes">pacientes</a></li>
 				<li class="active">Buscar Paciente</li>
 			</ul>
 	</div>

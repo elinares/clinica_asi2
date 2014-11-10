@@ -6,11 +6,11 @@ $this->load->view('administrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Agregar Persona</h1>
+            <h1 class="page-title">Agregar Persona a Pacienes</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>personas">Persona</a> </li>
-            <li class="active">Agregar Persona</li>
+            <li><a href="<?=base_url()?>buscar_persona_paciente">Busqueda Paciente</a> </li>
+            <li class="active">Agregar Paciente</li>
         </ul>
 
         </div>
@@ -21,64 +21,26 @@ $this->load->view('administrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>agregar_persona" method="post">
+        <form id="tab" action="<?=base_url()?>agregar_paciente_op2" method="post">
           <div class="form-group">
-          <label>Nombres</label>
-          <input type="text" name="nombres" id="nombres" class="form-control">
+         
+           
+         
+          <input type="hidden" value="<?=$persona['codigo_per']?>" name="codigo_paciente">
+
+           <label>Nombre Persona: </label>&nbsp;<label><b><?php echo $persona['nombres']; ?>&nbsp; <?php echo $persona['apellidos'];?></b></label> 
+       
+          <br>
           </div>
 
           <div class="form-group">
-               <label>Apellidos</label>
+               <label>ocupacion</label>
           <input type="text" name="apellidos" id="apellidos" class="form-control">
           </div>
          
-          <div class="form-group">
-           <label>Fecha Nacimiento</label>
-          <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
-          </div>
-
-          <div class="form-group">
-             <label>Estado civil</label>
-       <!--LLAMAMOS EL PIE DE PAGINA <select type="text" name="estado_civil" id="estado_civil" class="form-control">-->
-       <select type="text" name="estado_civil" id="estado_civil" class="form-control">
-  <option value="">Seleccione</option>
-  <option value="soltero/a">Soltero/a</option>
-  <option value="casado/a">Casado/a</option>
-  <option value="divorciado/a">Divorciado/a</option>
-  <option value="vidudo/a">Vuido/a</option>
-</select>
-          </div>
-
-          <div class="form-group">
-             <label>Genero</label>
-          
-          <select type="text" name="genero" id="genero" class="form-control">
-  <option value="">Seleccione</option>
-  <option value="masculino">Masculino</option>
-  <option value="femenino">femenino</option>
-  
-</select>
-          </div>
-
-          <div class="form-group">
-          <label>DUI</label>
-          <input type="text" name="dui" id="dui" class="form-control">
-          </div>
 
         
 
-          <div class="form-group">
-            <label>Municipio</label>
-          <select name="fk_codigo_muni" id="fk_codigo_muni" class="form-control">
-          <?php
-          foreach ($municipios as $municipio) {
-          ?>
-          <option value="<?=$municipio['codigo_muni']?>"><?=$municipio['nombre']?></option>
-          <?php
-          }
-          ?>
-          </select>
-          </div>
             <div class="btn-toolbar list-toolbar">
             <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
           </div>   
