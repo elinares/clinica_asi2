@@ -726,6 +726,9 @@ public function buscar_persona_paciente()
 
 public function agregar_paciente_op1()
 	{
+
+
+	
 		if($this->input->post()){
 			//agregamos los datos de persona	
 			$nombres = $this->input->post('nombres');
@@ -768,7 +771,7 @@ public function agregar_paciente_op1()
 				$datos2 = array(
 					'fk_codigo_per' => $fk_codigo_per,
 					'ocupacion' => $ocupacion,
-					'fecha_registro' => $fecha,
+					'fecha_registro' => $fecha
 
 
 				
@@ -779,22 +782,90 @@ public function agregar_paciente_op1()
 				$result2 = $this->modelo_admin->guardar_item($datos2, 'paciente');
 				
 				if($result2){
+				$user_info = $this->session->userdata('user_info');
+					
+					$fk_codigo_pac = $this->db->insert_id();
+					$fk_codigo_cli = $user_info['codigo_cli'];
+					$codigo_fisico = $this->input->post('codigo_fisico');
+					$alergia =$this->input->post('alergia');
+					$enfermedad =$this->input->post('enfermedad');
+					$antecedente =$this->input->post('antecedente');
+
+					$datos3 = array(
+					'codigo_fisico' => $codigo_fisico,
+					'alergia' => $alergia,
+					'enfermedad_padecida' => $enfermedad,
+					'antecedente' => $antecedente,
+					'fk_codigo_pac' => $fk_codigo_pac,
+					'fk_codigo_cli' => $fk_codigo_cli,
+					'fecha_creacion' => date("Y-m-d")
+			
+
+				);
+
+				$result3 = $this->modelo_admin->guardar_item($datos3, 'expediente');
+
+					if($result3){
 					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
 					redirect('pacientes');
+
+				}
+
+
+
+
+
 				}				
 			}
 		}
 
  		$data['departamento'] = $this->modelo_admin->departamentos();
 		$data['titulo'] = 'Administrador';
-
-		$data['municipios'] = $this->modelo_admin->obt_municipios();
-		$data['usuarios'] = $this->modelo_admin->obt_usuarios();
-		$data['cargos'] = $this->modelo_admin->obt_cargos();
-		$data['especialidades'] = $this->modelo_admin->obt_especialidades();
 		$this->load->view('agregar_paciente_op1', $data);
 
 	}
+
+
+
+public function agregar_paciente_op2($id){
+
+if($this->input->post() ){
+			//agregamos los datos de persona	
+
+				$fk_codigo_per = $this->input->post('ocupacion');
+				$ocupacion = $this->input->post('ocupacion');
+				$fecha=date("Y-m-d");
+			
+				//$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+
+
+
+				//ARMAS ARREGLO PARA INSERTAR EMPLEADO
+				$datos = array(
+					'fk_codigo_per' => $fk_codigo_per,
+					'ocupacion' => $ocupacion,
+					'fecha_registro' => $fecha,
+
+
+				
+					//'fk_codigo_esp' => $fk_codigo_esp
+				);
+
+				//INSERTAS EL REGISTRO DE EMPLEADO
+				$result = $this->modelo_admin->guardar_item($datos, 'paciente');
+				
+				if($result){
+					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+					redirect('pacientes');
+				}				
+			}
+		
+		$data['persona']=$this->modelo_admin->obt_persona($id);
+		$data['titulo'] = 'Administrador';
+		$this->load->view('agregar_paciente_op2', $data);
+
+
+}
 
 
 

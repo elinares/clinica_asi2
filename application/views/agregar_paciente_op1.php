@@ -80,9 +80,6 @@ $this->load->view('administrador/encabezado', $data);
           <label>Ocupacion</label>
           <input type="text" name="ocupacion" id="ocupacion" class="form-control">
           </div>
-
-        
-
           <div class="form-group">
             <label>Departamento</label>
 
@@ -108,6 +105,35 @@ $this->load->view('administrador/encabezado', $data);
     </select>
 
           </div>
+
+<HR width=100% align="left">
+
+<h3>Expediente de Paciente</h3>
+ 
+<br/>
+
+
+           <div class="form-group">
+          <label>Codigo Fisico</label>
+          <input type="text" name="codigo_fisico" id="codigo_fisico" class="form-control">
+          </div>
+
+           <div class="form-group">
+          <label>Padece alguna alergia</label>
+          <input type="text" name="alergia" id="alergia" class="form-control">
+          </div>
+
+           <div class="form-group">
+          <label>Enfermedad padeciada</label>
+          <input type="text" name="enfermedad" id="engermedad" class="form-control">
+          </div>
+
+            <div class="form-group">
+          <label>Antecedente</label>
+          <input type="text" name="<antecedente></antecedente>" id="antecedente" class="form-control">
+          </div>
+
+
             <div class="btn-toolbar list-toolbar">
             <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
           </div>   
