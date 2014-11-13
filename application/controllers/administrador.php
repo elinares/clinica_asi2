@@ -516,7 +516,9 @@ class Administrador extends CI_Controller {
 
 	public function perfiles()
 	{
-		$data['perfiles'] = $this->modelo_admin->obt_perfiles();
+		$user_info = $this->session->userdata('user_info');
+
+		$data['perfiles'] = $this->modelo_admin->obt_perfiles($user_info['codigo_cli']);
 		$data['titulo'] = 'Administrador - Perfiles';
 
 		$this->load->view('lista_perfiles', $data);
@@ -527,8 +529,11 @@ class Administrador extends CI_Controller {
 		if($this->input->post()){
 			$nombre = $this->input->post('nombre');
 
+			$user_info = $this->session->userdata('user_info');
+
 			$datos = array(
-				'nombre' => $nombre
+				'nombre' => $nombre,
+				'fk_codigo_cli' => $user_info['codigo_cli']
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'perfil');
@@ -548,11 +553,14 @@ class Administrador extends CI_Controller {
 
 		$datos = $this->modelo_admin->obt_perfil($id);
 
+		$user_info = $this->session->userdata('user_info');
+
 		if($this->input->post()){		
 			$nombre = $this->input->post('nombre');
 
 			$datos2 = array(
-				'nombre' => $nombre
+				'nombre' => $nombre,
+				'fk_codigo_cli' => $user_info['codigo_cli']
 				);
 
 			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_perf', 'perfil');
