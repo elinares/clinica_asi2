@@ -1642,7 +1642,7 @@ public function especialidad_examenes()
 		$this->load->view('lista_tipo_productos', $data);
 	}
 
-public function agregar_tipo_producto()
+	public function agregar_tipo_producto()
 	{
 		if($this->input->post()){
 			$nombre = $this->input->post('nombre');
@@ -1650,12 +1650,15 @@ public function agregar_tipo_producto()
 			$cantidad_minima = $this->input->post('cantidad_minima');
             $cantidad_maxima = $this->input->post('cantidad_maxima');
             $existencia = $this->input->post('existencia');
+            $medicamento = $this->input->post('medicamento');
+
 			$datos = array(
 				'nombre' => $nombre,
 				'precio' => $precio,
 				'cantidad_minima' => $cantidad_minima,
 				'cantidad_maxima' => $cantidad_maxima,
-				'existencia' => $existencia
+				'existencia' => $existencia,
+				'medicamento' => $medicamento
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'tipo_producto');
@@ -1682,13 +1685,15 @@ public function agregar_tipo_producto()
 			$cantidad_minima = $this->input->post('cantidad_minima');
 			$cantidad_maxima = $this->input->post('cantidad_maxima');
 			$existencia = $this->input->post('existencia');
+			$medicamento = $this->input->post('medicamento');
 
 			$datos2 = array(
 				'nombre' => $nombre,
 				'precio' => $precio,
 				'cantidad_minima' => $cantidad_minima,
 				'cantidad_maxima' => $cantidad_maxima,
-				'existencia' => $existencia
+				'existencia' => $existencia,
+				'medicamento' => $medicamento
 				);
 
 			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_tipoprod', 'tipo_producto');

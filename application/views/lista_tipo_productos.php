@@ -47,19 +47,26 @@ if(empty($tipo_productos)){
       <th>Cantidad minima</th>
       <th>Cantidad maxima</th>
       <th>Existencia</th>
+      <th>Tipo</th>
       <th style="width: 4.5em;"></th>
     </tr>
   </thead>
   <tbody>
     <?php
       foreach ($tipo_productos as $tipo_producto) {
+        if($tipo_producto['medicamento'] == 1){
+          $tipo = 'Medicamento';
+        }else{
+          $tipo = 'Insumo/Equipo';
+        }
         ?>
         <tr>
           <td><?=$tipo_producto['nombre']?></td>
-          <td><?=$tipo_producto['precio']?></td>
+          <td>$ <?=$tipo_producto['precio']?></td>
           <td><?=$tipo_producto['cantidad_minima']?></td>
           <td><?=$tipo_producto['cantidad_maxima']?></td>
           <td><?=$tipo_producto['existencia']?></td>
+          <td><?=$tipo?></td>
           <td>
               <a href="<?=base_url()?>editar_tipo_producto/<?=$tipo_producto['codigo_tipoprod']?>"><i class="fa fa-pencil"></i></a>
               <a href="<?=base_url()?>borrar_tipo_producto/<?=$tipo_producto['codigo_tipoprod']?>" onclick="var result = confirm('¿Seguro que desea borrar este tipo de producto?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>

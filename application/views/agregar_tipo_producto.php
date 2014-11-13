@@ -42,6 +42,11 @@ $this->load->view('administrador/encabezado', $data);
           <label>Existencia</label>
           <input type="text" name="existencia" id="existencia" class="form-control">
           </div>
+          <div class="form-group">
+          <label>Medicamento</label><br>
+          Si  <input type="radio" name="medicamento" value="1" checked>
+          No  <input type="radio" name="medicamento" value="0">
+          </div>
           
           <div class="btn-toolbar list-toolbar">
             <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
