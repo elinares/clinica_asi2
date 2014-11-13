@@ -184,8 +184,8 @@ if(!$this->session->userdata('user_info')){
                 <li><a href="<?=base_url()?>tipo_examenes"><span class="fa fa-caret-right"></span> Tipos de exámenes</a></li>
                 <li><a href="<?=base_url()?>especialidad_examenes"><span class="fa fa-caret-right"></span> Especialidades de exámenes</a></li>
                 <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Proveedores</a></li>
-               <li><a href="<?=base_url()?>tipo_productos"><span class="fa fa-caret-right"></span>Tipo Productos</a></li>
-                <li><a href="<?=base_url()?>tipo_presentaciones"><span class="fa fa-caret-right"></span>Tipo de Presentación</a></li>
+               <li><a href="<?=base_url()?>tipo_productos"><span class="fa fa-caret-right"></span> Tipo Productos</a></li>
+                <li><a href="<?=base_url()?>tipo_presentaciones"><span class="fa fa-caret-right"></span> Tipo de Presentación</a></li>
                
             </ul>
         </li>
@@ -194,20 +194,20 @@ if(!$this->session->userdata('user_info')){
  <!--Administracion Clinica-->
 
         <li>
-            <a href="#" data-target=".admin_clinica-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal"></i> Otros (No deben ir aca)<i class="fa fa-collapse"></i></a>
+            <a href="#" data-target=".admin_clinica-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-gear"></i> Otros<i class="fa fa-collapse"></i></a>
         </li>        
         <li>
             <ul class="admin_clinica-menu nav nav-list collapse">
                     
                     <li ><a href="<?=base_url()?>clinicas"><span class="fa fa-caret-right"></span> Clínicas</a></li>
-                    <li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span>Citas</a></li>
-                    <li ><a href="<?=base_url()?>#"><span class="fa fa-caret-right"></span>Configuracion Examenes</a></li>
-                    <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span>Usuarios</a></li>
+                    <li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span> Citas</a></li>
+                    <li ><a href="<?=base_url()?>#"><span class="fa fa-caret-right"></span> Configuracion Examenes</a></li>
+                    <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
                     <li ><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>
                     <li ><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>
-                    <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span>Empleados</a></li>
-                    <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span>Paciente</a></li>
-                    <li ><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span>persona</a></li>
+                    <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span> Empleados</a></li>
+                    <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span> Paciente</a></li>
+                    <li ><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span> Persona</a></li>
 
             </ul>
         </li>
@@ -221,13 +221,50 @@ if(!$this->session->userdata('user_info')){
         <li>
             <ul class="reportes-menu nav nav-list collapse">
                 
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Compras</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Donaciones</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Consultas</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Exámenes</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Citas</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Productos (Kardex)</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Expedientes</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Compras</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Donaciones</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Consultas</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Exámenes</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Citas</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Productos (Kardex)</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Expedientes</a></li>
+
+            </ul>
+        </li> 
+
+    <!--CONSULTORIOS-->
+
+         <li>
+            <a href="#" data-target=".consultorios-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-stethoscope"></i> Consultorios<i class="fa fa-collapse"></i></a>
+        </li>
+
+        <li>
+            <ul class="consultorios-menu nav nav-list collapse">  
+
+                <?php
+                $con_cli = $this->modelo_admin->obt_consultorios($user_info['codigo_cli']);
+
+                foreach ($con_cli as $con) {
+                    ?>
+                        <li><a href="<?=base_url('consultorio').'/'.$con['codigo_con']?>"><span class="fa fa-caret-right"></span><?php echo $con['nombre']?></a></li>
+                    <?php
+                }
+                ?>                              
+
+            </ul>
+        </li> 
+
+    <!--FARMACIA-->
+
+         <li>
+            <a href="#" data-target=".farmacia-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-medkit"></i> Farmacia<i class="fa fa-collapse"></i></a>
+        </li>
+
+        <li>
+            <ul class="farmacia-menu nav nav-list collapse">
+                
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Medicamentos</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Recetas</a></li>
 
             </ul>
         </li>        
