@@ -226,7 +226,9 @@ class Administrador extends CI_Controller {
 
 	public function consultorios()
 	{
-		$data['consultorios'] = $this->modelo_admin->obt_consultorios();
+		$user_info = $this->session->userdata('user_info');
+		
+		$data['consultorios'] = $this->modelo_admin->obt_consultorios($user_info['codigo_cli']);
 		$data['titulo'] = 'Administrador - Consultorios';
 
 		$this->load->view('lista_consultorios', $data);
