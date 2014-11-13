@@ -236,11 +236,12 @@ class Administrador extends CI_Controller {
 	{
 		if($this->input->post()){
 			$nombre = $this->input->post('nombre');
-			$clinica = $this->input->post('clinica');
+
+			$user_info = $this->session->userdata('user_info');
 
 			$datos = array(
 				'nombre' => $nombre,
-				'fk_codigo_cli'=> $clinica
+				'fk_codigo_cli'=> $user_info['codigo_cli']
 				);
 
 			$result = $this->modelo_admin->guardar_item($datos, 'consultorio');
@@ -253,8 +254,6 @@ class Administrador extends CI_Controller {
 
 		$data['titulo'] = 'Administrador - Agregar Consultorio';
 
-		$data['clinicas'] = $this->modelo_admin->obt_clinicas();
-
 		$this->load->view('agregar_consultorio', $data);
 	}
 
@@ -262,13 +261,14 @@ class Administrador extends CI_Controller {
 
 		$datos = $this->modelo_admin->obt_consultorio($id);
 
+		$user_info = $this->session->userdata('user_info');
+
 		if($this->input->post()){		
 			$nombre = $this->input->post('nombre');
-			$clinica = $this->input->post('clinica');
 
 			$datos2 = array(
 				'nombre' => $nombre,
-				'fk_codigo_cli'=> $clinica
+				'fk_codigo_cli'=> $user_info['codigo_cli']
 				);
 
 			$result = $this->modelo_admin->act_item($datos2, $id, 'codigo_con', 'consultorio');
@@ -280,8 +280,6 @@ class Administrador extends CI_Controller {
 		}
 
 		$data['info_con'] = $datos;
-
-		$data['clinicas'] = $this->modelo_admin->obt_clinicas();
 
 		$data['titulo'] = 'Administrador - Editar Consultorio';
 

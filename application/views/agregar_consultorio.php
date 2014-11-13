@@ -26,19 +26,7 @@ $this->load->view('administrador/encabezado', $data);
           <div class="form-group">
           <label>Nombre</label>
           <input type="text" name="nombre" id="nombre" class="form-control">
-          </div>
-          <div class="form-group">
-          <label>Clínica</label>
-          <select name="clinica" id="clinica" class="form-control">
-          <?php
-          foreach ($clinicas as $clinica) {
-          ?>
-          <option value="<?=$clinica['codigo_cli']?>"><?=$clinica['nombre']?></option>
-          <?php
-          }
-          ?>
-          </select>
-          </div>
+          </div>          
           <div class="btn-toolbar list-toolbar">
             <button class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
           </div>   
