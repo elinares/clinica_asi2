@@ -50,6 +50,11 @@ $route['inicio'] = "administrador/inicio";
 //General
 $route['logout'] = "administrador/logout";
 
+/*Alertas*/
+$route['maxima_existencia'] = "administrador/maxima_existencia";
+$route['minima_existencia'] = "administrador/minima_existencia";
+$route['lista_vencimientos'] = "administrador/lista_vencimientos";
+
 /*Compras*/
 $route['compras'] = "administrador/compras";
 $route['agregar_compra'] = "administrador/agregar_compra";

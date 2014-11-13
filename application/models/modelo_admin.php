@@ -434,7 +434,35 @@ public function departamentos()
 //----------------------------------------------------------------------------------
 
 
+    //ALERTAS
 
+    function maxima_existencia(){
+      return $this->db->query('SELECT *
+                       FROM tipo_producto
+                       WHERE existencia >= cantidad_maxima
+                       AND medicamento = 1;')->result_array();
+    }
+
+    function minima_existencia(){
+      return $this->db->query('SELECT *
+                       FROM tipo_producto
+                       WHERE existencia <= cantidad_minima
+                       AND medicamento = 1;')->result_array();
+    }
+
+    function lista_vencimientos($id){
+      return $this->db->query('SELECT * 
+                               FROM(
+                               SELECT p.codigo_produ, p.cantidad, p.fecha_vencimiento, tp.nombre, p.fecha_vencimiento - date(timestamp \'now()\') as dias
+                               FROM producto p
+                               INNER JOIN tipo_producto tp
+                               ON p.fk_codigo_tipoprod=tp.codigo_tipoprod
+                               AND tp.medicamento = 1
+                               AND P.fk_codigo_cli = ?
+                               ORDER BY p.fecha_vencimiento ASC
+                               ) venc
+                               WHERE venc.dias<=7;', $id)->result_array();
+    }
 
 
 }

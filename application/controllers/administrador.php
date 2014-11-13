@@ -1884,6 +1884,27 @@ public function agregar_tipo_producto()
 		$this->load->view('agregar_compra', $data);
 	}
 
+	//ALERTAS
+
+	public function maxima_existencia(){
+		$data['titulo'] = 'Administrador - Lista de Medicamentos';
+		$data['medicamentos'] = $this->modelo_admin->maxima_existencia();
+		$this->load->view('lista_maxima_existencia', $data);
+	}
+
+	public function minima_existencia(){
+		$data['titulo'] = 'Administrador - Lista de Medicamentos';
+		$data['medicamentos'] = $this->modelo_admin->minima_existencia();
+		$this->load->view('lista_minima_existencia', $data);
+	}
+
+	public function lista_vencimientos(){
+		$user_info = $this->session->userdata('user_info');
+
+		$data['titulo'] = 'Administrador - Lista de Medicamentos';
+		$data['medicamentos'] = $this->modelo_admin->lista_vencimientos($user_info['codigo_cli']);
+		$this->load->view('lista_vencimientos', $data);
+	}
 
 }
 
