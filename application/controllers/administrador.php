@@ -867,51 +867,6 @@ if($this->input->post() ){
 
 }
 
-
-
-public function agregar_paciente_op2($id){
-
-if($this->input->post() ){
-			//agregamos los datos de persona	
-
-				$fk_codigo_per = $this->input->post('ocupacion');
-				$ocupacion = $this->input->post('ocupacion');
-				$fecha=date("Y-m-d");
-			
-				//$fk_codigo_espe = $this->input->post('fk_codigo_espe');
-
-
-
-				//ARMAS ARREGLO PARA INSERTAR EMPLEADO
-				$datos = array(
-					'fk_codigo_per' => $fk_codigo_per,
-					'ocupacion' => $ocupacion,
-					'fecha_registro' => $fecha,
-
-
-				
-					//'fk_codigo_esp' => $fk_codigo_esp
-				);
-
-				//INSERTAS EL REGISTRO DE EMPLEADO
-				$result = $this->modelo_admin->guardar_item($datos, 'paciente');
-				
-				if($result){
-					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
-					redirect('pacientes');
-				}				
-			}
-		
-		$data['persona']=$this->modelo_admin->obt_persona($id);
-		$data['titulo'] = 'Administrador';
-		$this->load->view('agregar_paciente_op2', $data);
-
-
-}
-
-
-
-
 public function llena_municipio()
     {
 
