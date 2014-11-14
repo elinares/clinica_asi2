@@ -182,6 +182,17 @@ $route['agregar_tipo_producto'] = "administrador/agregar_tipo_producto";
 $route['editar_tipo_producto/(:any)'] = "administrador/editar_tipo_producto/$1";
 $route['borrar_tipo_producto/(:any)'] = "administrador/borrar_tipo_producto/$1";
 
+/*Administracion de cargos desde el superadmin*/
+$route['sadm_cargos'] = "superadministrador/sadm_cargos";
+$route['sadm_agregar_cargo'] = "superadministrador/sadm_agregar_cargo";
+$route['sadm_editar_cargo/(:any)'] = "superadministrador/sadm_editar_cargo/$1";
+$route['sadm_borrar_cargo/(:any)'] = "superadministrador/sadm_borrar_cargo/$1";
+
+/*Clinicas*/
+$route['sadm_clinicas'] = "superadministrador/sadm_clinicas";
+$route['sadm_agregar_clinica'] = "superadministrador/sadm_agregar_clinica";
+$route['editar_clinica/(:any)'] = "superadministrador/editar_clinica/$1";
+$route['borrar_clinica/(:any)'] = "superadministrador/borrar_clinica/$1";
 
 /*Tipo de presentacion*/
 $route['tipo_presentaciones'] = "administrador/tipo_presentaciones";
@@ -189,4 +200,29 @@ $route['agregar_tipo_presentacion'] = "administrador/agregar_tipo_presentacion";
 $route['editar_tipo_presentacion/(:any)'] = "administrador/editar_tipo_presentacion/$1";
 $route['borrar_tipo_presentacion/(:any)'] = "administrador/borrar_tipo_presentacion/$1";
 /* End of file routes.php */
+/*Mantenimiento especialidades superadmin*/
+$route['sadm_especialidad'] = "superadministrador/sadm_especialidad";
+$route['sadm_agregar_especialidad'] = "superadministrador/sadm_agregar_especialidad";
+$route['sadm_editar_especialidad/(:any)'] = "superadministrador/sadm_editar_especialidad/$1";
+$route['sadm_borrar_especialidad/(:any)'] = "superadministrador/sadm_borrar_especialidad/$1";
+
+//e new_empleados
+$route['new_empleados'] = "administrador/new_empleados";
+$route['agregar_new_empleado'] = "administrador/agregar_new_empleado";
+
+/*Asignando usuarios a clinicas*/
+$route['asignar_usuario']="superadministrador/asignar_usuario";
+
+/*Municipios*/
+$route['sadm_municipios'] = "superadministrador/sadm_municipios";
+$route['sadm_agregar_municipio'] = "superadministrador/sadm_agregar_municipio";
+$route['sadm_editar_municipio/(:any)'] = "superadministrador/sadm_editar_municipio/$1";
+$route['sadm_borrar_municipio/(:any)'] = "superadministrador/sadm_borrar_municipio/$1";
+
+/*Departamentos*/
+$route['sadm_departamentos'] = "superadministrador/sadm_departamentos";
+$route['sadm_agregar_departamento'] = "superadministrador/sadm_agregar_departamento";
+$route['sadm_editar_departamento/(:any)'] = "superadministrador/sadm_editar_departamento/$1";
+$route['sadm_borrar_departamento/(:any)'] = "superadministrador/sadm_borrar_departamento/$1";
+
 /* Location: ./application/config/routes.php */

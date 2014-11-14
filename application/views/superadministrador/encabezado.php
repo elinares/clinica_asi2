@@ -21,7 +21,6 @@ if(!$this->session->userdata('user_info')){
 
     <script src="<?=base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?=base_url()?>js/livevalidation_standalone.compressed.js" type="text/javascript"></script>
-    <script src="<?=base_url()?>js/jquery.maskedinput.min.js" type="text/javascript"></script>
 
         <script src="<?=base_url()?>js/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -133,16 +132,22 @@ if(!$this->session->userdata('user_info')){
             <a href="<?=base_url()?>superadmin" class="nav-header"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
         </li>    
         <li>
-            <a href="<?=base_url()?>clinicas" class="nav-header"><span class="fa fa-caret-right"></span> Clínicas</a>
+            <a href="<?=base_url()?>sadm_clinicas" class="nav-header"><span class="fa fa-caret-right"></span> Clínicas</a>
         </li>
         <li>
             <a href="<?=base_url()?>usuarios" class="nav-header"><span class="fa fa-caret-right"></span> Usuarios</a>
         </li>
         <li>
-            <a href="<?=base_url()?>departamentos" class="nav-header"><span class="fa fa-caret-right"></span> Departamentos</a>
+            <a href="<?=base_url()?>sadm_cargos" class="nav-header"><span class="fa fa-caret-right"> </span>Cargos</a>
+        </li>
+        <li>    
+            <a href="<?=base_url()?>sadm_especialidad" class="nav-header"><span class="fa fa-caret-right"></span>Especialidad</a>
         </li>
         <li>
-            <a href="<?=base_url()?>municipios" class="nav-header"><span class="fa fa-caret-right"></span> Municipios</a>
+            <a href="<?=base_url()?>sadm_departamentos" class="nav-header"><span class="fa fa-caret-right"></span> Departamentos</a>
+        </li>
+        <li>
+            <a href="<?=base_url()?>sadm_municipios" class="nav-header"><span class="fa fa-caret-right"></span> Municipios</a>
         </li>
             
     </ul>
