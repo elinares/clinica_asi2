@@ -51,7 +51,7 @@ if(empty($pacientes)){
       <th>Ocupacion</th>
       <th>Municipio</th>
 
-      <th style="width: 4.5em;"></th>
+      <th style="width: 5.5em;"></th>
     </tr>
   </thead>
   <tbody>
@@ -70,6 +70,7 @@ if(empty($pacientes)){
           <td><?=$paciente['nombre']?></td>
 
           <td>
+              <a href="<?=base_url()?>signos_vitales/<?=$paciente['codigo_exp']?>"><i class="fa fa-stethoscope"></i></a>
               <a href="<?=base_url()?>editar_persona/<?=$paciente['codigo_pac']?>"><i class="fa fa-pencil"></i></a>
               <a href="<?=base_url()?>borrar_persona/<?=$paciente['codigo_pac']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>

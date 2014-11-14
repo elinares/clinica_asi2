@@ -20,7 +20,8 @@ class modelo_admin extends CI_Model {
                                       pe.apellidos AS apellidos_persona,
                                       cli.nombre as nombre_clinica,
                                       perf.nombre AS nombre_perfil,
-                                      cli.codigo_cli                               
+                                      cli.codigo_cli,
+                                      em.codigo_emp                                                      
                                       FROM usuario us
                                       INNER JOIN empleado em ON us.codigo_user=em.fk_codigo_user
                                       INNER JOIN persona pe ON pe.codigo_per=em.fk_codigo_per
@@ -273,8 +274,13 @@ inner join especialidad on empleado.fk_codigo_esp=especialidad.codigo_esp
 
  function obt_pacientes(){
         $datos=$this->db->query("SELECT *
-  FROM persona inner join paciente on paciente.fk_codigo_per=persona.codigo_per
-                inner join municipio on persona.fk_codigo_muni=municipio.codigo_muni ")->result_array();
+                                 FROM persona pe
+                                 INNER JOIN paciente  pa
+                                 ON pa.fk_codigo_per=pe.codigo_per
+                                 INNER JOIN municipio mu 
+                                 ON pe.fk_codigo_muni=mu.codigo_muni
+                                 INNER JOIN expediente ex
+                                 ON pa.codigo_pac=ex.fk_codigo_pac")->result_array();
         return $datos;
     }
 
@@ -282,7 +288,13 @@ inner join especialidad on empleado.fk_codigo_esp=especialidad.codigo_esp
 
 function busqueda_persona_pacientes($criterio,$criterio2){
         $datos=$this->db->query("SELECT *
-  FROM persona where nombres   like '%".$criterio."%' and apellidos  like '%".$criterio2."%' ")->result_array();
+                                 FROM persona pe
+                                 INNER JOIN paciente pa
+                                 ON pe.codigo_per=pa.fk_codigo_per
+                                 INNER JOIN expediente ex
+                                 ON pa.codigo_pac=ex.fk_codigo_pac
+                                 AND pe.nombres like '%".$criterio."%' 
+                                 AND pe.apellidos like '%".$criterio2."%' ")->result_array();
         return $datos;
     }
 
@@ -404,7 +416,11 @@ where lab.fk_codigo_espe=espe.codigo_espe;')->result_array();
         return $this->db->get('tipo_presentacion')->result_array();
     }
 
+    /*Tipo Servicio*/
 
+    function obt_tipo_servicios(){
+        return $this->db->get('tipo_servicio')->result_array(); 
+    }
 
 
 //  LLENA LOS SELECT CON LOS MUNICIPIOS DE UN DEPARTAMENTO---------------------------------

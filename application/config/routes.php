@@ -50,6 +50,9 @@ $route['inicio'] = "administrador/inicio";
 //General
 $route['logout'] = "administrador/logout";
 
+/*Consulta*/
+$route['signos_vitales/(:any)'] = "administrador/signos_vitales/$1";
+
 /*Alertas*/
 $route['maxima_existencia'] = "administrador/maxima_existencia";
 $route['minima_existencia'] = "administrador/minima_existencia";

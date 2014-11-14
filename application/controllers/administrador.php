@@ -1911,5 +1911,61 @@ public function especialidad_examenes()
 		$this->load->view('lista_vencimientos', $data);
 	}
 
+	//SIGNOS VITALES Y COLA DE CONSULTA
+	public function signos_vitales($id){
+		$user_info = $this->session->userdata('user_info');
+
+		if($this->input->post()){
+			$sintoma = $this->input->post('sintoma');
+			$altura = $this->input->post('altura');
+			$peso = $this->input->post('peso');
+			$presion = $this->input->post('presion');
+			$temperatura = $this->input->post('temperatura');
+
+			$consultorio = $this->input->post('consultorio');
+			$tipo_servicio = $this->input->post('tipo_servicio');
+
+			$datos = array(
+				'sintoma' => $sintoma,
+				'altura' => $altura,
+				'peso' => $peso,
+				'presion_arterial' => $presion,
+				'temperatura' => $temperatura,
+				'diagnostico' => '-',
+				'examen_fisico' => '-',
+				'fecha_consulta' => date('Y-m-d'),
+				'fk_codigo_exp' => $id
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'historico');
+
+			if($result){
+
+				$datos2 = array(
+					'estado' => 'Pendiente',
+					'fecha' => date('Y-m-d'),
+					'fk_codigo_cli' => $user_info['codigo_cli'],
+					'fk_codigo_con' => $consultorio,
+					'fk_codigo_emp' => $user_info['codigo_emp'],
+					'fk_codigo_tipser' => $tipo_servicio,
+					'fk_codigo_exp' => $id
+					);
+
+				$result2 = $this->modelo_admin->guardar_item($datos2, 'servicio_medico');
+
+				if($result2){
+					$this->session->set_userdata('mensaje', 'Paciente agregado a cola de consulta con éxito.');
+					redirect('pacientes');
+				}				
+			}
+		}
+
+		$data['expediente'] = $id;
+		$data['consultorios'] = $this->modelo_admin->obt_consultorios($user_info['codigo_cli']);
+		$data['tipos_servicios'] = $this->modelo_admin->obt_tipo_servicios();
+		$data['titulo'] = 'Toma de Signos Vitales';		
+		$this->load->view('agregar_signos_vitales', $data);
+	}
+
 }
 
