@@ -879,7 +879,7 @@ public function llena_municipio()
     {
 
     	
-        $options = "";
+       $options = "";
        if($this->input->post('departamento'))
         {
             $departamento = $this->input->post('departamento');
@@ -887,7 +887,7 @@ public function llena_municipio()
             foreach($municipi as $fila)
             {
             ?>
-                <option value="<?echo $fila -> codigo_muni ?>" ><?echo $fila -> nombre ?></option>
+                <option value="<?php echo $fila->codigo_muni ?>" ><?php echo $fila->nombre ?></option>
             <?php
             }
 

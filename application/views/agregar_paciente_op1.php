@@ -39,30 +39,29 @@ $this->load->view('administrador/encabezado', $data);
          
           <div class="form-group">
            <label>Fecha Nacimiento</label>
-          <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+          <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
           </div>
 
           <div class="form-group">
              <label>Estado civil</label>
        <!--LLAMAMOS EL PIE DE PAGINA <select type="text" name="estado_civil" id="estado_civil" class="form-control">-->
        <select type="text" name="estado_civil" id="estado_civil" class="form-control">
-  <option value="">Seleccione</option>
-  <option value="soltero/a">Soltero/a</option>
-  <option value="casado/a">Casado/a</option>
-  <option value="divorciado/a">Divorciado/a</option>
-  <option value="vidudo/a">Vuido/a</option>
-</select>
+        <option value="">Seleccione</option>
+        <option value="soltero/a">Soltero/a</option>
+        <option value="casado/a">Casado/a</option>
+        <option value="divorciado/a">Divorciado/a</option>
+        <option value="vidudo/a">Viudo/a</option>
+      </select>
           </div>
 
           <div class="form-group">
              <label>Genero</label>
           
           <select type="text" name="genero" id="genero" class="form-control">
-  <option value="">Seleccione</option>
-  <option value="masculino">Masculino</option>
-  <option value="femenino">femenino</option>
-  
-</select>
+            <option value="">Seleccione</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>            
+          </select>
           </div>
 
            <div class="form-group">
@@ -83,37 +82,35 @@ $this->load->view('administrador/encabezado', $data);
           <div class="form-group">
             <label>Departamento</label>
 
-<select name="departamento" id="departamento" class="form-control">
-
-  <option value="">Selecciona tu departamento</option>
-        <?php 
-        foreach($departamento as $fila)
-        {
-        ?>
-            <option value="<?=$fila -> codigo_dep ?>"><?=$fila -> nombre ?></option>
-        <?php
-        }
-        ?>        
-    </select>
-  </div>
-
-     <div class="form-group">
-      <label>Municipio</label>
-    
-    <select name="fk_codigo_muni" id="fk_codigo_muni" class="form-control">
-            <option value="">Selecciona tu municipio</option>
-    </select>
-
+          <select name="departamento" id="departamento" class="form-control">
+            <option value="">Selecciona tu departamento</option>
+                  <?php 
+                  foreach($departamento as $fila)
+                  {
+                  ?>
+                      <option value="<?=$fila->codigo_dep?>"><?=$fila->nombre?></option>
+                  <?php
+                  }
+                  ?>        
+            </select>
           </div>
 
-<HR width=100% align="left">
+          <div class="form-group">
+          <label>Municipio</label>
+        
+          <select name="fk_codigo_muni" id="fk_codigo_muni" class="form-control">
+            <option value="">Selecciona tu municipio</option>
+          </select>
+          </div>
 
-<h3>Expediente de Paciente</h3>
- 
-<br/>
+          <hr width="100%" align="left">
+
+          <h3>Expediente de Paciente</h3>
+           
+          <br/>
 
 
-           <div class="form-group">
+          <div class="form-group">
           <label>Codigo Fisico</label>
           <input type="text" name="codigo_fisico" id="codigo_fisico" class="form-control">
           </div>
@@ -130,7 +127,7 @@ $this->load->view('administrador/encabezado', $data);
 
             <div class="form-group">
           <label>Antecedente</label>
-          <input type="text" name="<antecedente></antecedente>" id="antecedente" class="form-control">
+          <input type="text" name="antecedente" id="antecedente" class="form-control">
           </div>
 
 
@@ -151,27 +148,32 @@ $this->load->view('administrador/pie');
 <script>
   $(document).ready(function(){
 
-    //VALIDACION
-    var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
-    nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del Empleado." } );
-    
-    var primer_apellido = new LiveValidation('primer_apellido', { validMessage: "Gracias." }); 
-    primer_apellido.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del Empleado." } );
+    $(function() {
+      $( "#fecha_nacimiento" ).datepicker({ 
+        dateFormat: "yy-mm-dd",
+        changeYear: true,
+        maxDate: "0",
+        minDate: "-90Y" });
+    });
 
-    var segundo_apellido = new LiveValidation('segundo_apellido', { validMessage: "Gracias." });
-    segundo_apellido.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del Empleado." } );
+    //VALIDACION
+    var nombres = new LiveValidation('nombres', { validMessage: "Gracias." });
+    nombres.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del paciente." } );
+    
+    var apellidos = new LiveValidation('apellidos', { validMessage: "Gracias." }); 
+    apellidos.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del paciente." } );
 
     var fecha_nacimiento = new LiveValidation('fecha_nacimiento', { validMessage: "Gracias." });
-    fecha_nacimiento.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Fecha de Nacimiento del Empleado." } );
+    fecha_nacimiento.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Fecha de Nacimiento del paciente." } );
 
     var estado_civil = new LiveValidation('estado_civil', { validMessage: "Gracias." });
-    estado_civil.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Estado civil del Empleado." } );
+    estado_civil.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Estado civil del paciente." } );
 
     var genero = new LiveValidation('genero', { validMessage: "Gracias." });
-    genero.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Genero del Empleado." } );
+    genero.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Genero del paciente." } );
 
     var dui = new LiveValidation('dui', { validMessage: "Gracias." });
-    dui.add( Validate.Presence, { failureMessage: "Por favor, ingrese el DUI del Empleado." } );
+    dui.add( Validate.Presence, { failureMessage: "Por favor, ingrese el DUI del paciente." } );
 
   });
 </script>

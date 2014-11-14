@@ -32,7 +32,7 @@
 				echo "No se encontraron registros";
 
 				?>
-						<p>Si la persona no esta registrada puede  agregarla a qui</p>
+						<p>Si la persona no esta registrada puede  agregarla aquí</p>
 						<a href="<?=base_url()?>agregar_paciente_op1" class="btn btn-primary"><i class="fa fa-plus"></i>Nuevo registro Persona paciente</a>
 
 
@@ -46,7 +46,7 @@
 								<td>Nombre de persona que desea agregar a pacientes</td>
 
 							<td>
-							<p>Si la persona no esta registrada puede  agregarla a qui</p>
+							<p>Si la persona no esta registrada puede  agregarla aquí</p>
 								<a href="<?=base_url()?>agregar_paciente_op1" class="btn btn-primary"><i class="fa fa-plus"></i>Nuevo registro Persona paciente</a>
 
 							</td>	
@@ -62,7 +62,7 @@
 								?>
 								<tr>
 									<td><?=$resultados_busqueda_paciente['nombres']?>&nbsp;<?=$resultados_busqueda_paciente['apellidos']?></td>
-									<td><a href="<?=base_url()?>agregar_paciente_op2/<?=$resultados_busqueda_paciente['codigo_per']?>">agaregar a pacientes</a>
+									<td><a href="<?=base_url()?>agregar_paciente_op2/<?=$resultados_busqueda_paciente['codigo_per']?>">Agregar a pacientes</a>
 									   
 								</tr> 
 								<?php

@@ -166,6 +166,10 @@ if(!$this->session->userdata('user_info')){
             <a href="<?=base_url()?>" class="nav-header"><span class="fa fa-plus"></span> Donaciones</a>
         </li> 
 
+        <li>
+            <a href="<?=base_url()?>pacientes" class="nav-header"><span class="fa fa-male"></span> Pacientes</a>
+        </li>
+
     <!--MANTENIMIENTOS-->
 
         <li>
@@ -182,8 +186,7 @@ if(!$this->session->userdata('user_info')){
                 <li><a href="<?=base_url()?>especialidades"><span class="fa fa-caret-right"></span> Especialidades</a></li>
                 <li><a href="<?=base_url()?>laboratorios"><span class="fa fa-caret-right"></span> Laboratorios</a></li>
                 <li><a href="<?=base_url()?>tipo_examenes"><span class="fa fa-caret-right"></span> Tipos de exámenes</a></li>
-                <li><a href="<?=base_url()?>especialidad_examenes"><span class="fa fa-caret-right"></span> Especialidades de exámenes</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Proveedores</a></li>
+                <li><a href="<?=base_url()?>especialidad_examenes"><span class="fa fa-caret-right"></span> Especialidades de exámenes</a></li>                
                <li><a href="<?=base_url()?>tipo_productos"><span class="fa fa-caret-right"></span> Tipo Productos</a></li>
                 <li><a href="<?=base_url()?>tipo_presentaciones"><span class="fa fa-caret-right"></span> Tipo de Presentación</a></li>
                
@@ -205,12 +208,11 @@ if(!$this->session->userdata('user_info')){
                     <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
                     <li ><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>
                     <li ><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>
-                    <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span> Empleados</a></li>
-                    <li ><a href="<?=base_url()?>pacientes"><span class="fa fa-caret-right"></span> Paciente</a></li>
+                    <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span> Empleados</a></li>                    
                     <li ><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span> Persona</a></li>
 
             </ul>
-        </li>
+        </li>        
 
     <!--REPORTES-->
 
