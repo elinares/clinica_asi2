@@ -480,6 +480,23 @@ public function departamentos()
                                WHERE venc.dias<=7;', $id)->result_array();
     }
 
+    //CONSULTAS PENDIENTES
+
+    function obt_consultas_pendientes($id){
+      return $this->db->query('SELECT * 
+                               FROM servicio_medico sm
+                               INNER JOIN expediente ex
+                               ON sm.fk_codigo_exp=ex.codigo_exp
+                               INNER JOIN paciente pa
+                               ON ex.fk_codigo_pac=pa.codigo_pac
+                               INNER JOIN persona pe
+                               ON pa.fk_codigo_per=pe.codigo_per
+                               INNER JOIN tipo_servicio ts
+                               ON sm.fk_codigo_tipser=ts.codigo_tipser
+                               AND sm.estado=\'Pendiente\'
+                               AND sm.fk_codigo_con=?;', $id)->result_array();
+    }
+
 
 }
 

@@ -1967,5 +1967,14 @@ public function especialidad_examenes()
 		$this->load->view('agregar_signos_vitales', $data);
 	}
 
+	//CONSULTORIO (LISTA DE CONSULTAS PENDIENTES)
+	public function consultorio($id){
+		$consultorio = $this->modelo_admin->obt_consultorio($id);
+		$data['consultorio'] = $consultorio;
+		$data['consultas_pendientes'] = $this->modelo_admin->obt_consultas_pendientes($id);
+		$data['titulo'] = 'Consultas Pendientes - '.$consultorio['nombre'];		
+		$this->load->view('lista_consultas_pendientes', $data);
+	}
+
 }
 
