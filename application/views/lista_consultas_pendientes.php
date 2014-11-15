@@ -48,7 +48,7 @@ if(empty($consultas_pendientes)){
     </tr>
   </thead>
   <tbody>
-    <?php
+    <?php          
       foreach ($consultas_pendientes as $consultas) {
         ?>
         <tr>          
@@ -56,7 +56,7 @@ if(empty($consultas_pendientes)){
           <td><?=$consultas['nombre']?></td>
           <td><?=$consultas['estado']?></td>
           <td>
-              <a href="#"><i class="fa fa-user-md"></i></a>
+              <a href="<?=base_url()?>consulta/<?=$consultas['codigo_exp']?>/<?=$consultas['codigo_servimed']?>"><i class="fa fa-user-md"></i></a>
           </td>
         </tr>
         <?php

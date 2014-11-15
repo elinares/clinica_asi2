@@ -53,6 +53,7 @@ $route['logout'] = "administrador/logout";
 /*Consulta*/
 $route['signos_vitales/(:any)'] = "administrador/signos_vitales/$1";
 $route['consultorio/(:any)'] = "administrador/consultorio/$1";
+$route['consulta/(:any)/(:any)'] = "administrador/consulta/$1/$2";
 
 /*Alertas*/
 $route['maxima_existencia'] = "administrador/maxima_existencia";

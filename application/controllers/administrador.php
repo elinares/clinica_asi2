@@ -2148,7 +2148,58 @@ public function especialidad_examenes()
 		$this->load->view('agregar_donacion', $data);	
 	}
 	
+	//CONSULTA
+	public function consulta(){
 
+		if($this->uri->segment(2)){
+			$expediente = $this->uri->segment(2);
+			
+			if($this->uri->segment(3)){
+				$servicio_medico = $this->uri->segment(3);
+
+				if($this->input->post()){
+					$diagnostico = $this->input->post('diagnostico');
+					$examen_fisico = $this->input->post('examen_fisico');					
+
+					$data = array(
+						'diagnostico' => $diagnostico,
+						'examen_fisico' => $examen_fisico
+						);		
+
+					$query = $this->db->query('SELECT MAX(codigo_histo) AS max_id FROM historico;')->row_array();
+					$max_id = $query['max_id'];
+
+					$this->db->where( "codigo_histo", $max_id);
+					$result = $this->db->update('historico', $data);			
+
+					if($result){
+						$data2 = array(
+							'estado' => 'Realizado'
+							);
+
+						$this->db->where('codigo_servimed', $servicio_medico);
+						$result2 = $this->db->update('servicio_medico', $data2);
+
+						$query2 = $this->db->get_where('servicio_medico', array('codigo_servimed' => $servicio_medico))->row_array();
+						$consultorio = $query2['fk_codigo_con'];
+
+						if($result2){
+							$this->session->set_userdata('mensaje', 'Consulta diagnosticada con éxito.');
+							redirect('consultorio/'.$consultorio);
+						}
+					}
+				}
+
+				$data['expediente'] = $expediente;
+				$data['servicio_medico'] = $servicio_medico;
+				$data['paciente'] = $this->modelo_admin->obt_paciente_expediente($expediente);
+				$data['historico'] = $this->modelo_admin->obt_historico_expediente($expediente);		
+				$data['titulo'] = 'Consulta';
+				$this->load->view('agregar_consulta', $data);
+			}
+		}
+		
+	}
 
 }
 

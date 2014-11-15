@@ -634,9 +634,26 @@ on cita.fk_codigo_pac = paciente.codigo_pac;')->result_array();
 
     }
 
+    //HISTORICO
 
+    function obt_historico_expediente($id){
+      return $this->db->query('SELECT *
+                               FROM historico
+                               WHERE fk_codigo_exp=?
+                               ORDER BY fecha_consulta DESC', $id)->result_array();
+    }
 
+    //EXPEDIENTE
 
+    function obt_paciente_expediente($id){
+      return $this->db->query('SELECT * 
+                               FROM expediente ex
+                               INNER JOIN paciente pa
+                               ON ex.fk_codigo_pac=pa.codigo_pac
+                               INNER JOIN persona pe
+                               ON pa.fk_codigo_per=pe.codigo_per                               
+                               AND ex.codigo_exp=?;', $id)->row_array();
+    }
 
 }
 
