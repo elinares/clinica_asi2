@@ -522,11 +522,14 @@ public function departamentos()
     }
 
      function obt_reporte_compras(){
-       $datos = $this->db->query('SELECT compra.codigo_comp, compra.factura, compra.fecha, clinica.nombre as clinica, clinica.encargado,(detalle_compra.costo * detalle_compra.cantidad) as total
+       $datos = $this->db->query('SELECT  compra.fk_codigo_cli as codigo_clinica,clinica.nombre as clinica,compra.factura,detalle_compra.fk_codigo_produ as codigo_producto,tipo_producto.nombre as producto,
+ compra.fecha as fecha_compra,detalle_compra.costo,detalle_compra.cantidad,(detalle_compra.costo * detalle_compra.cantidad) as total
 from compra inner join clinica
-on compra.fk_codigo_cli=clinica.codigo_cli
+on compra.fk_codigo_cli=clinica.codigo_cli 
 inner join detalle_compra
-on detalle_compra.fk_codigo = compra.codigo_comp')->result_array();
+on detalle_compra.fk_codigo = compra.codigo_comp
+inner join tipo_producto
+on tipo_producto.codigo_tipoprod = detalle_compra.fk_codigo_produ')->result_array();
                                   return $datos;
     }
 

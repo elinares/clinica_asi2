@@ -69,12 +69,17 @@ public function detalle_compra(){
 		exit();*/
 
 		$col_names = array(
-			'codigo_comp'=>'Codigo Compra',
-			'factura'=> 'N° Factura',
-			'fecha'=>'Fecha Compra',
+			'codigo_clinica'=>'Codigo Clinica',
 			'clinica'=>'Nombre Clinica',
-			'encargado'=>'Encargado/a',
+			'factura'=> 'N° Factura',
+			'codigo_producto'=> 'Codigo Producto',
+			'producto'=>'Producto',			
+			'fecha_compra'=>'Fecha Compra',
+			
+			'costo'=>'Costo',
+			'cantidad'=> 'Cantidad',
 			'total'=> 'Total'
+
 			);
 		$this->cezpdf->ezTable($db_data, $col_names, 'Compras', array('width'=>550));
 		$this->cezpdf->ezStream();
