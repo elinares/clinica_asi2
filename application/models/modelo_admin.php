@@ -536,13 +536,13 @@ on tipo_producto.codigo_tipoprod = detalle_compra.fk_codigo_produ')->result_arra
                                   return $datos;
     }
 
-    function obt_compra_fecha(){
+   function obt_frm_compra_fecha($fecha_inicial,$fecha_final){
 $datos = $this->db->query('SELECT compra.codigo_comp, compra.factura, compra.fecha, clinica.nombre as clinica, clinica.encargado,(detalle_compra.costo * detalle_compra.cantidad) as total
 from compra inner join clinica 
 on compra.fk_codigo_cli=clinica.codigo_cli 
 inner join detalle_compra 
 on detalle_compra.fk_codigo = compra.codigo_comp
-and compra.fecha between \'2014-11-10\' and \'2014-11-10\';')->result_array();
+and compra.fecha between \''.$fecha_inicial.'\' and \''.$fecha_final.'\';')->result_array();
                                       return $datos;
 
     }

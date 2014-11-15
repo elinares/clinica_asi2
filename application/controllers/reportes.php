@@ -85,18 +85,23 @@ public function detalle_compra(){
 		$this->cezpdf->ezStream();
 
 }
-public function detalle_compra_Fecha(){
+
+public function frm_compra_fecha(){
+
+	if ($this->input->post()){
+		$fecha_inicial= $this->input->post('fecha_inicial');
+		$fecha_final=$this->input->post('fecha_final');
+
+		$compras = $this->modelo_admin->obt_frm_compra_fecha($fecha_inicial,$fecha_final);
+		print_r($compras);
+
 		$this->load->library('cezpdf');
 		$this->load->helper('pdf');
 		prep_pdf();
 
-		$compras = $this->modelo_admin->obt_compra_fecha();
 		foreach ($compras as $compra){
 			$db_data[] = $compra;
 		}
-
-		/*print_r($db_data);
-		exit();*/
 
 		$col_names = array(
 			'codigo_comp'=>'Codigo Compra',
@@ -109,7 +114,9 @@ public function detalle_compra_Fecha(){
 			);
 		$this->cezpdf->ezTable($db_data, $col_names, 'Compras', array('width'=>550));
 		$this->cezpdf->ezStream();
+	}
 
+	$this->load->view('reporte_compras_fechas');
 }
 public function detalle_donacion(){
 		$this->load->library('cezpdf');
