@@ -973,6 +973,7 @@ if($this->input->post() ){
 				}				
 			}
 		}
+	}
 
 
 
