@@ -875,6 +875,107 @@ if($this->input->post() ){
 
 }
 
+
+	public function editar_paciente($id){
+
+
+		$paciente=$datos = $this->modelo_admin->obt_paciente_para_edit($id);
+		$persona = $this->modelo_admin->obt_persona($paciente['fk_codigo_per']);
+		$expediente = $this->modelo_admin->obt_expediente($paciente['codigo_pac']);
+
+			if($this->input->post()){
+			//agregamos los datos de persona	
+			$nombres = $this->input->post('nombres');
+			$apellidos = $this->input->post('apellidos');
+			$fecha_nacimiento = $this->input->post('fecha_nacimiento');
+			$direccion = $this->input->post('direccion');
+			$estado_civil = $this->input->post('estado_civil');
+			$genero = $this->input->post('genero');
+			$dui = $this->input->post('dui');
+			$fk_codigo_muni = $this->input->post('fk_codigo_muni');
+		
+
+			$datos = array(
+				//formamos el arreglo para personas
+				'nombres' => strtoupper($nombres),
+				'apellidos' => strtoupper($apellidos),
+				'fecha_nacimiento'=> $fecha_nacimiento,
+				'direccion'=> $direccion,
+				'estado_civil' => $estado_civil,
+				'genero' => $genero,
+				'dui' => $dui,
+				'fk_codigo_muni' => $fk_codigo_muni
+				);
+
+
+			//INSERTAS EL REGISTRO DE PERSONA
+			$result = $this->modelo_admin->act_item($datos, $persona['codigo_per'], 'codigo_per', 'persona');
+
+
+			if($result){//SI EL REGISTRO SE EFECTUO
+				
+				//CAPTURAS LOS VALORES DE EMPLEADO
+				$ocupacion = $this->input->post('ocupacion');
+
+			
+			
+				//$fk_codigo_espe = $this->input->post('fk_codigo_espe');
+
+
+
+				//ARMAS ARREGLO PARA INSERTAR EMPLEADO
+				$datos2 = array(
+					
+					'ocupacion' => $ocupacion
+				
+
+
+				
+					//'fk_codigo_esp' => $fk_codigo_esp
+				);
+
+				//INSERTAS EL REGISTRO DE EMPLEADO
+				
+				$result2 = $this->modelo_admin->act_item($datos2, $paciente['codigo_pac'], 'codigo_pac', 'paciente');
+				
+				if($result2){
+			
+					
+					
+					$codigo_fisico = $this->input->post('codigo_fisico');
+					$alergia =$this->input->post('alergia');
+					$enfermedad =$this->input->post('enfermedad');
+					$antecedente =$this->input->post('antecedente');
+
+					$datos3 = array(
+					'codigo_fisico' => $codigo_fisico,
+					'alergia' => $alergia,
+					'enfermedad_padecida' => $enfermedad,
+					'antecedente' => $antecedente,
+					
+					
+				);
+
+					
+				
+				$result3 = $this->modelo_admin->act_item($datos3, $expediente['codigo_exp'], 'codigo_exp', 'expediente');
+
+					if($result3){
+					$this->session->set_userdata('mensaje', 'Registro actualizado con éxito.');
+					redirect('pacientes');
+
+				}
+
+
+
+
+
+				}				
+			}
+		}
+
+
+
 public function llena_municipio()
     {
 

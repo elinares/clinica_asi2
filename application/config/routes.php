@@ -162,6 +162,7 @@ $route['buscar_persona_paciente'] = "administrador/buscar_persona_paciente";
 $route['resultado_busqueda_paciente'] = "administrador/resultado_busqueda_paciente";
 $route['agregar_paciente_op1'] = "administrador/agregar_paciente_op1";
 $route['agregar_paciente_op2/(:any)'] = "administrador/agregar_paciente_op2/$1";
+$route['editar_paciente/(:any)'] = "administrador/editar_paciente/$1";
 
 
 //e new_empleados
