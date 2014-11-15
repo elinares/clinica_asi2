@@ -1020,9 +1020,10 @@ public function llena_municipio()
 
 
 	public function asignacion_cita($id){
+		$user_info = $this->session->userdata('user_info');
 		$data['titulo'] = 'Administrador - Citas';
 		$data['paciente']=$this->modelo_admin->obt_paciente($id);
-		$data['configuracion'] = $this->modelo_admin->obt_configuracion();
+		$data['configuracion'] = $this->modelo_admin->obt_configuracion_citas($user_info['codigo_cli']);
 		$this->load->view('asignacion_cita', $data);
 	}
 	public function ingresar_cita(){
@@ -1056,7 +1057,9 @@ public function llena_municipio()
 
 	public function configuracion_citas()
 	{
-		$data['configuracion_citas'] = $this->modelo_admin->obt_configuracion_citas();
+		$user_info = $this->session->userdata('user_info');
+		
+		$data['configuracion_citas'] = $this->modelo_admin->obt_configuracion_citas($user_info['codigo_cli']);
 		$data['titulo'] = 'Administrador - Configuracion Cita';
 
 		$this->load->view('lista_configuracion_cita', $data);

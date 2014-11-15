@@ -212,6 +212,15 @@ class modelo_admin extends CI_Model {
         return $this->db->get_where('configuracion_cita', array('codigo_confi'=>$id))->row_array();
     }
 
+     function obt_configuracion_citas($id){
+        $datos=$this->db->query('SELECT configuracion_cita.codigo_confi, configuracion_cita.hora_inicial, configuracion_cita.hora_final, configuracion_cita.cantidad_maxima, consultorio.nombre, clinica.nombre, clinica.codigo_cli 
+          from configuracion_cita 
+          inner join consultorio on consultorio.codigo_con=configuracion_cita.fk_codigo_con 
+          inner join clinica on consultorio.fk_codigo_cli=clinica.codigo_cli where clinica.codigo_cli=?;',$id)->result_array();
+        return $datos;
+    }
+
+
     function obt_configuracion_citas(){
         return $this->db->get('configuracion_cita')->result_array();
     }
