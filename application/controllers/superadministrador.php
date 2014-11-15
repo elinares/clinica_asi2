@@ -316,7 +316,7 @@ class Superadministrador extends CI_Controller {
 	public function editar_pass($id){
 		$datos=$this->modelo_admin->obt_usuario($id);
 		if($this->input->post()){	
-			$password=$this->input->post['password'];
+				$password=$this->input->post('password');
 			
 			$datos =array(
 				'password' => md5($password) 
