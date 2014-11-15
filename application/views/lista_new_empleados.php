@@ -49,13 +49,11 @@ if(empty($new_empleados)){
       <th>Genero</th>
       <th>DUI</th>
       <th>Codigo Persona</th>
-      <th>Codigo Usuario</th>
       <th>NIT</th>
       <th>ISSS</th>
       <th>NUP</th>
       <th>JVPM</th>
-      <th>Codigo Cargo</th>
-      <th>Codigo Especialidad</th>
+
 
       <th style="width: 4.5em;"></th>
     </tr>
@@ -73,13 +71,10 @@ if(empty($new_empleados)){
           <td><?=$empleado['genero']?></td>
           <td><?=$empleado['dui']?></td>
           <td><?=$empleado['fk_codigo_per']?></td>
-          <td><?=$empleado['fk_codigo_user']?></td>
           <td><?=$empleado['nit']?></td>
           <td><?=$empleado['isss']?></td>
           <td><?=$empleado['nup']?></td>
           <td><?=$empleado['jvpm']?></td>
-          <td><?=$empleado['fk_codigo_carg']?></td>
-          <td><?=$empleado['fk_codigo_esp']?></td>
 
 
 
