@@ -221,9 +221,7 @@ class modelo_admin extends CI_Model {
     }
 
 
-    function obt_configuracion_citas(){
-        return $this->db->get('configuracion_cita')->result_array();
-    }
+  
 
 
 
