@@ -1009,7 +1009,8 @@ public function llena_municipio()
 	/*CITAS*/
 	public function citas()
 	{
-		$data['citas'] = $this->modelo_admin->obt_citas();
+		$user_info = $this->session->userdata('user_info');
+		$data['citas'] = $this->modelo_admin->obt_citas($user_info['codigo_cli']);
 		$data['titulo'] = 'Administrador - Citas';
 
 		$this->load->view('lista_citas', $data);

@@ -182,10 +182,13 @@ class modelo_admin extends CI_Model {
         return $this->db->get('especialidad_examen')->result_array();
     }
 
-    function obt_citas(){
-        $datos=$this->db->query('select persona.nombres, persona.apellidos, paciente.codigo_pac, cita.fecha 
+    function obt_citas($id){
+       $datos=$this->db->query(' SELECT persona.nombres, persona.apellidos, paciente.codigo_pac, cita.fecha, configuracion_cita.codigo_confi, consultorio.codigo_con, clinica.codigo_cli
             from persona inner join paciente on paciente.fk_codigo_per =  persona.codigo_per 
-            inner join cita on cita.fk_codigo_pac=paciente.codigo_pac ')->result_array();
+            inner join cita on cita.fk_codigo_pac=paciente.codigo_pac
+            inner join configuracion_cita on cita.fk_codigo_confi=configuracion_cita.codigo_confi 
+            inner join consultorio on configuracion_cita.fk_codigo_con=consultorio.codigo_con
+            inner join clinica on consultorio.fk_codigo_cli=clinica.codigo_cli where codigo_cli=?;',$id)->result_array();
         return $datos;
     }
     function busqueda_pacientes($criterio){
