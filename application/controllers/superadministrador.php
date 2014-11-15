@@ -342,7 +342,7 @@ class Superadministrador extends CI_Controller {
 		$data['departamentos'] = $this->modelo_admin->obt_departamentos();
 		$data['titulo'] = 'Administrador - Departamentos';
 
-		$this->load->view('lista_departamentos', $data);
+		$this->load->view('sadm_lista_departamentos', $data);
 	}
 
 	public function sadm_agregar_departamento()
@@ -407,10 +407,10 @@ class Superadministrador extends CI_Controller {
 		$data['municipios'] = $this->modelo_admin->obt_municipios();
 		$data['titulo'] = 'Administrador - Municipios';
 
-		$this->load->view('lista_municipios', $data);
+		$this->load->view('sadm_listar_municipios', $data);
 	}
 
-	public function agregar_municipio()
+	public function sadm_agregar_municipio()
 	{
 		if($this->input->post()){
 			$nombre = $this->input->post('nombre');
@@ -433,7 +433,7 @@ class Superadministrador extends CI_Controller {
 
 		$data['departamentos'] = $this->modelo_admin->obt_departamentos();
 
-		$this->load->view('agregar_municipio', $data);
+		$this->load->view('sadm_agregar_municipio', $data);
 	}
 
 	public function editar_municipio($id){

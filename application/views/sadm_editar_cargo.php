@@ -8,8 +8,8 @@ $this->load->view('superadministrador/encabezado', $data);
             
             <h1 class="page-title">Editar Cargo</h1>
                     <ul class="breadcrumb">
-            <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
-            <li><a href="<?=base_url()?>cargos">Cargos</a> </li>
+            <li><a href="<?=base_url()?>superadmin">Inicio</a> </li>
+            <li><a href="<?=base_url()?>sadm_cargos">Cargos</a> </li>
             <li class="active">Editar Cargo</li>
         </ul>
 
@@ -38,7 +38,7 @@ $this->load->view('superadministrador/encabezado', $data);
 
 <!--LLAMAMOS EL PIE DE PAGINA-->
 <?php
-$this->load->view('administrador/pie');
+$this->load->view('superadministrador/pie');
 ?>
 
 <script>

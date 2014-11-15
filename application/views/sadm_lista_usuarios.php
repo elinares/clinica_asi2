@@ -8,7 +8,7 @@ $this->load->view('superadministrador/encabezado', $data);
             
             <h1 class="page-title">Usuarios</h1>
                     <ul class="breadcrumb">
-            <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
+            <li><a href="<?=base_url()?>superadmin">Inicio</a> </li>
             <li class="active">Usuarios</li>
         </ul>
 
@@ -28,11 +28,7 @@ $this->load->view('superadministrador/encabezado', $data);
         }
         $this->session->unset_userdata('mensaje');
         ?>
-            
-<div class="btn-toolbar list-toolbar">
-    <a href="<?=base_url()?>agregar_usuario" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Usuario</a>
-  <div class="btn-group">
-  </div>
+
 </div>
 <?php
 if(empty($usuarios)){
@@ -44,7 +40,7 @@ if(empty($usuarios)){
     <tr>
       <th colspan="2">Nombre</th>
       <th>Nombre Usuario</th>
-      <th colspan="4"><center>Acciones</center></th>
+      <th><center>Acciones</center></th>
       <th style="width: 4.5em;"></th>
     </tr>
   </thead>
@@ -55,11 +51,8 @@ if(empty($usuarios)){
         <tr>
           <td><?=$usuario['nombres']?></td>
           <td><?=$usuario['apellidos']?></td>
-          <td><?=$usuario['nombre']?></td>
+          <td><?=$usuario['usuario']?></td>
           <td><a href="<?=base_url()?>editar_pass/<?=$usuario['codigo_user']?>">Cambiar Password</a></td>
-          <td><a href="<?base_url()?>asignar_clinica/<?=$usuario['codigo_user']?>">Asignar Clinica</a></td>
-          <td><a href="<?=base_url()?>editar_datos/<?=$usuario['codigo_user']?>">Editar</a></td>
-          <td><a href="<?=base_url()?>eliminar/<?=$usuario['codigo_user']?>">Eliminar</a></td>
          
           
         </tr>
@@ -73,5 +66,5 @@ if(empty($usuarios)){
 ?>
 <!--LLAMAMOS EL PIE DE PAGINA-->
 <?php
-$this->load->view('administrador/pie');
+$this->load->view('superadministrador/pie');
 ?>

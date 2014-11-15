@@ -192,7 +192,7 @@ $route['sadm_borrar_cargo/(:any)'] = "superadministrador/sadm_borrar_cargo/$1";
 /*Clinicas*/
 $route['sadm_clinicas'] = "superadministrador/sadm_clinicas";
 $route['sadm_agregar_clinica'] = "superadministrador/sadm_agregar_clinica";
-$route['editar_clinica/(:any)'] = "superadministrador/editar_clinica/$1";
+$route['sadm_editar_clinica/(:any)'] = "superadministrador/sadm_editar_clinica/$1";
 $route['borrar_clinica/(:any)'] = "superadministrador/borrar_clinica/$1";
 
 /*Tipo de presentacion*/
@@ -225,5 +225,14 @@ $route['sadm_departamentos'] = "superadministrador/sadm_departamentos";
 $route['sadm_agregar_departamento'] = "superadministrador/sadm_agregar_departamento";
 $route['sadm_editar_departamento/(:any)'] = "superadministrador/sadm_editar_departamento/$1";
 $route['sadm_borrar_departamento/(:any)'] = "superadministrador/sadm_borrar_departamento/$1";
+
+/* Usuarios*/
+$route['sadm_usuarios']="superadministrador/sadm_usuarios";
+$route['editar_pass/(:any)']="superadministrador/editar_pass/$1";
+/*listar departamentos superadministrador*/
+$route['sadm_lista_departamentos']="superadministrador/sadm_lista_departamentos";
+/*asignar modulos*/
+$route['asignar_modulo/(:any)']="superadministrador/asignar_modulo/$1";
+/* Location: ./application/config/routes.php */
 
 /* Location: ./application/config/routes.php */

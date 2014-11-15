@@ -1,7 +1,7 @@
 <!--LLAMAMOS EL ENCABEZADO-->
 <?php
 $data['titulo'] = $titulo;
-$this->load->view('administrador/encabezado', $data);
+$this->load->view('superadministrador/encabezado', $data);
 ?>
 <div class="content">
         <div class="header">
@@ -30,7 +30,7 @@ $this->load->view('administrador/encabezado', $data);
         ?>
             
 <div class="btn-toolbar list-toolbar">
-    <a href="<?=base_url()?>agregar_departamento" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Departamento</a>
+    <a href="<?=base_url()?>sadm_agregar_departamento" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Departamento</a>
   <div class="btn-group">
   </div>
 </div>
@@ -53,8 +53,8 @@ if(empty($departamentos)){
         <tr>
           <td><?=$departamento['nombre']?></td>
           <td>
-              <a href="<?=base_url()?>editar_departamento/<?=$departamento['codigo_dep']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>borrar_departamento/<?=$departamento['codigo_dep']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              <a href="<?=base_url()?>sadm_editar_departamento/<?=$departamento['codigo_dep']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>sadm_borrar_departamento/<?=$departamento['codigo_dep']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
           </td>
         </tr>
         <?php

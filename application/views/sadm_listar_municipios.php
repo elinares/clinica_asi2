@@ -6,10 +6,10 @@ $this->load->view('superadministrador/encabezado', $data);
 <div class="content">
         <div class="header">
             
-            <h1 class="page-title">Cargos</h1>
+            <h1 class="page-title">Municipios</h1>
                     <ul class="breadcrumb">
             <li><a href="<?=base_url()?>superadmin">Inicio</a> </li>
-            <li class="active">Cargos</li>
+            <li class="active">Municipios</li>
         </ul>
 
         </div>
@@ -29,13 +29,10 @@ $this->load->view('superadministrador/encabezado', $data);
         $this->session->unset_userdata('mensaje');
         ?>
             
-<div class="btn-toolbar list-toolbar">
-    <a href="<?=base_url()?>sadm_agregar_cargo" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo Cargo</a>
-  <div class="btn-group">
-  </div>
+
 </div>
 <?php
-if(empty($cargos)){
+if(empty($municipios)){
   echo "No se encontraron registros.";
 }else{  
 ?>
@@ -43,19 +40,18 @@ if(empty($cargos)){
   <thead>
     <tr>
       <th>Nombre</th>
-      <th style="width: 4.5em;"></th>
+      <th>Departamento</th>
+   
     </tr>
   </thead>
   <tbody>
     <?php
-      foreach ($cargos as $cargo) {
+      foreach ($municipios as $municipio) {
         ?>
         <tr>
-          <td><?=$cargo['nombre']?></td>
-          <td>
-              <a href="<?=base_url()?>sadm_editar_cargo/<?=$cargo['codigo_carg']?>"><i class="fa fa-pencil"></i></a>
-              <a href="<?=base_url()?>sadm_borrar_cargo/<?=$cargo['codigo_carg']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
-          </td>
+          <td><?=$municipio['nombre']?></td>
+          <td><?=$municipio['nombre_departamento']?></td>
+         
         </tr>
         <?php
       }

@@ -21,6 +21,11 @@ if(!$this->session->userdata('user_info')){
 
     <script src="<?=base_url()?>js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="<?=base_url()?>js/livevalidation_standalone.compressed.js" type="text/javascript"></script>
+    
+    <!--DATE PICKER-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> 
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
 
         <script src="<?=base_url()?>js/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -135,7 +140,7 @@ if(!$this->session->userdata('user_info')){
             <a href="<?=base_url()?>sadm_clinicas" class="nav-header"><span class="fa fa-caret-right"></span> Clínicas</a>
         </li>
         <li>
-            <a href="<?=base_url()?>usuarios" class="nav-header"><span class="fa fa-caret-right"></span> Usuarios</a>
+            <a href="<?=base_url()?>sadm_usuarios" class="nav-header"><span class="fa fa-caret-right"></span> Usuarios</a>
         </li>
         <li>
             <a href="<?=base_url()?>sadm_cargos" class="nav-header"><span class="fa fa-caret-right"> </span>Cargos</a>

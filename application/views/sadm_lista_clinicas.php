@@ -8,7 +8,7 @@ $this->load->view('superadministrador/encabezado', $data);
             
             <h1 class="page-title">Clínicas</h1>
                     <ul class="breadcrumb">
-            <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
+            <li><a href="<?=base_url()?>superadmin">Inicio</a> </li>
             <li class="active">Clínicas</li>
         </ul>
 
@@ -47,7 +47,7 @@ if(empty($clinicas)){
       <th>Dirección</th>
       <th>Teléfono</th>
       <th>Email</th>
-      <th style="width: 4.5em;"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
@@ -61,8 +61,11 @@ if(empty($clinicas)){
           <td><?=$clinica['telefono']?></td>
           <td><?=$clinica['email']?></td>
           <td>
-              <a href="<?=base_url()?>editar_clinica/<?=$clinica['codigo_cli']?>"><i class="fa fa-pencil"></i></a>
+              <a href="<?=base_url()?>sadm_editar_clinica/<?=$clinica['codigo_cli']?>"><i class="fa fa-pencil"></i></a>
               <a href="<?=base_url()?>borrar_clinica/<?=$clinica['codigo_cli']?>" onclick="var result = confirm('¿Seguro que desea borrar este registro?\nEsto no se podrá revertir.'); if (result==true) { return true; } return false;"><i class="fa fa-trash-o"></i></a>
+              </td>
+              <td>
+              <a href="<?=base_url()?>asignar_modulo/<?=$clinica['codigo_cli']?>">Asignar Modulo</a>
           </td>
         </tr>
         <?php
@@ -75,5 +78,5 @@ if(empty($clinicas)){
 ?>
 <!--LLAMAMOS EL PIE DE PAGINA-->
 <?php
-$this->load->view('administrador/pie');
+$this->load->view('superadministrador/pie');
 ?>

@@ -496,6 +496,24 @@ public function departamentos()
                                AND sm.estado=\'Pendiente\'
                                AND sm.fk_codigo_con=?;', $id)->result_array();
     }
+     /*Obtener ultima clinica*/
+    function obt_ultima_clinica(){
+      return $this->db->query('SELECT MAX(codigo_cli) AS ultimo_id FROM clinica')->row_array();
+    }
+
+    function obt_usuarios_superadmin(){
+    return $this->db->query('SELECT  persona.nombres, persona.apellidos, usuario.codigo_user, usuario.nombre as usuario
+                              FROM persona 
+                              INNER JOIN empleado
+                              ON empleado.fk_codigo_per = persona.codigo_per
+                              INNER JOIN usuario
+                              ON empleado.fk_codigo_user = usuario.codigo_user;') ->result_array();
+    }
+    /*obtener modulo*/
+      function obt_modulo(){
+        return $this->db->get('modulo')->result_array();
+    }
+
 
 
 }

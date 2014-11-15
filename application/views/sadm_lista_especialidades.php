@@ -8,7 +8,7 @@ $this->load->view('superadministrador/encabezado', $data);
             
             <h1 class="page-title">Especialidades</h1>
                     <ul class="breadcrumb">
-            <li><a href="<?=base_url()?>inicio">Mantenimientos</a> </li>
+            <li><a href="<?=base_url()?>superadmin">Inicio</a> </li>
             <li class="active">Especialidades</li>
         </ul>
 
@@ -67,5 +67,5 @@ if(empty($especialidades)){
 ?>
 <!--LLAMAMOS EL PIE DE PAGINA-->
 <?php
-$this->load->view('administrador/pie');
+$this->load->view('superadministrador/pie');
 ?>

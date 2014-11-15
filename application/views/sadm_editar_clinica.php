@@ -22,7 +22,7 @@ $this->load->view('superadministrador/encabezado', $data);
     <br>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        <form id="tab" action="<?=base_url()?>editar_clinica/<?=$info_cli['codigo_cli']?>" method="post">
+        <form id="tab" action="<?=base_url()?>sadm_editar_clinica/<?=$info_cli['codigo_cli']?>" method="post">
           <div class="form-group">
           <label>Nombre</label>
           <input type="text" name="nombre" id="nombre" value="<?=$info_cli['nombre']?>" class="form-control">
@@ -54,7 +54,7 @@ $this->load->view('superadministrador/encabezado', $data);
 
 <!--LLAMAMOS EL PIE DE PAGINA-->
 <?php
-$this->load->view('administrador/pie');
+$this->load->view('superadministrador/pie');
 ?>
 
 <script>
