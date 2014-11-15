@@ -105,6 +105,8 @@ $route['perfiles'] = "administrador/perfiles";
 $route['agregar_perfil'] = "administrador/agregar_perfil";
 $route['editar_perfil/(:any)'] = "administrador/editar_perfil/$1";
 $route['borrar_perfil/(:any)'] = "administrador/borrar_perfil/$1";
+$route['asignar_permisos/(:any)'] = "administrador/asignar_permisos/$1";
+$route['guardar_permisos/(:any)'] = "administrador/guardar_permisos/$1";
 
 /*Usuarios*/
 $route['usuarios'] = "administrador/usuarios";

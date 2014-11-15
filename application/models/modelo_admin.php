@@ -658,6 +658,16 @@ on cita.fk_codigo_pac = paciente.codigo_pac;')->result_array();
                                AND ex.codigo_exp=?;', $id)->row_array();
     }
 
+    //PERMISOS
+
+    function obt_permisos(){
+      return $this->db->get('permiso')->result_array();
+    }
+
+    function obt_perfil_permisos($id){
+      return $this->db->get_where('perfil_permiso', array('fk_codigo_perf' => $id))->result_array();
+    }
+
 }
 
 ?>

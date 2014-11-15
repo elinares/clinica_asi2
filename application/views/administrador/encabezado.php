@@ -2,7 +2,7 @@
 if(!$this->session->userdata('user_info')){
     redirect('/');
 }else{
-    $user_info = $this->session->userdata('user_info');    
+    $user_info = $this->session->userdata('user_info'); 
 }
 ?>
 <!doctype html>
@@ -146,14 +146,20 @@ if(!$this->session->userdata('user_info')){
       </div>
     </div>
     
-
     <div class="sidebar-nav">
     <ul>
 
         <li>
             <a href="<?=base_url()?>inicio" class="nav-header"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
-        </li>   
+        </li> 
 
+    <?php
+    $permisos = $user_info['permisos'];
+    foreach ($permisos as $permiso) {
+        $p = $permiso['codigo_permi'];
+
+        if($p==2){//Administracion
+        ?>
         <li>
             <a href="<?=base_url()?>new_empleados" class="nav-header"><span class="fa fa-users"></span> Empleados</a>
         </li>
@@ -163,12 +169,8 @@ if(!$this->session->userdata('user_info')){
         </li>
 
         <li>
-             <a href="<?=base_url()?>donaciones" class="nav-header"><span class="fa fa-plus"></span> Donaciones</a>
-        </li> 
-
-        <li>
-            <a href="<?=base_url()?>pacientes" class="nav-header"><span class="fa fa-male"></span> Pacientes</a>
-        </li>
+            <a href="<?=base_url()?>" class="nav-header"><span class="fa fa-plus"></span> Donaciones</a>
+        </li>         
 
     <!--MANTENIMIENTOS-->
 
@@ -193,28 +195,7 @@ if(!$this->session->userdata('user_info')){
             </ul>
         </li>
 
-
- <!--Administracion Clinica-->
-
-        <li>
-            <a href="#" data-target=".admin_clinica-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-gear"></i> Otros<i class="fa fa-collapse"></i></a>
-        </li>        
-        <li>
-            <ul class="admin_clinica-menu nav nav-list collapse">
-                    
-                    <li ><a href="<?=base_url()?>clinicas"><span class="fa fa-caret-right"></span> Clínicas</a></li>
-                    <li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span> Citas</a></li>
-                    <li ><a href="<?=base_url()?>#"><span class="fa fa-caret-right"></span> Configuracion Examenes</a></li>
-                    <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
-                    <li ><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>
-                    <li ><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>
-                    <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span> Empleados</a></li>                    
-                    <li ><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span> Persona</a></li>
-
-            </ul>
-        </li>        
-
-    <!--REPORTES-->
+        <!--REPORTES-->
 
          <li>
             <a href="#" data-target=".reportes-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-file"></i> Reportes<i class="fa fa-collapse"></i></a>
@@ -223,18 +204,41 @@ if(!$this->session->userdata('user_info')){
         <li>
             <ul class="reportes-menu nav nav-list collapse">
                 
-                <li><a target="_blank" href="<?=base_url()?>reportes/detalle_compra"><span class="fa fa-caret-right"></span>Compras</a></li>
-                <li><a target="_blank" href="<?=base_url()?>reportes/detalle_compra_Fecha"><span class="fa fa-caret-right"></span>Compras Fecha</a></li>
-                <li><a target="_blank" href="<?=base_url()?>reportes/detalle_donacion"><span class="fa fa-caret-right">Donacion</span></a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Exámenes</a></li>
-                <li><a target="_blank" href="<?=base_url()?>reportes/citas"><span class="fa fa-caret-right"></span>Citas</a></li>
-                <li><a target="_blank" href="<?=base_url()?>reportes/kardex"><span class="fa fa-caret-right"></span>Productos (Kardex)</a></li>
-                <li><a target="_blank" href="<?=base_url()?>reportes/expediente"><span class="fa fa-caret-right"></span>Expedientes</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Compras</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Donaciones</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Consultas</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Exámenes</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Citas</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Productos (Kardex)</a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Expedientes</a></li>
 
             </ul>
-        </li> 
+        </li>
 
-    <!--CONSULTORIOS-->
+        <!--Administracion Clinica-->
+
+        <li>
+            <a href="#" data-target=".admin_clinica-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-gear"></i> Otros<i class="fa fa-collapse"></i></a>
+        </li>        
+        <li>
+            <ul class="admin_clinica-menu nav nav-list collapse">                    
+                    
+                    <li><a href="<?=base_url()?>citas"><span class="fa fa-caret-right"></span> Citas</a></li>
+                    <!-- <li ><a href="<?=base_url()?>#"><span class="fa fa-caret-right"></span> Configuracion Examenes</a></li> -->
+                    <li ><a href="<?=base_url()?>usuarios"><span class="fa fa-caret-right"></span> Usuarios</a></li>
+                    <!--<li ><a href="<?=base_url()?>departamentos"><span class="fa fa-caret-right"></span> Departamentos</a></li>
+                    <li ><a href="<?=base_url()?>municipios"><span class="fa fa-caret-right"></span> Municipios</a></li>-->
+                    <li ><a href="<?=base_url()?>empleados"><span class="fa fa-caret-right"></span> Empleados</a></li>                    
+                    <li ><a href="<?=base_url()?>personas"><span class="fa fa-caret-right"></span> Persona</a></li>
+
+            </ul>
+        </li>
+        <?php
+        }
+
+        if($p==3){//Doctor
+        ?>
+        <!--CONSULTORIOS-->
 
          <li>
             <a href="#" data-target=".consultorios-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-stethoscope"></i> Consultorios<i class="fa fa-collapse"></i></a>
@@ -254,9 +258,21 @@ if(!$this->session->userdata('user_info')){
                 ?>                              
 
             </ul>
-        </li> 
+        </li>
+        <?php
+        }
 
-    <!--FARMACIA-->
+        if($p==4){//Enfermera
+        ?>
+        <li>
+            <a href="<?=base_url()?>pacientes" class="nav-header"><span class="fa fa-male"></span> Pacientes</a>
+        </li>
+        <?php
+        }
+
+        if($p==5){//Farmacia
+        ?>
+        <!--FARMACIA-->
 
          <li>
             <a href="#" data-target=".farmacia-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-medkit"></i> Farmacia<i class="fa fa-collapse"></i></a>
@@ -269,7 +285,12 @@ if(!$this->session->userdata('user_info')){
                 <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Recetas</a></li>
 
             </ul>
-        </li>        
+        </li>
+        <?php
+        }
+    }
+    
+    ?>    
 
     </ul>
     </div>    

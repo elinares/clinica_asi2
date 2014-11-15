@@ -2202,5 +2202,49 @@ public function especialidad_examenes()
 		
 	}
 
+	//ASIGNAR PERMISOS A PERFILES
+
+	public function asignar_permisos($id){
+		$data['perfil'] = $id;
+		$data['permisos'] = $this->modelo_admin->obt_permisos();
+		$data['titulo'] = 'Asignación de Permisos';
+		$this->load->view('asignar_permisos', $data);
+	}
+
+	public function guardar_permisos($id){
+		if($this->input->post()){
+			$permisos = $this->input->post('permiso');
+
+			$this->db->where('fk_codigo_perf', $id);
+			$result = $this->db->delete('perfil_permiso');
+
+			$num=count($permisos);
+			if($result)
+			{				
+				for($i=0;$i<$num;$i++) { 					
+
+					$datos[$i] = array(
+						'fk_codigo_perf' => $id,
+						'fk_codigo_permi' => $permisos[$i]
+						);
+
+					$result2 = $this->modelo_admin->guardar_item($datos[$i], 'perfil_permiso');
+				}
+
+				$this->session->set_userdata('mensaje', 'Permisos asignados correctamente.');
+				redirect('perfiles');
+			}
+		}else{
+			$this->db->where('fk_codigo_perf', $id);
+			$result = $this->db->delete('perfil_permiso');
+
+			if($result)
+			{
+				$this->session->set_userdata('mensaje', 'Permisos asignados correctamente.');
+				redirect('perfiles');
+			}
+		}
+	}
+
 }
 
