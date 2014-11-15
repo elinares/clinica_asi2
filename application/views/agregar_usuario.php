@@ -67,7 +67,7 @@ $this->load->view('administrador/pie');
 <script>
   $(document).ready(function(){
 
-    //VALIDACION
+     //VALIDACION
     var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
     nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del usuario." } );
     nombre.add( Validate.Length, { minimum: 4, tooShortMessage: "El nombre de usuario debe ser de al menos 4 caracteres." } );

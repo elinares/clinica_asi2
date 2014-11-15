@@ -514,6 +514,118 @@ public function departamentos()
         return $this->db->get('modulo')->result_array();
     }
 
+     function obt_reporte_compras(){
+       $datos = $this->db->query('SELECT compra.codigo_comp, compra.factura, compra.fecha, clinica.nombre as clinica, clinica.encargado,(detalle_compra.costo * detalle_compra.cantidad) as total
+from compra inner join clinica
+on compra.fk_codigo_cli=clinica.codigo_cli
+inner join detalle_compra
+on detalle_compra.fk_codigo = compra.codigo_comp')->result_array();
+                                  return $datos;
+    }
+
+    function obt_compra_fecha(){
+$datos = $this->db->query('SELECT compra.codigo_comp, compra.factura, compra.fecha, clinica.nombre as clinica, clinica.encargado,(detalle_compra.costo * detalle_compra.cantidad) as total
+from compra inner join clinica 
+on compra.fk_codigo_cli=clinica.codigo_cli 
+inner join detalle_compra 
+on detalle_compra.fk_codigo = compra.codigo_comp
+and compra.fecha between \'2014-11-10\' and \'2014-11-10\';')->result_array();
+                                      return $datos;
+
+    }
+
+    function obt_reporte_donacion(){
+$datos = $this->db->query('SELECT donacion.codigo_dona,donacion.estado,donacion.fecha,donante.nombre as donante,donante.telefono,donante.email,clinica.nombre as clinica, clinica.encargado
+from donacion inner join donante
+on donacion.fk_codigo_dont = donante.codigo_dont
+inner join clinica
+on donacion.fk_codigo_cli = clinica.codigo_cli;')->result_array();
+                                      return $datos;
+
+    }
+
+
+    function obt_reporte_expediente(){
+$datos = $this->db->query('SELECT departamento.nombre as departamento,municipio.nombre as municipio,
+       persona.nombres,persona.apellidos,persona.fecha_nacimiento,persona.direccion,persona.estado_civil,persona.genero,persona.dui,
+       paciente.codigo_pac,paciente.ocupacion,paciente.fecha_registro,
+       expediente.codigo_exp,expediente.codigo_fisico,expediente.alergia,expediente.enfermedad_padecida,expediente.antecedente,expediente.fecha_creacion
+  from persona inner join paciente
+  on paciente.fk_codigo_per = persona.codigo_per
+  inner join expediente
+  on  expediente.fk_codigo_pac=paciente.codigo_pac
+  inner join departamento
+  on persona.fk_codigo_muni   = departamento.codigo_dep
+  inner join municipio
+  on departamento.codigo_dep = municipio.fk_codigo_dep')->result_array();
+                                      return $datos;
+
+    }
+    function obt_historico(){
+$datos = $this->db->query('SELECT paciente.codigo_pac as No_Paciente,expediente.codigo_exp,persona.nombres,persona.apellidos,historico.altura,historico.peso,historico.presion_arterial,historico.temperatura,historico.fecha_consulta
+from persona inner join paciente
+on persona.codigo_per=paciente.fk_codigo_per
+inner join expediente
+on paciente.codigo_pac = expediente.fk_codigo_pac
+inner join historico
+on expediente.codigo_exp=historico.fk_codigo_exp')->result_array();
+                                      return $datos;
+
+    }
+
+        function obt_reporte_producto(){
+$datos = $this->db->query('SELECT clinica.nombre as clinica,tipo_producto.nombre as producto,tipo_presentacion.tipo as tipo_presentacion,tipo_producto.precio,tipo_producto.cantidad_minima,tipo_producto.cantidad_maxima,tipo_producto.existencia,producto.codigo_produ,producto.cantidad,producto.fecha_vencimiento
+from producto inner join clinica
+on producto.fk_codigo_cli = clinica.codigo_Cli
+inner join tipo_producto
+on producto.fk_codigo_tipoprod = tipo_producto.codigo_tipoprod
+inner join tipo_presentacion
+on producto.fk_codigo_tipre = tipo_presentacion.codigo_tipre')->result_array();
+                                      return $datos;
+
+    }
+
+    function obt_kardex(){
+$datos = $this->db->query('SELECT producto.codigo_produ as codigo_producto, tipo_producto.nombre as producto, detalle_compra.cantidad as entradas, detalle_receta.cantidad as salidas
+from producto inner join tipo_producto
+on producto.fk_codigo_tipoprod = tipo_producto.codigo_tipoprod
+inner join detalle_compra
+on detalle_compra.fk_codigo_produ = producto.codigo_produ
+inner join detalle_receta
+on detalle_receta.fk_codigo_tipoprod=tipo_producto.codigo_tipoprod;')->result_array();
+                                      return $datos;
+
+    }
+
+    function obt_cita(){
+$datos = $this->db->query('SELECT paciente.codigo_pac,cita.fecha,cita.estado,persona.nombres,persona.apellidos
+from paciente inner join persona
+on persona.codigo_per = paciente.fk_codigo_per
+inner join cita
+on cita.fk_codigo_pac = paciente.codigo_pac;')->result_array();
+                                      return $datos;
+
+    }
+
+     /*DONACIONES*/
+
+    function obt_donacion($id){
+        $datos = $this->db->query('SELECT *
+                                   FROM donacion
+                                   WHERE codigo_dona=?;', $id)->row_array();
+        return $datos;
+    }
+
+    function obt_donaciones(){
+            $datos = $this->db->query('SELECT dona.*, don.nombre as nombres_donante,don.primer_apellido as apellido1, don.segundo_apellido as apellido2,
+                                       don.direccion, don.telefono, don.email, don.tipo_documento, don.numero_documento, cli.nombre as clinica 
+                                       from donante don, clinica cli, donacion dona where dona.fk_codigo_dont = don.codigo_dont and dona.fk_codigo_cli = cli.codigo_cli')->result_array();
+        return $datos;
+
+    }
+
+
+
 
 
 }

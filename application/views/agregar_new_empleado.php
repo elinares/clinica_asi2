@@ -160,12 +160,11 @@ $this->load->view('administrador/pie');
     //VALIDACION
     var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
     nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del Empleado." } );
+    nombre.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
     
-    var primer_apellido = new LiveValidation('primer_apellido', { validMessage: "Gracias." }); 
-    primer_apellido.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del Empleado." } );
-
-    var segundo_apellido = new LiveValidation('segundo_apellido', { validMessage: "Gracias." });
-    segundo_apellido.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del Empleado." } );
+    var apellidos = new LiveValidation('apellidos', { validMessage: "Gracias." }); 
+    apellidos.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del Empleado." } );
+    apellidos.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
 
     var fecha_nacimiento = new LiveValidation('fecha_nacimiento', { validMessage: "Gracias." });
     fecha_nacimiento.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Fecha de Nacimiento del Empleado." } );
@@ -178,6 +177,9 @@ $this->load->view('administrador/pie');
 
     var dui = new LiveValidation('dui', { validMessage: "Gracias." });
     dui.add( Validate.Presence, { failureMessage: "Por favor, ingrese el DUI del Empleado." } );
+    jQuery(function($){
+   $("#dui").mask("99999999-9");
+});
 
   });
 </script>

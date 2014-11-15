@@ -2078,5 +2078,73 @@ public function especialidad_examenes()
 		$this->load->view('lista_consultas_pendientes', $data);
 	}
 
+	/*MANTENIMIENTO DONACIONES*/
+	public function donaciones(){
+		$data['donaciones'] = $this->modelo_admin->obt_donaciones();
+		$data['titulo'] = 'Administrador - Donación';
+
+		$this->load->view('lista_donacion', $data);
+	}
+	/*AGREGAR DONACION*/
+	public function agregar_donacion(){
+
+
+		if($this->input->post()){
+			//agregando datos de donante
+			$nombre = $this->input->post('nombre');
+			$primer_apellido = $this->input->post('apellido1');
+			$segundo_apellido = $this->input->post('apellido2');
+			$direccion = $this->input->post('direccion');
+			$telefono = $this->input->post('telefono');
+			$email = $this->input->post('correo');
+			$tipo_documento = $this->input->post('tipo_documento');
+			$numero_documento = $this->input->post('numero_documento');
+			
+
+			$datos = array(
+				'nombre' => $nombre,
+				'primer_apellido' => $primer_apellido,
+				'segundo_apellido'=> $segundo_apellido,
+				'direccion'=> $direccion,
+				'telefono' => $telefono,
+				'email' => $email,
+				'tipo_documento' => $tipo_documento,
+				'numero_documento' => $numero_documento,
+				
+				);
+
+			$result = $this->modelo_admin->guardar_item($datos, 'donante');
+			if($result){
+				$fk_codigo_dont = $this->db->insert_id();
+				$fk_codigo_cli = $this->input->post('fk_codigo_cli');
+				$monto = $this->input->post('monto');
+				$estado = $this->input->post('estado');
+				$fecha = $this->input->post('fecha');
+				$clinica = $this->input->post('clinica');
+				$datos2 = array(
+					'fk_codigo_dont' => $fk_codigo_dont,
+					'monto' => $monto,
+					'estado' => $estado,
+					'fecha' => $fecha,
+					'fk_codigo_cli' => $fk_codigo_cli
+				);
+				
+				$result2 = $this->modelo_admin->guardar_item($datos2, 'donacion');
+				if($result2){
+					$this->session->set_userdata('mensaje', 'Registro agregado con éxito.');
+					redirect('donaciones');
+				}
+
+			}
+		}
+
+
+		$data['clinicas'] = $this->modelo_admin->obt_clinicas();
+		$data['titulo'] = 'Administrador - Agregar Donación';
+		$this->load->view('agregar_donacion', $data);	
+	}
+	
+
+
 }
 

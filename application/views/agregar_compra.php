@@ -237,7 +237,7 @@ $this->load->view('administrador/pie');
       }
     });
 
-    //VALIDACION
+   //VALIDACION
     var factura = new LiveValidation('factura', { validMessage: "Gracias." });
     factura.add( Validate.Presence, { failureMessage: "Por favor, ingrese el número de la factura." } );
 

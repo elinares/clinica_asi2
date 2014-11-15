@@ -64,7 +64,7 @@ $this->load->view('administrador/pie');
 <script>
   $(document).ready(function(){
 
-    //VALIDACION HORA INICIAL
+     //VALIDACION HORA INICIAL
     var hora_inicial = new LiveValidation('hora_inicial', { validMessage: "Gracias." });
     hora_inicial.add( Validate.Presence, { failureMessage: "Por favor, ingrese la Hora de Inicio." } );
     hora_inicial.add( Validate.Length, { minimum: 7, tooShortMessage: "La hora debe estar en este formato. Ej: 00:00(AM/PM)" } );

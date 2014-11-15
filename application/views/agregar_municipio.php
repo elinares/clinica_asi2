@@ -56,9 +56,10 @@ $this->load->view('administrador/pie');
 <script>
   $(document).ready(function(){
 
-    //VALIDACION
     var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
     nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del municipio." } );
+    nombre.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
+
 
   });
 </script>

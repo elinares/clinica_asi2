@@ -46,6 +46,7 @@ $this->load->view('administrador/pie');
     //VALIDACION
     var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
     nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del departamento." } );
+    nombre.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
 
   });
 </script>

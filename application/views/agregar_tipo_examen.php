@@ -46,6 +46,7 @@ $this->load->view('administrador/pie');
     //VALIDACION
     var tipo = new LiveValidation('tipo', { validMessage: "Gracias." });
     tipo.add( Validate.Presence, { failureMessage: "Por favor, ingrese el tipo del examen." } );
+    tipo.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
 
   });
 </script>

@@ -157,23 +157,29 @@ $this->load->view('administrador/pie');
     });
 
     //VALIDACION
-    var nombres = new LiveValidation('nombres', { validMessage: "Gracias." });
-    nombres.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del paciente." } );
+    var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
+    nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del Empleado." } );
+    nombre.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
     
-    var apellidos = new LiveValidation('apellidos', { validMessage: "Gracias." }); 
-    apellidos.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del paciente." } );
+    var primer_apellido = new LiveValidation('primer_apellido', { validMessage: "Gracias." }); 
+    primer_apellido.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del Empleado." } );
+    primer_apellido.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
+
+    var segundo_apellido = new LiveValidation('segundo_apellido', { validMessage: "Gracias." });
+    segundo_apellido.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Apellido del Empleado." } );
+    segundo_apellido.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"});
 
     var fecha_nacimiento = new LiveValidation('fecha_nacimiento', { validMessage: "Gracias." });
-    fecha_nacimiento.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Fecha de Nacimiento del paciente." } );
+    fecha_nacimiento.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Fecha de Nacimiento del Empleado." } );
 
     var estado_civil = new LiveValidation('estado_civil', { validMessage: "Gracias." });
-    estado_civil.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Estado civil del paciente." } );
+    estado_civil.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Estado civil del Empleado." } );
 
     var genero = new LiveValidation('genero', { validMessage: "Gracias." });
-    genero.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Genero del paciente." } );
+    genero.add( Validate.Presence, { failureMessage: "Por favor, ingrese el Genero del Empleado." } );
 
     var dui = new LiveValidation('dui', { validMessage: "Gracias." });
-    dui.add( Validate.Presence, { failureMessage: "Por favor, ingrese el DUI del paciente." } );
+    dui.add( Validate.Presence, { failureMessage: "Por favor, ingrese el DUI del Empleado." } );
 
   });
 </script>

@@ -233,6 +233,10 @@ $route['editar_pass/(:any)']="superadministrador/editar_pass/$1";
 $route['sadm_lista_departamentos']="superadministrador/sadm_lista_departamentos";
 /*asignar modulos*/
 $route['asignar_modulo/(:any)']="superadministrador/asignar_modulo/$1";
+
+$route['donaciones'] = "administrador/donaciones";
+$route['agregar_donacion'] = "administrador/agregar_donacion";
+$route['editar_donacion/(:any)'] = "administrador/editar_donacion/$1";
 /* Location: ./application/config/routes.php */
 
 /* Location: ./application/config/routes.php */

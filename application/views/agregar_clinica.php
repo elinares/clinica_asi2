@@ -63,18 +63,22 @@ $this->load->view('administrador/pie');
     //VALIDACION
     var nombre = new LiveValidation('nombre', { validMessage: "Gracias." });
     nombre.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre de la clínica." } );
+    nombre.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"})
 
     var encargado = new LiveValidation('encargado', { validMessage: "Gracias." });
     encargado.add( Validate.Presence, { failureMessage: "Por favor, ingrese el nombre del encargado." } );
+    encargado.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"})
 
     var direccion = new LiveValidation('direccion', { validMessage: "Gracias." });
     direccion.add( Validate.Presence, { failureMessage: "Por favor, ingrese la dirección de la clínica." } );
 
     var telefono = new LiveValidation('telefono', { validMessage: "Gracias." });
-    telefono.add( Validate.Numericality, { notANumberMessage: "El teléfono debe ser un número." } );
+    telefono.add( Validate.Length, { maximum: 8, tooLongMessage:"El telefono debe contener un máximo de 8 caracteres." } );
+    telefono.add(Validate.Format,{ pattern:/.[a-zA-Z]+$/, failureMessage: "No se permiten caracteres"})
 
     var email = new LiveValidation('email', { validMessage: "Gracias." });
     email.add( Validate.Email, { failureMessage: "Por favor, ingrese un email válido." } );
+    email.add( Validate.Email, {failureMessage:"Escriba un formato de correo correcto"});
 
   });
 </script>

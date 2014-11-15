@@ -94,7 +94,7 @@ $this->load->view('administrador/pie');
 <script>
   $(document).ready(function(){
 
-    //VALIDACION
+     //VALIDACION
     var sintoma = new LiveValidation('sintoma', { validMessage: "Gracias." });
     sintoma.add( Validate.Presence, { failureMessage: "Por favor, ingrese el sintoma del paciente." } );
 

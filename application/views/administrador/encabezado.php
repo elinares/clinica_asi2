@@ -163,7 +163,7 @@ if(!$this->session->userdata('user_info')){
         </li>
 
         <li>
-            <a href="<?=base_url()?>" class="nav-header"><span class="fa fa-plus"></span> Donaciones</a>
+             <a href="<?=base_url()?>donaciones" class="nav-header"><span class="fa fa-plus"></span> Donaciones</a>
         </li> 
 
         <li>
@@ -223,13 +223,13 @@ if(!$this->session->userdata('user_info')){
         <li>
             <ul class="reportes-menu nav nav-list collapse">
                 
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Compras</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Donaciones</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Consultas</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Exámenes</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Citas</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Productos (Kardex)</a></li>
-                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span> Expedientes</a></li>
+                <li><a target="_blank" href="<?=base_url()?>reportes/detalle_compra"><span class="fa fa-caret-right"></span>Compras</a></li>
+                <li><a target="_blank" href="<?=base_url()?>reportes/detalle_compra_Fecha"><span class="fa fa-caret-right"></span>Compras Fecha</a></li>
+                <li><a target="_blank" href="<?=base_url()?>reportes/detalle_donacion"><span class="fa fa-caret-right">Donacion</span></a></li>
+                <li><a href="<?=base_url()?>"><span class="fa fa-caret-right"></span>Exámenes</a></li>
+                <li><a target="_blank" href="<?=base_url()?>reportes/citas"><span class="fa fa-caret-right"></span>Citas</a></li>
+                <li><a target="_blank" href="<?=base_url()?>reportes/kardex"><span class="fa fa-caret-right"></span>Productos (Kardex)</a></li>
+                <li><a target="_blank" href="<?=base_url()?>reportes/expediente"><span class="fa fa-caret-right"></span>Expedientes</a></li>
 
             </ul>
         </li> 
